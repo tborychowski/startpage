@@ -1,0 +1,16 @@
+@import "_lib";
+
+.tile
+	size 120; float left; margin: 0 7 7 0; bg #fff; not-selectable(); padding 10;
+	text-align center; color #333; u 0;
+	transition transform .2s ease-out;
+
+	&:hover
+		shadow 0 0 0 4 #aaa 1;
+
+	&.selected
+		shadow 0 0 0 4 #333 1 inset;
+
+	&.pressed
+		transform scale(0.95);
+

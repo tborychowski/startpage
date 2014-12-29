@@ -1,0 +1,10 @@
+@import "_lib";
+
+.sidebar
+	pos 0 0 0; width sidebar-width; bg #444; transition transform .3s ease-out;
+	transform translateX(px(sidebar-width));
+	padding 10; color #fff;
+
+	.sidebar-expanded &
+		transform translateX(0);
+

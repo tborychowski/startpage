@@ -1,0 +1,9 @@
+@import "_lib";
+
+.tile-settings
+	pos 0 0 0 0; top auto; bg #444; padding 10; height 80;
+	transition transform .3s ease-out;
+	transform translateY(80px);
+
+	&.expanded
+		transform translateY(0);

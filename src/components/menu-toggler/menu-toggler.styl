@@ -1,0 +1,35 @@
+@import "_lib";
+
+toggler-size = 20
+toggler-bar-size = round(toggler-size / 8)
+
+.menu-toggler
+	position fixed; top 10; right 10; z 100; size toggler-size;
+
+	&, span
+		transition all .3s ease-out; transform-origin: center;
+
+	span
+		pos(); left 0; display block; bg #888; size 100% toggler-bar-size;
+
+	&:hover span
+		bg #444;
+
+
+	span:nth-child(1)
+		top 3px
+	span:nth-child(2)
+		top 50%; margin-top (toggler-bar-size / -2px)
+	span:nth-child(3)
+		top (toggler-size - toggler-bar-size - 2px)
+
+.menu-toggler.open
+	rotate 180
+	span
+		bg #fff
+	span:nth-child(1)
+		rotate 45; left 0; top (toggler-size / 2) - 1;
+	span:nth-child(2)
+		width 0; opacity 0;
+	span:nth-child(3)
+		rotate -45; left 0; top (toggler-size / 2) - 1;
