@@ -4,7 +4,7 @@ angular.module('app')
 
 		return {
 			restrict: 'EA',
-			templateUrl: 'assets/sidebar.html',
+			template: '<div class="sidebar">settings</div>',
 			replace: true,
 			transclude: false,
 			scope: {},

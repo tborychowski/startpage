@@ -14,14 +14,25 @@
 </head>
 <body ng-controller="appCtrl">
 
-<menu-toggler toggle-class="sidebar-expanded"></menu-toggler>
-<main></main>
-<sidebar></sidebar>
-<tile-settings></tile-settings>
+	<div class="main">
+		<div class="wrapper">
+			<container apps="apps" layout="apps"></container>
+
+			<container apps="apps" layout="list"></container>
+			<container apps="apps" layout="list"></container>
+			<container apps="apps" layout="list"></container>
+		</div>
+	</div>
+
+	<menu-toggler toggle-class="sidebar-expanded"></menu-toggler>
+
+	<sidebar></sidebar>
+
+	<tile-settings></tile-settings>
+
 
 <script src="assets/lib.js"></script>
 <script src="assets/app.js"></script>
 <script src="http://localhost:35729/livereload.js"></script>
-
 </body>
 </html>
