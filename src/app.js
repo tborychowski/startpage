@@ -1,8 +1,7 @@
 angular.module('app', [ 'ngResource' ])
-	.controller('appCtrl', function ($rootScope, $scope, Apps) {
+	.controller('appCtrl', function ($rootScope, $scope, Data) {
 
-		$scope.apps = Apps.get();
-
+		$scope.items = Data.query();
 
 		angular.element(document.body).on('mousedown', function (ev) {
 			$rootScope.$broadcast('body-mousedown', { ev: ev });

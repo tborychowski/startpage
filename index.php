@@ -14,15 +14,10 @@
 </head>
 <body ng-controller="appCtrl">
 
-	<div class="main">
-		<div class="wrapper">
-			<container apps="apps" layout="apps"></container>
-
-			<container apps="apps" layout="list"></container>
-			<container apps="apps" layout="list"></container>
-			<container apps="apps" layout="list"></container>
-		</div>
-	</div>
+	<div class="main"><div class="wrapper">
+		<container ng-repeat="list in items" items="list"
+			layout="{{$index === 0 ? 'apps' : 'list'}}"></container>
+	</div></div>
 
 	<menu-toggler toggle-class="sidebar-expanded"></menu-toggler>
 

@@ -5,15 +5,16 @@ angular.module('app')
 		return {
 			restrict: 'EA',
 			scope: {
-				apps: '='
+				items: '='
 			},
 			template: '<div class="container" ng-class="layout">' +
-							'<tile ng-repeat="app in apps" data="app"></tile>' +
+							'<tile ng-repeat="app in items" data="app"></tile>' +
 						'</div>',
 			replace: true,
 			transclude: false,
 			link: function (scope, elem, attrs) {
 				scope.layout = 'layout-' + (attrs.layout || 'list');
+
 
 			}
 		};
