@@ -7,6 +7,10 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
+	<script>
+		// navigator.serviceWorker.register('./worker.js', { scope: './' });
+	</script>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="assets/lib.css">
@@ -24,7 +28,6 @@
 	<sidebar></sidebar>
 
 	<tile-settings></tile-settings>
-
 
 <script src="assets/lib.js"></script>
 <script src="assets/app.js"></script>

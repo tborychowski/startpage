@@ -31,8 +31,7 @@ angular.module('app')
 					if (args.visible) unselectTiles();
 				});
 
-				elem.on('contextmenu', function (ev) { ev.preventDefault(); })
-					.on('mouseup', function () { elem.removeClass('pressed'); })
+				elem.on('mouseup', function () { elem.removeClass('pressed'); })
 					.on('mousedown', function (ev) {
 						if (ev.which === 3) {
 							unselectTiles(elem[0]);

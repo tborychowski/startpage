@@ -5,7 +5,10 @@ angular.module('app')
 		return {
 			restrict: 'EA',
 			template: '<a href="#" class="menu-toggler" ng-click="toggle()">' +
-				'<span></span><span></span><span></span></a>',
+					'<span class="menu-toggler-inner"></span>' +
+					'<span class="menu-toggler-inner"></span>' +
+					'<span class="menu-toggler-inner"></span>' +
+				'</a>',
 			replace: true,
 			transclude: true,
 			scope: {},
@@ -27,7 +30,9 @@ angular.module('app')
 				$rootScope.$on('body-mousedown', function (ev, args) {
 					if (args.ev) {
 						var cls = args.ev.target.classList;
-						if (cls.contains('sidebar') || cls.contains('menu-toggler')) return;
+						if (cls.contains('sidebar') ||
+							cls.contains('menu-toggler') ||
+							cls.contains('menu-toggler-inner')) return;
 					}
 					scope.toggle(false);
 				});

@@ -22,6 +22,13 @@ gulp.task('php', function () {
 	return gulp.src([ '**/*.php' ]).pipe(live());
 });
 
+gulp.task('html', function () {
+	return gulp.src([ 'src/**/*.html' ])
+		.pipe(flatten())
+		.pipe(gulp.dest('assets'))
+		.pipe(live());
+});
+
 gulp.task('lib-js-maps', function () {
 	return gulp.src([ 'src/lib/*.map' ]).pipe(gulp.dest('assets'));
 });
@@ -30,19 +37,6 @@ gulp.task('lib-js', function () {
 	return gulp.src([ 'src/lib/*.js' ])
 		.pipe(concat('lib.js'))
 		.pipe(gulp.dest('assets'));
-});
-
-gulp.task('lib-css', function () {
-	return gulp.src([ 'src/lib/*.css' ])
-		.pipe(concat('lib.css'))
-		.pipe(gulp.dest('assets'));
-});
-
-gulp.task('html', function () {
-	return gulp.src([ 'src/**/*.html' ])
-		.pipe(flatten())
-		.pipe(gulp.dest('assets'))
-		.pipe(live());
 });
 
 gulp.task('js', function () {
@@ -56,6 +50,12 @@ gulp.task('js', function () {
 		.pipe(live());
 });
 
+gulp.task('lib-css', function () {
+	return gulp.src([ 'src/lib/*.css' ])
+		.pipe(concat('lib.css'))
+		.pipe(gulp.dest('assets'));
+});
+
 gulp.task('styl', function () {
 	return gulp.src([ 'src/app.styl', 'src/components/**/*.styl', ])
 		.pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
@@ -67,7 +67,7 @@ gulp.task('styl', function () {
 
 gulp.task('watch', function () {
 	live.listen();
-	gulp.watch('src/**/*.js', [ 'js'  ]);
+	gulp.watch('src/**/*.js', [ 'js' ]);
 	gulp.watch('src/**/*.styl', [ 'styl' ]);
 	gulp.watch('src/**/*.html', [ 'html' ]);
 	gulp.watch('**/*.php', [ 'php' ]);

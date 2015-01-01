@@ -3,8 +3,14 @@ angular.module('app', [ 'ngResource' ])
 
 		$scope.items = Data.query();
 
+
+
 		angular.element(document.body).on('mousedown', function (ev) {
 			$rootScope.$broadcast('body-mousedown', { ev: ev });
+		});
+
+		angular.element(document.body).on('contextmenu', function (ev) {
+			ev.preventDefault();
 		});
 
 

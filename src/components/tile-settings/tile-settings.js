@@ -5,7 +5,7 @@ angular.module('app')
 		return {
 			restrict: 'EA',
 			// scope: {},
-			template: '<div class="tile-settings">tile {{data.name}}</div>',
+			template: '<div class="tile-settings">tile {{data.name}}<br>url: {{data.url}}</div>',
 			replace: true,
 			transclude: true,
 			link: function (scope, elem/*, attrs*/) {
@@ -14,9 +14,9 @@ angular.module('app')
 
 				scope.toggle = function (show) {
 					scope.isVisible = (typeof show === 'undefined' ? !scope.isVisible : show);
-					elem.toggleClass('expanded', show);
-					document.body.classList.toggle('tile-settings-expanded', show);
-					$rootScope.$broadcast('tile-settings', { visible: show });
+					elem.toggleClass('expanded', scope.isVisible);
+					document.body.classList.toggle('tile-settings-expanded', scope.isVisible);
+					$rootScope.$broadcast('tile-settings', { visible: scope.isVisible });
 				};
 
 				$rootScope.$on('tile-select', function (ev, args) {
