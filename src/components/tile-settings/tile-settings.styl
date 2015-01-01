@@ -1,9 +1,14 @@
 @import "_lib";
 
+boxHeight = 80;
+
 .tile-settings
-	pos 0 0 0 0; top auto; bg #444; padding 10; height 80;
-	transition transform .3s ease-out;
-	transform translateY(80px);
+	pos 0 0 0 0; top auto; bg #444; padding 10; height boxHeight;
+	transition transform .3s ease-out; transform translateY(px(boxHeight));
 
 	&.expanded
 		transform translateY(0);
+
+
+body.tile-settings-expanded .main
+	bottom boxHeight;

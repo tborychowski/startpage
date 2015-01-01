@@ -15,6 +15,7 @@ angular.module('app')
 				scope.toggle = function (show) {
 					scope.isVisible = (typeof show === 'undefined' ? !scope.isVisible : show);
 					elem.toggleClass('expanded', show);
+					document.body.classList.toggle('tile-settings-expanded', show);
 					$rootScope.$broadcast('tile-settings', { visible: show });
 				};
 

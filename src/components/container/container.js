@@ -16,7 +16,7 @@ angular.module('app')
 				scope.layout = 'layout-' + (attrs.layout || 'list');
 
 				scope.sortable = new window.Sortable(elem[0], {
-					animation: 300,
+					animation: 200,
 					draggable: '.tile',
 					group: 'apps',
 					scroll: false
