@@ -1,7 +1,16 @@
 <?php
-// sleep(1);
+// sleep(2);
 header('content-type: application/json; charset=utf8');
-// $db = json_decode(file_get_contents('lists.json'), true);
-// echo json_encode($db, JSON_NUMERIC_CHECK);
 
-echo file_get_contents('lists.json');
+require('DB.php');
+require('Icons.php');
+
+$db = new DB('lists.json');
+
+// $item = $db->to_array()[0][0];
+// print_r(Icons::getIconForUrl($item));
+
+echo $db->to_json();
+
+
+//TODO: update appcache manifest when data (|| icons) changed

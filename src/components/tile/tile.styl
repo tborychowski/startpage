@@ -2,7 +2,7 @@
 
 .tile
 	float left; bg #fff; not-selectable(); color #333; u 0; transition transform .2s ease-out;
-	margin: 5 0 0 5;
+	margin: 5 0 0 5; line-height 1;
 
 	&:hover
 		shadow 0 0 0 4 #aaa 1;
@@ -21,7 +21,7 @@
 	size 120; padding 10; text-align center;
 
 .container.layout-list .tile
-	float none; display block; size auto 30; padding 5 10;
+	float none; display block; size auto 30; padding 8 10 0;
 
 	&.pressed
 		transform scale(0.99);

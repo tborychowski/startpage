@@ -2,38 +2,16 @@
 	[
 		{ "name": "Gmail", "url": "http://gmail.com" },
 		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Gmail", "url": "http://gmail.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" }
+		{ "name": "Github", "url": "http://github.com" },
+		{ "name": "Facebook", "url": "http://facebook.com" },
+		{ "name": "Twitter", "url": "http://twitter.com" },
+		{ "name": "Calendar", "url": "http://calendar.google.com" },
+		{ "name": "YouTube", "url": "http://youtube.com" }
 	],
 	[
-		{ "name": "Gmail", "url": "http://gmail.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Gmail", "url": "http://gmail.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Gmail", "url": "http://gmail.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" }
-	],
-	[
-		{ "name": "Gmail", "url": "http://gmail.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Gmail", "url": "http://gmail.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Gmail", "url": "http://gmail.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" },
-		{ "name": "RSS", "url": "http://rss.com" },
-		{ "name": "Outlook", "url": "http://outlook.com" }
+		{ "name": "StackOverflow", "url": "http://StackOverflow.com" },
+		{ "name": "Bitbucket", "url": "http://bitbucket.com" },
+		{ "name": "Dropbox", "url": "http://dropbox.com" },
+		{ "name": "InoReader", "url": "http://www.inoreader.com/" }
 	]
 ]

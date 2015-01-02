@@ -19,7 +19,7 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('php', function () {
-	return gulp.src([ '**/*.php' ]).pipe(live());
+	return gulp.src([ '**/*.php', './*.*' ]).pipe(live());
 });
 
 gulp.task('html', function () {
@@ -70,7 +70,7 @@ gulp.task('watch', function () {
 	gulp.watch('src/**/*.js', [ 'js' ]);
 	gulp.watch('src/**/*.styl', [ 'styl' ]);
 	gulp.watch('src/**/*.html', [ 'html' ]);
-	gulp.watch('**/*.php', [ 'php' ]);
+	gulp.watch(['**/*.php', '*.*'], [ 'php' ]);
 });
 
 gulp.task('default', [ 'lib-js', 'lib-css', 'lib-js-maps', 'html', 'js', 'styl', 'watch' ]);
