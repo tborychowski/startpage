@@ -7,6 +7,7 @@ angular.module('app')
 			scope: {
 				items: '='
 			},
+			// template: '<div class="container" ng-class="layout" ng-repeat="list in items">' +
 			template: '<div class="container" ng-class="layout">' +
 							'<tile ng-repeat="app in items" data="app"></tile>' +
 						'</div>',

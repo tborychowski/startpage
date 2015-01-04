@@ -20,9 +20,9 @@ angular.module('app')
 			link: function (scope, elem/*, attrs*/) {
 
 				$rootScope.$on('body-mousedown', function (ev, args) {
-					if (args.ev) {
-						var cls = args.ev.target.classList;
-						if (cls.contains('tile') || cls.contains('tile-settings')) return;
+					if (args && args.ev) {
+						if ($rootScope.closest(args.ev.target, 'tile') ||
+							$rootScope.closest(args.ev.target, 'tile-settings')) return;
 					}
 					unselectTiles();
 				});
@@ -31,12 +31,13 @@ angular.module('app')
 					if (args.visible) unselectTiles();
 				});
 
+
 				elem.on('mouseup', function () { elem.removeClass('pressed'); })
 					.on('mousedown', function (ev) {
+						unselectTiles(elem[0]);
 						if (ev.which === 3) {
-							unselectTiles(elem[0]);
 							elem.addClass('pressed').toggleClass('selected');
-							$rootScope.$broadcast('tile-select', {
+							scope.$emit('tile-select', {
 								el: elem,
 								data: scope.data,
 								selected: elem.hasClass('selected')

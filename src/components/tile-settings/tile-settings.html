@@ -1,0 +1,12 @@
+<div class="tile-settings">
+	<form name="tileForm" ng-keydown="onKeyPress($event)">
+<!--
+ 		'id: {{data.id}},
+		'color {{data.color}},
+		'icon {{data.icon}},
+ -->
+		tile <input type="text" ng-model="data.name" value="{{data.name}}" required />
+		url: <input type="text" ng-model="data.url" value="{{data.url}}" required />
+		<button type="submit">save</button>
+	</form>
+</div>

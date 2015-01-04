@@ -73,4 +73,4 @@ gulp.task('watch', function () {
 	gulp.watch(['**/*.php', '*.*'], [ 'php' ]);
 });
 
-gulp.task('default', [ 'lib-js', 'lib-css', 'lib-js-maps', 'html', 'js', 'styl', 'watch' ]);
+gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'lib-js-maps', 'html', 'js', 'styl', 'watch' ]);

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" manifest="startpage.appcache"
-	xmlns:ng="http://angularjs.org" ng-app="app">
-
+<!-- <html lang="en" manifest="startpage.appcache" xmlns:ng="http://angularjs.org" ng-app="app"> -->
+<html lang="en" xmlns:ng="http://angularjs.org" ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<title>Start</title>
@@ -16,10 +15,11 @@
 </head>
 <body ng-controller="appCtrl">
 
-	<div class="main"><div class="wrapper">
-		<container ng-repeat="list in items" items="list"
-			layout="{{$index === 0 ? 'apps' : 'list'}}"></container>
-	</div></div>
+	<div class="main">
+		<div class="wrapper">
+			<container items="items" layout="apps"></container>
+		</div>
+	</div>
 
 	<menu-toggler toggle-class="sidebar-expanded"></menu-toggler>
 
@@ -27,8 +27,10 @@
 
 	<tile-settings></tile-settings>
 
-<script src="assets/lib.js"></script>
-<script src="assets/app.js"></script>
-<script src="http://localhost:35729/livereload.js"></script>
+
+	<script src="assets/lib.js"></script>
+	<script src="assets/app.js"></script>
+	<script src="http://localhost:35729/livereload.js"></script>
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,400">
 </body>
 </html>

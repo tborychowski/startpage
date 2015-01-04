@@ -1,14 +1,17 @@
 @import "_lib";
 
 .tile
-	float left; bg #fff; not-selectable(); color #333; u 0; transition transform .2s ease-out;
-	margin: 5 0 0 5; line-height 1;
+	float left; not-selectable(); u 0; transition transform .2s ease-out;
+	margin: 5 0 0 5; line-height 1; word-wrap break-word;
+	border 1px solid rgba(#fff, 0.2); // bg #2E8DEF;
+	lgradient #4689F0 #4D90FD; color #fff;
+	shadow 1 1 1 #000 0.1;
 
 	&:hover
-		shadow 0 0 0 4 #aaa 1;
+		shadow 0 0 0 4 #fff 0.2;
 
 	&.selected
-		shadow 0 0 0 4 #333 1 inset;
+		shadow 0 0 0 3 #333 1 inset; border #333;
 
 	&.pressed
 		transform scale(0.95);
@@ -18,7 +21,7 @@
 
 
 .container.layout-apps .tile
-	size 120; padding 10; text-align center;
+	size 120; padding 46 10 10; text-align center; font 22; font-weight 100;
 
 .container.layout-list .tile
 	float none; display block; size auto 30; padding 8 10 0;

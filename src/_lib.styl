@@ -1,3 +1,4 @@
+sidebar-bg = #333
 sidebar-width = 300
 
 img-base = "../img"
@@ -78,6 +79,9 @@ border()
 
 gradient()
 	vendorVal(background, 'linear-gradient(top,' + join(',', arguments) + ')', webkit moz o ms)
+
+lgradient()
+	vendorVal(background, 'linear-gradient(left,' + join(',', arguments) + ')', webkit moz o ms)
 
 // set background, e.g. bg: red; bg: img x y; bg: red img;
 bg()

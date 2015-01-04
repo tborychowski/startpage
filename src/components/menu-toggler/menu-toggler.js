@@ -28,11 +28,9 @@ angular.module('app')
 
 				// hide sidebar when body-click (but not on sidebar or menu btn)
 				$rootScope.$on('body-mousedown', function (ev, args) {
-					if (args.ev) {
-						var cls = args.ev.target.classList;
-						if (cls.contains('sidebar') ||
-							cls.contains('menu-toggler') ||
-							cls.contains('menu-toggler-inner')) return;
+					if (args && args.ev) {
+						if ($rootScope.closest(args.ev.target, 'sidebar') ||
+							$rootScope.closest(args.ev.target, 'menu-toggler')) return;
 					}
 					scope.toggle(false);
 				});
