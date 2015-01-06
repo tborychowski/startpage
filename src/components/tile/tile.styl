@@ -1,6 +1,7 @@
 @import "_lib";
 
 .tile
+.tile-empty
 	float left; not-selectable(); u 0; transition transform .2s ease-out;
 	margin: 5 0 0 5; line-height 1; word-wrap break-word;
 	border 1px solid rgba(#fff, 0.2); // bg #2E8DEF;
@@ -19,12 +20,23 @@
 	&.sortable-ghost
 		opacity .5
 
+.container.layout-apps
+	.tile
+	.tile-empty
+		size 120; padding 46 10 10; text-align center; font 22; font-weight 100;
+	.tile-empty
+		font 60; padding 25 0 0; shadow none; transition opacity .3s; opacity 0.4;
+		&:hover
+			opacity 0.7
+		&:active
+			opacity 0.2
 
-.container.layout-apps .tile
-	size 120; padding 46 10 10; text-align center; font 22; font-weight 100;
 
-.container.layout-list .tile
-	float none; display block; size auto 30; padding 8 10 0;
+.container.layout-list
+	.tile
+	.tile-empty
+		float none; display block; size auto 30; padding 8 10 0;
 
 	&.pressed
 		transform scale(0.99);
+

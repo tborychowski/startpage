@@ -4,6 +4,7 @@ Class DB {
 	private $file_name;
 	private $data;
 	private $output;
+	private $last_id;
 
 	public function __construct ($fname = 'lists.json') {
 		$this->file_name = $fname;
@@ -20,8 +21,11 @@ Class DB {
 	/**
 	 * Set output to all items or a single item
 	 */
-	public function get ($id = null) {
+	public function get ($item0 = null) {
 		if (empty($this->data)) return $this;
+		if (!empty($item0['id'])) $id = $item0['id'];
+		elseif ($this->last_id && $item0 != null) $id = $this->last_id;
+
 		if (isset($id)) {
 			foreach ($this->data as $item) {
 				if ($item['id'] != $id) continue;
@@ -49,10 +53,17 @@ Class DB {
 	 * Update single item
 	 */
 	public function update_item ($newItem) {
-		foreach ($this->data as &$item) {
-			if ($item['id'] == $newItem['id']) {
-				$item = $newItem;
-				break;
+		if (!isset($newItem['id'])) {
+			$newItem['id'] = $this->generate_id($newItem);
+			$this->last_id = $newItem['id'];
+			array_push($this->data, $newItem);
+		}
+		else {
+			foreach ($this->data as &$item) {
+				if ($item['id'] == $newItem['id']) {
+					$item = $newItem;
+					break;
+				}
 			}
 		}
 		return $this;

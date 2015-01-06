@@ -13,8 +13,10 @@ angular.module('app')
 
 		return {
 			restrict: 'EA',
-			scope: { data: '=' },
-			template: '<a class="tile" href="#">{{data.name}}</a>',
+			scope: {
+				data: '='
+			},
+			template: '<a class="{{data.url?\'tile\':\'tile-empty\'}}" href="#">{{data.name}}</a>',
 			replace: true,
 			transclude: true,
 			link: function (scope, elem/*, attrs*/) {
@@ -35,8 +37,21 @@ angular.module('app')
 				elem.on('mouseup', function () { elem.removeClass('pressed'); })
 					.on('mousedown', function (ev) {
 						unselectTiles(elem[0]);
-						if (ev.which === 3) {
+						if (ev.which === 3 && !elem.hasClass('tile-empty')) {
 							elem.addClass('pressed').toggleClass('selected');
+							scope.$emit('tile-select', {
+								el: elem,
+								data: scope.data,
+								selected: elem.hasClass('selected')
+							});
+						}
+						else {
+							scope.data.name = '';
+
+							elem.removeClass('tile-empty')
+								.addClass('pressed tile tile-new')
+								.toggleClass('selected');
+
 							scope.$emit('tile-select', {
 								el: elem,
 								data: scope.data,

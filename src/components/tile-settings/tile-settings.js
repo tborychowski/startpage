@@ -1,5 +1,5 @@
 angular.module('app')
-	.directive('tileSettings', function ($rootScope, Data) {
+	.directive('tileSettings', function ($rootScope, $compile, Data) {
 		'use strict';
 
 		return {
@@ -12,6 +12,10 @@ angular.module('app')
 				scope.isVisible = false;
 				scope.data = {};
 				scope.tile = null;
+
+				scope.submit = function () {
+					scope.toggle(false);
+				};
 
 				scope.onKeyPress = function (ev) {
 					if (scope.isVisible) {
@@ -27,8 +31,17 @@ angular.module('app')
 
 					// save on change
 					if (!scope.isVisible) {
-						scope.tile.removeClass('selected');
-						if (!scope.tileForm.$pristine) Data.save(scope.data);
+						scope.tile.removeClass('selected tile-new');
+						if (!scope.tileForm.$pristine) {
+							Data.save(scope.data).$promise.then(function (item) {
+								if (!scope.data.id) {
+									scope.data.id = item.id;
+
+									//TODO: add new +tile
+
+								}
+							});
+						}
 					}
 					else {
 						setTimeout(function () {

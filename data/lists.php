@@ -5,11 +5,12 @@ require('DB.php'); // require('Icons.php');
 
 
 $db = new DB('lists.json');
+
 $item = file_get_contents('php://input');
 if (!empty($item)) $item = json_decode($item, true);
 
-if (empty($item)) $res = $db;
-else $res = $db->update_item($item)->save()->get($item['id']);
+if (empty($item)) $res = $db->get();
+else $res = $db->update_item($item)->save()->get($item);
 
 echo $res->to_json();
 

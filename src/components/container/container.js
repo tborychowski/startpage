@@ -7,14 +7,15 @@ angular.module('app')
 			scope: {
 				items: '='
 			},
-			// template: '<div class="container" ng-class="layout" ng-repeat="list in items">' +
 			template: '<div class="container" ng-class="layout">' +
 							'<tile ng-repeat="app in items" data="app"></tile>' +
+							'<tile data="empty"></tile>' +
 						'</div>',
 			replace: true,
 			transclude: false,
 			link: function (scope, elem, attrs) {
 				scope.layout = 'layout-' + (attrs.layout || 'list');
+				scope.empty = { name: '+' };
 
 				scope.sortable = new window.Sortable(elem[0], {
 					animation: 200,
