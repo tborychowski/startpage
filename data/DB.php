@@ -41,11 +41,32 @@ Class DB {
 
 	public function to_json ($pretty = false) { return $this->get_json($pretty); }
 
+	public function result () {
+		$this->output = array('result' => 'success');
+		return $this;
+	}
+
+
 	/**
 	 * Save all items to file
 	 */
 	public function save () {
 		file_put_contents($this->file_name, $this->get()->get_json(true));
+		return $this;
+	}
+
+	/**
+	 * Delete item
+	 */
+	public function del ($itemToDel) {
+		if (!isset($itemToDel['id'])) return $this;
+		$id = $itemToDel['id'];
+		foreach ($this->data as $i => &$item) {
+			if ($item['id'] == $id) {
+				unset($this->data[$i]);
+				break;
+			}
+		}
 		return $this;
 	}
 

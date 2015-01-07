@@ -8,13 +8,21 @@ angular.module('app')
 			templateUrl: 'assets/tile-settings.html',
 			replace: true,
 			transclude: true,
-			link: function (scope, elem/*, attrs*/) {
+			link: function (scope, elem) {
 				scope.isVisible = false;
 				scope.data = {};
 				scope.tile = null;
 
 				scope.submit = function () {
 					scope.toggle(false);
+				};
+
+				scope.delete = function () {
+					if (window.confirm('Are you sure?')) {
+						Data.delete(scope.data).$promise.then(function (resp) {
+							if (resp.result === 'success') scope.$emit('tiles-reload');
+						});
+					}
 				};
 
 				scope.onKeyPress = function (ev) {
@@ -37,8 +45,8 @@ angular.module('app')
 								if (!scope.data.id) {
 									scope.data.id = item.id;
 
-									//TODO: add new +tile
-
+									// add new +tile
+									$rootScope.$emit('tile-add-empty');
 								}
 							});
 						}

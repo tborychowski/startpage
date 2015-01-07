@@ -45,7 +45,7 @@ angular.module('app')
 								selected: elem.hasClass('selected')
 							});
 						}
-						else {
+						else if (elem.hasClass('tile-empty')) {
 							scope.data.name = '';
 
 							elem.removeClass('tile-empty')

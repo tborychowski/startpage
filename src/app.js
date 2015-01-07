@@ -28,6 +28,9 @@ angular.module('app', [ 'ngResource' ])
 			ev.preventDefault();
 		});
 
+		$rootScope.$on('tiles-reload', function () {
+			$scope.items = Data.query();
+		});
 
 	});
 
