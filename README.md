@@ -5,15 +5,19 @@ startpage
 ##TODO
 ####Server:
 - [ ] Add [PHPUnit](https://phpunit.de/getting-started.html)
-- [ ] Add authentication:
+- [ ] Authentication:
   - [ ] Generate auth key & send email
   - [ ] Allow to send key only once per minute
   - [ ] Authenticate when key matches session
-  - [ ] After 3 incorrect attempts - fail key, kill session
+  - [ ] After 3 incorrect attempts - kill session
+- [ ] save order or tiles
 
 ####Client:
-- [ ] Add groups (all items belong to "default` group. If different is specified - this creates another container)
-- [ ] Containers have their own settings (are they draggable?)
+- [ ] Add new tile
+- [ ] Remove tile (with confirmation)
+- [ ] Add groups (all items belong to "default` group. If name provided - create another container)
+- [ ] Containers have their own settings (are containers draggable?)
+- [ ] Read-only view with a "key" icon (no d&d or menus); when key is clicked - authentication popup appears
 - [ ] Add icons:
-  - [ ] allow selecting a font-awesome icon
+  - [ ] allow selecting a font-awesome icon, or:
   - [ ] allow pasting an image url (which will be e.g. converted to DataURI)
