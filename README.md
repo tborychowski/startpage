@@ -13,8 +13,8 @@ startpage
 - [ ] save order or tiles
 
 ####Client:
-- [ ] Add new tile
-- [ ] Remove tile (with confirmation)
+- [x] Add new tile
+- [x] Remove tile (with confirmation)
 - [ ] Add groups (all items belong to "default` group. If name provided - create another container)
 - [ ] Containers have their own settings (are containers draggable?)
 - [ ] Read-only view with a "key" icon (no d&d or menus); when key is clicked - authentication popup appears
