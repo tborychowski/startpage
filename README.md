@@ -4,7 +4,7 @@ startpage
 
 ##TODO
 ####Server:
-- [ ] Add [PHPUnit](https://phpunit.de/getting-started.html)
+- [x] Add [PHPUnit](https://phpunit.de/getting-started.html)
 - [ ] Authentication:
   - [ ] Generate auth key & send email
   - [ ] Allow to send key only once per minute

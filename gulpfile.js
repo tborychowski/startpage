@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	cssmin = require('gulp-minify-css'),
 	concat = require('gulp-concat'),
+	conmap = require('gulp-concat-sourcemap'),
 	stylus = require('gulp-stylus'),
 	jshint = require('gulp-jshint'),
 	live   = require('gulp-livereload'),
@@ -11,11 +12,19 @@ var gulp = require('gulp'),
 	flatten = require('gulp-flatten'),
 	plumber = require('gulp-plumber'),
 	watch = require('gulp-watch'),
+	phpunit = require('gulp-phpunit'),
 	del = require('del'),
 	ngAnnotate = require('gulp-ng-annotate');
 
+
 gulp.task('clean', function (cb) {
 	del([ 'assets/**/*.{css,js,map,html}' ], cb);
+});
+
+gulp.task('phpunit', function() {
+	return gulp.src('./phpunit.xml')
+		.pipe(phpunit('c:/bin/phpunit.cmd', { notify: true }))
+		.on('error', notify.onError('PHPUnit failed!'));
 });
 
 gulp.task('php', function () {
@@ -45,7 +54,8 @@ gulp.task('js', function () {
 		.pipe(jshint('src/.jshintrc'))
 		.pipe(jshint.reporter('jshint-stylish'))
 		.pipe(ngAnnotate())
-		.pipe(concat('app.js'))   // .pipe(uglify())
+		.pipe(conmap('app.js', { sourcesContent: true }))
+		// .pipe(uglify())
 		.pipe(gulp.dest('assets'))
 		.pipe(live());
 });
@@ -70,7 +80,7 @@ gulp.task('watch', function () {
 	gulp.watch('src/**/*.js', [ 'js' ]);
 	gulp.watch('src/**/*.styl', [ 'styl' ]);
 	gulp.watch('src/**/*.html', [ 'html' ]);
-	gulp.watch(['**/*.php', '*.*'], [ 'php' ]);
+	gulp.watch(['**/*.php', '*.html'], [ 'php', 'phpunit' ]);
 });
 
-gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'lib-js-maps', 'html', 'js', 'styl', 'watch' ]);
+gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'lib-js-maps', 'html', 'js', 'styl', 'phpunit', 'watch' ]);

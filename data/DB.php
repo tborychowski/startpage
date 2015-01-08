@@ -4,11 +4,13 @@ Class DB {
 	private $file_name;
 	private $data;
 	private $output;
-	private $last_id;
+    private $last_id;
+	private $result;
 
 	public function __construct ($fname = 'lists.json') {
 		$this->file_name = $fname;
 		$this->read_data();
+        $this->result = 'success';
 		return $this->output;
 	}
 
@@ -42,7 +44,7 @@ Class DB {
 	public function to_json ($pretty = false) { return $this->get_json($pretty); }
 
 	public function result () {
-		$this->output = array('result' => 'success');
+		$this->output = array('result' => ($this->result !== false ? 'success' : 'error'));
 		return $this;
 	}
 
@@ -51,7 +53,8 @@ Class DB {
 	 * Save all items to file
 	 */
 	public function save () {
-		file_put_contents($this->file_name, $this->get()->get_json(true));
+		$res = file_put_contents($this->file_name, $this->get()->get_json(true));
+        $this->result = ($res !== false);
 		return $this;
 	}
 
@@ -61,9 +64,11 @@ Class DB {
 	public function del ($itemToDel) {
 		if (!isset($itemToDel['id'])) return $this;
 		$id = $itemToDel['id'];
+        $this->result = false;
 		foreach ($this->data as $i => &$item) {
 			if ($item['id'] == $id) {
-				unset($this->data[$i]);
+                array_splice($this->data, $i, 1);
+                $this->result = true;
 				break;
 			}
 		}
@@ -74,15 +79,18 @@ Class DB {
 	 * Update single item
 	 */
 	public function update_item ($newItem) {
-		if (!isset($newItem['id'])) {
-			$newItem['id'] = $this->generate_id($newItem);
-			$this->last_id = $newItem['id'];
-			array_push($this->data, $newItem);
-		}
-		else {
+        $this->result = false;
+        if (!isset($newItem['id'])) {
+            $this->result = true;
+            $newItem['id'] = $this->generate_id($newItem);
+            $this->last_id = $newItem['id'];
+            array_push($this->data, $newItem);
+        }
+        else {
 			foreach ($this->data as &$item) {
 				if ($item['id'] == $newItem['id']) {
 					$item = $newItem;
+                    $this->result = true;
 					break;
 				}
 			}
@@ -112,8 +120,6 @@ Class DB {
 		if ($pretty) $flags = $flags | JSON_PRETTY_PRINT;
 		return json_encode($this->output, $flags);
 	}
-
-	public function update_favicons () {}
 
 	/**
 	 * Generate ID for an item: md5(name + url + time)

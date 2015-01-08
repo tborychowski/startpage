@@ -20,7 +20,9 @@ angular.module('app')
 				scope.delete = function () {
 					if (window.confirm('Are you sure?')) {
 						Data.delete(scope.data).$promise.then(function (resp) {
-							if (resp.result === 'success') scope.$emit('tiles-reload');
+							scope.data = null;
+							scope.toggle(false, true);
+							if (resp.result === 'success') $rootScope.$emit('tiles-reload');
 						});
 					}
 				};
@@ -31,15 +33,15 @@ angular.module('app')
 					}
 				};
 
-				scope.toggle = function (show) {
-					scope.isVisible = (typeof show === 'undefined' ? !scope.isVisible : show);
-					elem.toggleClass('expanded', scope.isVisible);
-					document.body.classList.toggle('tile-settings-expanded', scope.isVisible);
-					scope.$emit('tile-settings', { visible: scope.isVisible });
+				scope.addItem = function () {
+					console.log('adding');
+					var isNew = scope.tile.hasClass('tile-new');
+					scope.tile.removeClass('selected tile-new');
 
-					// save on change
-					if (!scope.isVisible) {
-						scope.tile.removeClass('selected tile-new');
+					if ((!scope.data || !scope.data.name || !scope.data.url) && isNew) {
+						scope.tile.addClass('tile-empty');
+					}
+					else {
 						if (!scope.tileForm.$pristine) {
 							Data.save(scope.data).$promise.then(function (item) {
 								if (!scope.data.id) {
@@ -51,11 +53,20 @@ angular.module('app')
 							});
 						}
 					}
-					else {
-						setTimeout(function () {
-							elem[0].getElementsByTagName('input')[0].select();
-						}, 0);
-					}
+				};
+
+				scope.toggle = function (show, justToggle) {
+					scope.isVisible = (typeof show === 'undefined' ? !scope.isVisible : show);
+					elem.toggleClass('expanded', scope.isVisible);
+					document.body.classList.toggle('tile-settings-expanded', scope.isVisible);
+					scope.$emit('tile-settings', { visible: scope.isVisible });
+					if (justToggle === true) return;
+
+					// save on change
+					if (!scope.isVisible) scope.addItem();
+					else setTimeout(function () {
+						elem[0].getElementsByTagName('input')[0].select();
+					}, 0);
 				};
 
 				$rootScope.$on('tile-select', function (ev, args) {
