@@ -1,17 +1,17 @@
 'use strict';
 
 var gulp = require('gulp'),
-	uglify = require('gulp-uglify'),
-	cssmin = require('gulp-minify-css'),
-	concat = require('gulp-concat'),
-	conmap = require('gulp-concat-sourcemap'),
-	stylus = require('gulp-stylus'),
-	jshint = require('gulp-jshint'),
-	live   = require('gulp-livereload'),
-	notify = require('gulp-notify'),
-	flatten = require('gulp-flatten'),
-	plumber = require('gulp-plumber'),
-	watch = require('gulp-watch'),
+	// uglify = require('gulp-uglify'),
+	// cssmin = require('gulp-minify-css'),
+	// watch = require('gulp-watch'),
+    concat = require('gulp-concat'),
+    conmap = require('gulp-concat-sourcemap'),
+    stylus = require('gulp-stylus'),
+    jshint = require('gulp-jshint'),
+    live   = require('gulp-livereload'),
+    notify = require('gulp-notify'),
+    flatten = require('gulp-flatten'),
+    plumber = require('gulp-plumber'),
 	phpunit = require('gulp-phpunit'),
 	del = require('del'),
 	ngAnnotate = require('gulp-ng-annotate');
@@ -67,7 +67,7 @@ gulp.task('lib-css', function () {
 });
 
 gulp.task('styl', function () {
-	return gulp.src([ 'src/app.styl', 'src/components/**/*.styl', ])
+	return gulp.src([ 'src/app.styl', 'src/components/**/*.styl' ])
 		.pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
 		.pipe(stylus({ paths: [ 'src' ]}))   //.pipe(cssmin({ keepSpecialComments: 0 }))
 		.pipe(concat('app.css'))
@@ -83,4 +83,5 @@ gulp.task('watch', function () {
 	gulp.watch(['**/*.php', '*.html'], [ 'php', 'phpunit' ]);
 });
 
+gulp.task('test', [ 'phpunit' ]);
 gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'lib-js-maps', 'html', 'js', 'styl', 'phpunit', 'watch' ]);
