@@ -71,6 +71,15 @@ class DBTest extends PHPUnit_Framework_TestCase {
     }
 
 
-
+	public function testReorder () {
+		$db = new DB('tests/data_temp.json');
+		$i1 = $db->get()->to_array();
+		$l = count($i1);
+		$i2 = $db->reorder(array('4', '3', '2', '1'))->get()->to_array();
+        $this->assertEquals($i1[0]['id'], $i2[$l - 1]['id']);
+        $this->assertEquals($i1[1]['id'], $i2[$l - 2]['id']);
+        $this->assertEquals($i1[2]['id'], $i2[$l - 3]['id']);
+        $this->assertEquals($i1[3]['id'], $i2[$l - 4]['id']);
+	}
 
 }

@@ -1,5 +1,5 @@
 angular.module('app')
-	.directive('menuToggler', function ($rootScope) {
+	.directive('menuToggler', function ($rootScope, sidebarService, Helper) {
 		'use strict';
 
 		return {
@@ -9,38 +9,23 @@ angular.module('app')
 					'<span class="menu-toggler-inner"></span>' +
 					'<span class="menu-toggler-inner"></span>' +
 				'</a>',
-			replace: true,
-			transclude: true,
 			scope: {},
-			link: function (scope, elem, attrs) {
-				var body = angular.element(document.body);
-				scope.isVisible = false;
+			replace: true,
+			link: function (scope, elem/*, attrs*/) {
 
-				scope.toggle = function (show) {
-					scope.isVisible = (typeof show === 'undefined' ? !scope.isVisible : show);
-
-					elem.toggleClass('open', scope.isVisible);
-					body.toggleClass(attrs.toggleClass, scope.isVisible);
-
-					$rootScope.$broadcast('menu', { visible: scope.isVisible });
+				scope.toggle = function () {
+					sidebarService.toggle();
 				};
 
+				sidebarService.onChange(function (visible) {
+					elem.toggleClass('open', visible);
+				});
 
 				// hide sidebar when body-click (but not on sidebar or menu btn)
 				$rootScope.$on('body-mousedown', function (ev, args) {
-					if (args && args.ev) {
-						if ($rootScope.closest(args.ev.target, 'sidebar') ||
-							$rootScope.closest(args.ev.target, 'menu-toggler')) return;
-					}
-					scope.toggle(false);
+					if (Helper.isTargetIn(args.target, 'sidebar', 'menu-toggler')) return;
+					sidebarService.toggle(false);
 				});
-
-					// hide sidebar when tile settings is up
-				$rootScope.$on('tile-settings', function (ev, args) {
-					if (args.visible) scope.toggle(false);
-				});
-
-
 			}
 		};
 	});

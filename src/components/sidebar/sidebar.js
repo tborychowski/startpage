@@ -1,15 +1,18 @@
 angular.module('app')
-	.directive('sidebar', function () {
+	.directive('sidebar', function (sidebarService) {
 		'use strict';
 
 		return {
 			restrict: 'EA',
 			template: '<div class="sidebar">settings</div>',
-			replace: true,
-			transclude: false,
 			scope: {},
-			link: function (/*scope, elem, attrs*/) {
+			replace: true,
+			link: function (scope, elem/*, attrs*/) {
 
+
+				sidebarService.onChange(function (visible) {
+					elem.toggleClass('expanded', visible);
+				});
 
 
 			}

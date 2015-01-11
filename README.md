@@ -10,7 +10,7 @@ startpage
   - [ ] Allow to send key only once per minute
   - [ ] Authenticate when key matches session
   - [ ] After 3 incorrect attempts - kill session
-- [ ] save order or tiles
+- [x] save order or tiles
 
 ####Client:
 - [x] Add new tile

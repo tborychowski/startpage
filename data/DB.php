@@ -49,6 +49,17 @@ Class DB {
 	}
 
 
+	public function reorder ($order) {
+		// $this->data = array_replace(array_flip($order), $this->data);
+		$newData = array();
+		foreach ($order as $id) array_push($newData, $this->get_item_by_id($id));
+		$this->data = $newData;
+		$this->result = true;
+		return $this;
+	}
+
+
+
 	/**
 	 * Save all items to file
 	 */
@@ -110,6 +121,13 @@ Class DB {
 
 
 	/*** PRIVATE **********************************************************************************/
+	private function get_item_by_id ($id) {
+		foreach ($this->data as $item) {
+			if ($item['id'] === $id) return $item;
+		}
+		return null;
+	}
+
 	private function read_data () {
 		$this->data = json_decode(file_get_contents($this->file_name), true);
 		return $this->get();								// set output to all

@@ -1,79 +1,69 @@
 angular.module('app')
-	.directive('tileSettings', function ($rootScope, $compile, Data) {
+	.directive('tileSettings', function ($rootScope, $compile, tileSettingsService, Data) {
 		'use strict';
 
 		return {
 			restrict: 'EA',
-			// scope: {},
+			// scope: true,
 			templateUrl: 'assets/tile-settings.html',
 			replace: true,
-			transclude: true,
 			link: function (scope, elem) {
-				scope.isVisible = false;
 				scope.data = {};
 				scope.tile = null;
 
+				scope.onKeyPress = function (ev) {
+					if (tileSettingsService.isVisible()) {
+						if (ev.keyCode === 13) scope.submit();
+						else if (ev.keyCode === 27) tileSettingsService.toggle(false);
+					}
+				};
+
 				scope.submit = function () {
-					scope.toggle(false);
+					if (scope.tileForm.$pristine && scope.tileForm.$valid) {
+						tileSettingsService.toggle(false);
+					}
+					else if (scope.tileForm.$valid) {
+						scope.data.save = true;
+						tileSettingsService.toggle(false);
+					}
 				};
 
 				scope.delete = function () {
 					if (window.confirm('Are you sure?')) {
 						Data.delete(scope.data).$promise.then(function (resp) {
-							scope.data = null;
-							scope.toggle(false, true);
+							scope.data = {};
+							tileSettingsService.toggle(false);
 							if (resp.result === 'success') $rootScope.$emit('tiles-reload');
 						});
 					}
 				};
 
-				scope.onKeyPress = function (ev) {
-					if (scope.isVisible) {
-						if (ev.keyCode === 27 || ev.keyCode === 13) scope.toggle(false);
-					}
-				};
 
-				scope.addItem = function () {
-					console.log('adding');
-					var isNew = scope.tile.hasClass('tile-new');
-					scope.tile.removeClass('selected tile-new');
-
-					if ((!scope.data || !scope.data.name || !scope.data.url) && isNew) {
-						scope.tile.addClass('tile-empty');
+				tileSettingsService.onChange(function (visible, tile, data) {
+					elem.toggleClass('expanded', visible);
+					document.body.classList.toggle('tile-settings-expanded', visible);
+					if (visible) {
+						if (tile) scope.tile = tile;
+						if (data) scope.data = data;
+						scope.$apply();
+						setTimeout(function () {
+							elem[0].getElementsByTagName('input')[0].select();
+						}, 0);
 					}
 					else {
-						if (!scope.tileForm.$pristine) {
-							Data.save(scope.data).$promise.then(function (item) {
-								if (!scope.data.id) {
-									scope.data.id = item.id;
-
-									// add new +tile
-									$rootScope.$emit('tile-add-empty');
-								}
+						if (scope.data.save) {
+							delete scope.data.save;
+							delete scope.data.isNew;
+							Data.save(scope.data).$promise.then(function () {
+								if (scope.data.id) return;
+								scope.tile.remove();
+								$rootScope.$emit('tiles-reload');
+								$rootScope.$emit('tile-add-empty');	// add new +tile
 							});
 						}
+						else if (scope.data.isNew) scope.tile.addClass('tile-empty');
+						scope.tile.removeClass('selected');
 					}
-				};
-
-				scope.toggle = function (show, justToggle) {
-					scope.isVisible = (typeof show === 'undefined' ? !scope.isVisible : show);
-					elem.toggleClass('expanded', scope.isVisible);
-					document.body.classList.toggle('tile-settings-expanded', scope.isVisible);
-					scope.$emit('tile-settings', { visible: scope.isVisible });
-					if (justToggle === true) return;
-
-					// save on change
-					if (!scope.isVisible) scope.addItem();
-					else setTimeout(function () {
-						elem[0].getElementsByTagName('input')[0].select();
-					}, 0);
-				};
-
-				$rootScope.$on('tile-select', function (ev, args) {
-					if (args && args.selected) scope.data = args.data;
-					scope.tile = args && args.el;
-					scope.toggle(args.selected);
-					scope.$apply();
 				});
 
 

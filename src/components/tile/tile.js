@@ -1,64 +1,42 @@
 angular.module('app')
-	.directive('tile', function ($rootScope) {
+	.directive('tile', function ($rootScope, tileSettingsService, sidebarService, Helper) {
 		'use strict';
 
-		function unselectTiles (skipEl) {
-			var sel = document.querySelectorAll('.tile.selected');
-			angular.forEach(sel, function (el) {
-				if (skipEl && skipEl === el) return;
-				el = angular.element(el).removeClass('selected');
-				$rootScope.$broadcast('tile-select', { el: el, selected: false });
-			});
+		function unselectTiles () {
+			angular.element(document.querySelectorAll('.tile.selected')).removeClass('selected');
+			tileSettingsService.toggle(false);
 		}
 
 		return {
 			restrict: 'EA',
-			scope: {
-				data: '='
-			},
-			template: '<a class="{{data.url?\'tile\':\'tile-empty\'}}" href="#">{{data.name}}</a>',
+			scope: { data: '=' },
+			template: '<a data-id="{{data.id}}" ' +
+				'class="{{data.url?\'tile\':\'tile-empty tile-fixed\'}}">' +
+				'{{data.name}}</a>',
 			replace: true,
-			transclude: true,
 			link: function (scope, elem/*, attrs*/) {
 
 				$rootScope.$on('body-mousedown', function (ev, args) {
-					if (args && args.ev) {
-						if ($rootScope.closest(args.ev.target, 'tile') ||
-							$rootScope.closest(args.ev.target, 'tile-settings')) return;
-					}
+					if (Helper.isTargetIn(args.target, 'tile', 'tile-settings')) return;
 					unselectTiles();
 				});
 
-				$rootScope.$on('menu', function (ev, args) {
-					if (args.visible) unselectTiles();
-				});
 
+				elem.on('mousedown', function (ev) {
+						unselectTiles();
+						sidebarService.toggle(false);
 
-				elem.on('mouseup', function () { elem.removeClass('pressed'); })
-					.on('mousedown', function (ev) {
-						unselectTiles(elem[0]);
-						if (ev.which === 3 && !elem.hasClass('tile-empty')) {
-							elem.addClass('pressed').toggleClass('selected');
-							scope.$emit('tile-select', {
-								el: elem,
-								data: scope.data,
-								selected: elem.hasClass('selected')
-							});
-						}
-						else if (elem.hasClass('tile-empty')) {
-							scope.data.name = '';
+						// only right-click on normal tiles
+						if (ev.which !== 3 && !elem.hasClass('tile-empty')) return;
 
-							elem.removeClass('tile-empty')
-								.addClass('pressed tile tile-new')
-								.toggleClass('selected');
+						// any-click on empty tile
+						if (elem.hasClass('tile-empty')) scope.data = { name: '', isNew: true };
 
-							scope.$emit('tile-select', {
-								el: elem,
-								data: scope.data,
-								selected: elem.hasClass('selected')
-							});
-						}
+						elem.removeClass('tile-empty').addClass('pressed tile selected');
+						tileSettingsService.setData(elem, scope.data).toggle(true);
 					});
+
+				elem.on('mouseup', function () { elem.removeClass('pressed'); });
 
 			}
 		};

@@ -1,38 +1,15 @@
 angular.module('app', [ 'ngResource' ])
-	.controller('appCtrl', function ($rootScope, $scope, Data) {
+	.controller('AppCtrl', function ($rootScope) {
 		'use strict';
 
-		$scope.items = Data.query();
-
-
-
-		/**
-		 * jQuery "closest()" replacement
-		 * @param  {object} element
-		 * @param  {string} class name of the element or parents
-		 */
-		$rootScope.closest = function (el, cls) {
-			var has = false;
-			while (!has && el) {
-				has = el && el.classList && el.classList.contains(cls);
-				el = el.parentNode;
-			}
-			return has;
-		};
-
-		angular.element(document.body).on('mousedown', function (ev) {
-			$rootScope.$broadcast('body-mousedown', { ev: ev });
+		var body = angular.element(document.body);
+		body.on('mousedown', function (ev) {
+			$rootScope.$broadcast('body-mousedown', { ev: ev, target: ev.target });
 		});
 
-		angular.element(document.body).on('contextmenu', function (ev) {
-			ev.preventDefault();
-		});
-
-		$rootScope.$on('tiles-reload', function () {
-			$scope.items = Data.query();
-		});
-
+		body.on('contextmenu', function (ev) { ev.preventDefault(); });
 	});
+
 
 
 /* Appplication Cache */

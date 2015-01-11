@@ -14,12 +14,17 @@ $req->respond(function ($method, $data) use($db) {
 		$res = $db->del($data)->save()->result();
 	}
 	elseif ($method === 'post') {
-		if (empty($data)) $res = $db->get();
-		else $res = $db->update_item($data)->save()->get($data);
+		if (!empty($data['name'])) {
+			if (empty($data)) $res = $db->get();
+			else $res = $db->update_item($data)->save()->get($data);
+		}
+		else {
+			$res = $db->reorder($data)->save()->get()->result();
+		}
 	}
 	else $res = $db->get();
 
-	echo $res->to_json();
+	echo $res->to_json(true);
 });
 
 
