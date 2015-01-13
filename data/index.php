@@ -11,23 +11,20 @@ $req = new Request();
 
 $req->respond(function ($method, $data) use($db) {
 	if ($method === 'delete') {
-		$res = $db->del($data)->save()->result();
+		$res = $db->del($data)->save()->result();					// delete item
 	}
+
 	elseif ($method === 'post') {
 		if (!empty($data['name'])) {
-			if (empty($data)) $res = $db->get();
-			else $res = $db->update_item($data)->save()->get($data);
+			$res = $db->update_item($data)->save()->get($data);		// add/update item
 		}
+
 		else {
-			$res = $db->reorder($data)->save()->get()->result();
+			$res = $db->reorder($data)->save()->get()->result();	// reorder items
 		}
 	}
-	else $res = $db->get();
+
+	else $res = $db->get();											// get all items
 
 	echo $res->to_json(true);
 });
-
-
-
-// print_r(Icons::getIconForUrl($item));
-//TODO: update appcache manifest when data (|| icons) changed

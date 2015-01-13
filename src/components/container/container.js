@@ -22,7 +22,11 @@ angular.module('app')
 					scroll: false,
 					store: {
 						get: function () { return []; },
-						set: function (sortable) { Data.reorder(sortable.toArray()); }
+						set: function (sortable) {
+							var ord = sortable.toArray(), l = scope.items.length;
+							if (ord.length > l) ord = ord.slice(0, l);	// trim if added empty
+							Data.reorder(ord);
+						}
 					}
 				});
 

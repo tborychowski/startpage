@@ -2,7 +2,7 @@
 
 .tile
 .tile-empty
-	float left; u 0; transition transform .2s ease-out; not-selectable();
+	float left; u 0; transition transform .2s ease-out; not-selectable(); position relative;
 	margin: 5 0 0 5; line-height 1; word-wrap break-word;
 	border 1px solid rgba(#fff, 0.2); // bg #2E8DEF;
 	lgradient #4689F0 #4D90FD; color #fff;
@@ -14,6 +14,17 @@
 
 	&.selected
 		shadow 0 0 0 3 #333 1 inset; border #333;
+
+		&:after
+		&:before
+			pos 0 0; display block; content '';
+
+		&:after
+			border-top 30px solid #333; border-left 30px solid transparent; z 101;
+
+		&:before
+			top 3; right 3; color #fff; content: '\f00c'; font 200 12px 'FontAwesome'; z 102;
+
 
 	&.pressed
 		transform scale(0.95);

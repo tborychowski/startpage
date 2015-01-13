@@ -52,7 +52,10 @@ Class DB {
 	public function reorder ($order) {
 		// $this->data = array_replace(array_flip($order), $this->data);
 		$newData = array();
-		foreach ($order as $id) array_push($newData, $this->get_item_by_id($id));
+		foreach ($order as $id) {
+			$item = $this->get_item_by_id($id);
+			if ($item) array_push($newData, $item);
+		}
 		$this->data = $newData;
 		$this->result = true;
 		return $this;

@@ -11,6 +11,7 @@ angular.module('app')
 			restrict: 'EA',
 			scope: { data: '=' },
 			template: '<a data-id="{{data.id}}" ' +
+				'data-click="transform" ' +
 				'class="{{data.url?\'tile\':\'tile-empty tile-fixed\'}}">' +
 				'{{data.name}}</a>',
 			replace: true,
