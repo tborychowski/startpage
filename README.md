@@ -21,7 +21,5 @@ startpage
 - [ ] Containers have their own settings (are containers draggable?)
 - [ ] Read-only view with a "key" icon (no d&d or menus); when key is clicked - authentication pop-up appears
 
-- [ ] Add icons:
-  - [ ] allow selecting a font-awesome icon, or:
-  - [ ] allow dragging an image (which will be e.g. converted to DataURI)
-  - [ ] allow pasting an image URI (which will be e.g. downloaded & cached)
+- [x] Add icons: allow selecting a font-awesome icon
+- [ ] allow changing icon/text & bg colours

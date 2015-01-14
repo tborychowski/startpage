@@ -5,9 +5,12 @@
 		'color {{data.color}},
 		'icon {{data.icon}},
  -->
-		tile <input type="text" ng-model="data.name" value="{{data.name}}" required />
-		url: <input type="text" ng-model="data.url" value="{{data.url}}" required />
-		<button type="submit">save</button>
-		<button type="button" ng-click="delete()" ng-hide="data.isNew">delete</button>
+		<input type="text" ng-model="data.name" value="{{data.name}}" placeholder="name" required />
+		<input type="text" ng-model="data.url" value="{{data.url}}" placeholder="url" required />
+		<!-- <input type="text" ng-model="data.group" value="{{data.group}}" placeholder="group" /> -->
+		<input type="text" ng-model="data.icon" value="{{data.icon}}" placeholder="fa icon name" />
+
+		<button type="submit" class="primary">save</button>
+		<button type="button" ng-click="delete()" ng-hide="data.isNew" class="danger">delete</button>
 	</form>
 </div>

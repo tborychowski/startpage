@@ -10,18 +10,18 @@ angular.module('app')
 		return {
 			restrict: 'EA',
 			scope: { data: '=' },
-			template: '<a data-id="{{data.id}}" ' +
-				'data-click="transform" ' +
-				'class="{{data.url?\'tile\':\'tile-empty tile-fixed\'}}">' +
+			template: '<a data-id="{{data.id}}" ng-class="cls">' +
+				'<i class="fa {{data.icon}}"></i>' +
 				'{{data.name}}</a>',
 			replace: true,
 			link: function (scope, elem/*, attrs*/) {
+				scope.cls = (scope.data.url ? 'tile' : 'tile-empty tile-fixed') +
+							(scope.data.icon ? ' has-icon' : '');
 
 				$rootScope.$on('body-mousedown', function (ev, args) {
 					if (Helper.isTargetIn(args.target, 'tile', 'tile-settings')) return;
 					unselectTiles();
 				});
-
 
 				elem.on('mousedown', function (ev) {
 						unselectTiles();
