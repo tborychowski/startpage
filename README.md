@@ -25,6 +25,7 @@ startpage
 
 - [ ] Groups:
   - [ ] first group has "app" layout - all consecutive are lists
+  - [ ] group settings? (name, bg, layout, minimize?)
 - [x] Add new tile
 - [x] Remove a tile (with confirmation)
 - [x] Allow to select a font-awesome icon for a tile
