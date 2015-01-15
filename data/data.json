@@ -42,16 +42,16 @@
         "icon": "fa-github"
     },
     {
-        "name": "Bitbucket",
-        "url": "http:\/\/bitbucket.com",
-        "id": "fbe6d605cac1b7ed5b4041e628cae254",
-        "icon": "fa-bitbucket"
-    },
-    {
         "name": "Dropbox",
         "url": "http:\/\/dropbox.com",
         "id": "2ed794131fde538b4ff40b51dd78e48a",
         "icon": "fa-dropbox"
+    },
+    {
+        "name": "Bitbucket",
+        "url": "http:\/\/bitbucket.com",
+        "id": "fbe6d605cac1b7ed5b4041e628cae254",
+        "icon": "fa-bitbucket"
     },
     {
         "name": "Facebook",

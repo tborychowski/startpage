@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- <html lang="en" manifest="startpage.appcache" xmlns:ng="http://angularjs.org" ng-app="app"> -->
-<html lang="en" xmlns:ng="http://angularjs.org" ng-app="app">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Start</title>
@@ -9,22 +9,30 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="assets/lib.css">
 	<link rel="stylesheet" href="assets/app.css">
 </head>
-<body ng-controller="AppCtrl">
+<body>
 
 	<div class="main">
-		<div class="wrapper">
-			<container></container>
-		</div>
+		<div class="wrapper"></div>
 	</div>
 
-	<!-- <menu-toggler toggle-class="sidebar-expanded"></menu-toggler> -->
-	<!-- <sidebar></sidebar> -->
+	<div class="tile-settings">
+		<form>
+	<!--
+	 		'id: {{data.id}},
+			'color {{data.color}},
+			'icon {{data.icon}},
+	 -->
+			<input type="text" name="name" placeholder="name" required />
+			<input type="text" name="url" placeholder="url" required />
+			<input type="text" name="icon" placeholder="fa icon name" />
 
-	<tile-settings></tile-settings>
+			<button type="submit" class="primary">save</button>
+			<button type="button" class="danger">delete</button>
+		</form>
+	</div>
 
 
 	<script src="assets/lib.js"></script>

@@ -2,7 +2,7 @@
 	"globals": {
 		"browser" : true,
 		"console": false,
-		"angular": false
+		"$": false
 	},
 	"browser"   : true,
 

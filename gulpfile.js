@@ -13,8 +13,7 @@ var gulp = require('gulp'),
     flatten = require('gulp-flatten'),
     plumber = require('gulp-plumber'),
 	phpunit = require('gulp-phpunit'),
-	del = require('del'),
-	ngAnnotate = require('gulp-ng-annotate');
+	del = require('del');
 
 
 gulp.task('clean', function (cb) {
@@ -31,29 +30,18 @@ gulp.task('php', function () {
 	return gulp.src([ '**/*.php', './*.*' ]).pipe(live());
 });
 
-gulp.task('html', function () {
-	return gulp.src([ 'src/**/*.html' ])
-		.pipe(flatten())
+gulp.task('lib-js', function () {
+	return gulp.src([ 'src/lib/*.js', 'src/jswrap/*.js' ])
+		.pipe(concat('lib.js'))
 		.pipe(gulp.dest('assets'))
 		.pipe(live());
 });
 
-gulp.task('lib-js-maps', function () {
-	return gulp.src([ 'src/lib/*.map' ]).pipe(gulp.dest('assets'));
-});
-
-gulp.task('lib-js', function () {
-	return gulp.src([ 'src/lib/*.js' ])
-		.pipe(concat('lib.js'))
-		.pipe(gulp.dest('assets'));
-});
-
 gulp.task('js', function () {
-	return gulp.src([ 'src/app.js', 'src/components/**/*.js' ])
+	return gulp.src([ 'src/components/**/*.js', 'src/app.js' ])
 		.pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
 		.pipe(jshint('src/.jshintrc'))
 		.pipe(jshint.reporter('jshint-stylish'))
-		.pipe(ngAnnotate())
 		.pipe(conmap('app.js', { sourcesContent: true }))
 		// .pipe(uglify())
 		.pipe(gulp.dest('assets'))
@@ -77,11 +65,11 @@ gulp.task('styl', function () {
 
 gulp.task('watch', function () {
 	live.listen();
-	gulp.watch('src/**/*.js', [ 'js' ]);
 	gulp.watch('src/**/*.styl', [ 'styl' ]);
-	gulp.watch('src/**/*.html', [ 'html' ]);
 	gulp.watch(['**/*.php', '*.html'], [ 'php', 'phpunit' ]);
+	gulp.watch(['src/*.js', 'src/components/**/*.js'], [ 'js' ]);
+	gulp.watch(['src/lib/*.js', 'src/jswrap/*.js'], [ 'lib-js' ]);
 });
 
 gulp.task('test', [ 'phpunit' ]);
-gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'lib-js-maps', 'html', 'js', 'styl', 'phpunit', 'watch' ]);
+gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'js', 'styl', 'phpunit', 'watch' ]);
