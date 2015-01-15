@@ -16,11 +16,21 @@ startpage
 
 
 ####Client:
-- [ ] Read-only view with a "key" icon (no d&d or menus); when key is clicked - authentication pop-up appears (fa-lock & fa-unlock-alt)
-- [ ] Allow changing icon/text & bg colours
+- [ ] Read-only view (just links) | edit mode (fa-lock & fa-unlock-alt ?)
+- [ ] Allow changing tile bg colour (and match the text color)
+- [ ] context-menu:
+  - [ ] on board: edit mode | view mode/add tile/add group
+  - [ ] on tile: edit/del tile | 
+  - [ ] on group: del group
 
-- [ ] Add groups (all items belong to `default` group. If name provided - create another container)
-- [ ] Containers have their own settings (are containers draggable?)
+- [ ] Groups:
+  - [ ] first group has "app" layout - all consecutive are lists
 - [x] Add new tile
 - [x] Remove a tile (with confirmation)
-- [x] Add icons: allow selecting a font-awesome icon
+- [x] Allow to select a font-awesome icon for a tile
+
+###Build/Architecture
+- [ ] Do I need Angular?
+- [ ] ES6?
+
+ 
