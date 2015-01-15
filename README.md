@@ -29,8 +29,9 @@ startpage
 - [x] Remove a tile (with confirmation)
 - [x] Allow to select a font-awesome icon for a tile
 
-###Build/Architecture
+###Build/Architecture/Future
 - [ ] Do I need Angular?
 - [ ] ES6?
+- [ ] Note-tiles?
 
  
