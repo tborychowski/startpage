@@ -1,6 +1,4 @@
-(function () {
-	'use strict';
+'use strict';
 
-	$.trigger('app/ready');
-
-}());
+var container = require('container');
+container();

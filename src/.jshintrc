@@ -1,10 +1,9 @@
 {
 	"globals": {
-		"browser" : true,
-		"console": false,
-		"$": false
+		"console": false
 	},
 	"browser"   : true,
+	"node"      : true,
 
 	"bitwise"   : false,
 	"boss"      : true,
