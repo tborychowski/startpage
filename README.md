@@ -20,19 +20,19 @@ startpage
 - [ ] Allow changing tile bg colour (and match the text color)
 - [ ] context-menu:
   - [ ] on board: edit mode | view mode/add tile/add group
-  - [ ] on tile: edit/del tile | 
+  - [x] on tile: edit/del tile | 
   - [ ] on group: del group
 
 - [ ] Groups:
   - [ ] first group has "app" layout - all consecutive are lists
   - [ ] group settings? (name, bg, layout, minimize?)
 - [x] Add new tile
-- [x] Remove a tile (with confirmation)
+- [x] Remove a tile
 - [x] Allow to select a font-awesome icon for a tile
 
 ###Build/Architecture/Future
-- [ ] Do I need Angular?
-- [ ] ES6?
+- [x] Do I need Angular? (no!)
+- [x] ES6? (CommonJS for now)
 - [ ] Note-tiles?
 
  
