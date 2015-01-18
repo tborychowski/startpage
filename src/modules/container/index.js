@@ -1,38 +1,30 @@
 'use strict';
 var $ = require('util').sizzle,
 	Data = require('data'),
+	Tile = require('tile'),
 
 	_el = null,
-	_store = {
-		get: function () { return []; },
-		set: function (sortable) { Data.save(sortable.toArray()); }
-	},
 
 	_initSortable = function (el) {
 		return new window.Sortable(el, {
 			animation: 200,
 			draggable: '.tile',
-			filter: '.tile-fixed',
+			// filter: '.tile-fixed',
 			group: 'default',
 			scroll: false,
-			store: _store
+			store: {
+				get: function () { return []; },
+				set: function (sortable) { Data.save(sortable.toArray()); }
+			}
 		});
-	},
-
-	_getTileHtml = function (tile) {
-		return '<div class="tile" data-id="' + tile.id + '">' + tile.name + '</div>';
-	},
-
-	_getContainerHtml = function (data) {
-		var tiles = [];
-		data.forEach(function (tile) {
-			tiles.push(_getTileHtml(tile));
-		});
-		return '<div class="container layout-apps">' + tiles.join('') + '</div>';
 	},
 
 	_populate = function (data) {
-		_el.innerHTML = _getContainerHtml(data);
+		var groups = [], tiles = [];
+		data.forEach(function (tile) { tiles.push(Tile.html(tile)); });
+		groups.push('<div class="container layout-apps" data-menu="group">' + tiles.join('') + '</div>');
+
+		_el.innerHTML = groups.join('');
 		_initSortable($.qs('.container', _el));
 	},
 
@@ -41,4 +33,6 @@ var $ = require('util').sizzle,
 		Data.get().then(_populate);
 	};
 
-module.exports = _init;
+module.exports = {
+	init: _init
+};

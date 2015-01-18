@@ -1,15 +1,18 @@
 'use strict';
 
 module.exports = function (options, data) {      /*global Promise */
-	var req = new XMLHttpRequest(), cType = 'x-www-form-urlencoded', resp;
+	var req = new XMLHttpRequest(), resp;
 
 	if (typeof options === 'string') options = { url: options };
 	data = data || options.data || '';
+
 	if (data) {
-		data = JSON.stringify(data);
 		options.method = options.method || 'POST';
-		cType = 'json';
+		options.type = 'json';
 	}
+
+	options.type = options.type || 'x-www-form-urlencoded';
+	if (data && options.type === 'json') data = JSON.stringify(data);
 
 	return new Promise(function (resolve, reject) {
 		req.open(options.method || 'GET', options.url, true);
@@ -22,7 +25,7 @@ module.exports = function (options, data) {      /*global Promise */
 			else reject(req.statusText);
 		};
 		req.onerror = function () { reject(req.statusText); };
-		req.setRequestHeader('Content-Type', 'application/' + cType + '; charset=UTF-8');
+		req.setRequestHeader('Content-Type', 'application/' + options.type + '; charset=UTF-8');
 		req.send(data);
 	});
 };

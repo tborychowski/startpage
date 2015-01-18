@@ -1,4 +1,9 @@
 'use strict';
 
-var container = require('container');
-container();
+// require('appcache').init();
+
+require('tile').init();
+require('container').init();
+require('tile-settings').init();
+require('context-menu').init();
+

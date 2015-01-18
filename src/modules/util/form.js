@@ -1,6 +1,7 @@
 'use strict';
 
 var $ = require('./sizzle');
+$.each = require('./util').each;
 
 var keyBreaker = /[^\[\]]+/g,
 	numberMatcher = /^[\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?$/,
@@ -15,15 +16,23 @@ var keyBreaker = /[^\[\]]+/g,
 		return d.innerText || d.textContent;
 	},
 
+	/**
+	 * Form component
+	 * @param {object} el - form DOM element
+	 */
+	Form = function (el) {
+		if (!el) return null;
+		this.form = el;
+	};
 
-	_setParams = function (form, params, clear) {
+	Form.prototype.set = function (params, clear) {
 		/*jshint eqeqeq: false*/
 
 		// Find all the inputs
-		var inputs = $.qsa('[name]', form);
+		var inputs = $.qsa('[name]', this.form);
 		$.each(inputs, function (input) {
 			var name = input.name,
-				value = params[name],
+				value = params[name] || '',
 				names, i, n, v;
 
 			// if name is object, e.g. user[name], userData[address][street], update value to read this correctly
@@ -47,19 +56,19 @@ var keyBreaker = /[^\[\]]+/g,
 			// decode html special chars (entities)
 			if (typeof value === 'string' && value.indexOf('&') > -1) value = decodeEntities(value);
 
-			if (this.type === 'radio') this.checked = (this.value == value);
-			else if (this.type === 'checkbox') this.checked = value;
-			else this.value = value;
+			if (input.type === 'radio') input.checked = (input.value == value);
+			else if (input.type === 'checkbox') input.checked = value;
+			else input.value = value;
 		});
 		return this;
-	},
+	};
 
 
-	_getParams = function (form, convert) {
+	Form.prototype.get = function (convert) {
 		var data = {}, current, i;
 		convert = (convert === undefined ? false : convert);
 
-		var inputs = $.qsa('[name]', form);
+		var inputs = $.qsa('[name]', this.form);
 
 		$.each(inputs, function (el) {
 			var type = el.type && el.type.toLowerCase(),
@@ -112,10 +121,5 @@ var keyBreaker = /[^\[\]]+/g,
 		return data;
 	};
 
-module.exports = function (form, params, convert) {
-	if (typeof params === 'boolean') { convert = params; params = null; }
-	if (params) return _setParams(form, params, convert);												// SET
-	else if (form.nodeName === 'FORM' && form.elements) {										// GET
-		return _getParams(form, convert);
-	}
-};
+
+module.exports = Form;
