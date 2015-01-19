@@ -2,6 +2,7 @@
 
 var Data = require('data'),
 	util = require('util'),
+	tileTpl = require('tile/template.html'),
 	$ = util.sizzle,
 	Form = util.form;
 
@@ -29,7 +30,7 @@ var _el = null,
 	},
 
 	_add = function (target) {
-		_target.el = require('tile').domEl();
+		_target.el = $.el(tileTpl({ name: 'new tile', id: 0 }));
 		target.appendChild(_target.el);
 		_show(_target.el);
 	},
@@ -48,8 +49,7 @@ var _el = null,
 		var newItem = _form.get();
 		Data.save(newItem).then(function (item) {
 			if (!newItem.id) {
-				var newTile = require('tile').domEl(item);
-				_target.el.parentNode.replaceChild(newTile, _target.el);
+				_target.el.parentNode.replaceChild($.el(tileTpl(item)), _target.el);
 				Data.appendItem(item);
 				_toggle(false);
 			}

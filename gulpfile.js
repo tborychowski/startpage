@@ -18,7 +18,12 @@ var gulp = require('gulp'),
 		// devtool: '#inline-source-map',
 		minimize: true,
 		output: { filename: 'app.js' },
-		resolve: { root: path.join(__dirname, '/src/modules') }
+		resolve: { root: path.join(__dirname, '/src/modules') },
+		module: {
+			loaders: [
+				{ test: /\.html$/, loader: 'mustache' }
+			]
+		}
 	},
 	wpErr = function (err, stats) {
 		if (err) notify.onError('Error: ' + err);

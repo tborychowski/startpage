@@ -29,10 +29,15 @@ function byid (id) { return document.getElementById(id); }
 function qsa (sel, node) { return (node || document).querySelectorAll(sel); }
 function qs (sel, node) { return (node || document).querySelector(sel); }
 
+function createElFromString (html) {
+	return (new DOMParser()).parseFromString(html, 'text/html').body.firstChild;
+}
+
 module.exports = {
 	closest: closest,
 	isIn: isIn,
 	byid: byid,
 	qsa: qsa,
-	qs: qs
+	qs: qs,
+	el: createElFromString
 };

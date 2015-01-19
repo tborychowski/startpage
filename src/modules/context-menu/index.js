@@ -36,6 +36,7 @@ var $ = require('util').sizzle,
 	_hide = function () { _toggle(false); },
 	_show = function (ev) {
 		_target = ev.target;
+		if (!_target.dataset.menu) _target = _target.parentNode;	//TODO: improve this!
 		if (!_target.dataset.menu) return;
 		if (_type !== _target.dataset.menu) {
 			_type = _target.dataset.menu;

@@ -1,8 +1,7 @@
 'use strict';
 var $ = require('util').sizzle,
 	Data = require('data'),
-	Tile = require('tile'),
-
+	_tileTpl = require('tile/template.html'),
 	_el = null,
 
 	_initSortable = function (el) {
@@ -21,7 +20,7 @@ var $ = require('util').sizzle,
 
 	_populate = function (data) {
 		var groups = [], tiles = [];
-		data.forEach(function (tile) { tiles.push(Tile.html(tile)); });
+		data.forEach(function (tile) { tiles.push(_tileTpl(tile)); });
 		groups.push('<div class="container layout-apps" data-menu="group">' + tiles.join('') + '</div>');
 
 		_el.innerHTML = groups.join('');
