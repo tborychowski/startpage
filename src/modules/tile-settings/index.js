@@ -81,6 +81,17 @@ var _el = null,
 		}
 	},
 
+	_enableEvents = function (enable) {
+		if (enable) {
+			document.addEventListener('keydown', _keyDown);
+			document.addEventListener('mousedown', _mousedown);
+		}
+		else {
+			document.removeEventListener('keydown', _keyDown);
+			document.removeEventListener('mousedown', _mousedown);
+		}
+	},
+
 	_init = function () {
 		_el = $.qs('.tile-settings', document.body);
 		var formElem = $.qs('form', _el),
@@ -91,8 +102,8 @@ var _el = null,
 
 		formElem.addEventListener('submit', function (ev) { ev.preventDefault(); });
 		btnDel.addEventListener('click', _delete);
-		document.addEventListener('keydown', _keyDown);
-		document.addEventListener('mousedown', _mousedown);
+
+		$.on('toggleLock', _enableEvents);
 
 		_isReady = true;
 	};

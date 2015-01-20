@@ -16,7 +16,7 @@ startpage
 
 
 ####Client:
-- [ ] Read-only view (just links) | edit mode (fa-lock & fa-unlock-alt ?)
+- [x] Read-only view (just links) | edit mode (fa-lock & fa-unlock-alt ?)
 - [ ] Allow changing tile bg colour (and match the text color)
 - [ ] context-menu:
   - [ ] on board: edit mode | view mode/add tile/add group

@@ -1,14 +1,21 @@
 'use strict';
 var $ = require('util').sizzle,
 	Data = require('data'),
-	_tileTpl = require('tile/template.html'),
+	Padlock = require('padlock'),
+
+	_data = null,
+	_tileTpl = {
+		locked: require('tile/template.html'),
+		unlocked: require('tile/template-unlocked.html')
+	},
 	_el = null,
+	_sortables = [],
+
 
 	_initSortable = function (el) {
 		return new window.Sortable(el, {
 			animation: 200,
 			draggable: '.tile',
-			// filter: '.tile-fixed',
 			group: 'default',
 			scroll: false,
 			store: {
@@ -19,17 +26,33 @@ var $ = require('util').sizzle,
 	},
 
 	_populate = function (data) {
-		var groups = [], tiles = [];
-		data.forEach(function (tile) { tiles.push(_tileTpl(tile)); });
-		groups.push('<div class="container layout-apps" data-menu="group">' + tiles.join('') + '</div>');
+		if (data) _data = data;
+		var groups = [],
+			tiles = [],
+			tpl = _tileTpl[Padlock.isLocked() ? 'locked' : 'unlocked'];
+
+		_data.forEach(function (tile) { tiles.push(tpl(tile)); });
+
+		groups.push('<div class="container layout-apps" data-menu="group">' +
+			tiles.join('') + '</div>');
 
 		_el.innerHTML = groups.join('');
-		_initSortable($.qs('.container', _el));
+	},
+
+	_enableEvents = function (enable) {
+		_populate();
+		if (enable) {
+			_sortables = _initSortable($.qs('.container', _el));
+		}
+		else {
+			if (_sortables) _sortables.destroy();
+		}
 	},
 
 	_init = function () {
 		_el = $.qs('.wrapper');
 		Data.get().then(_populate);
+		$.on('toggleLock', _enableEvents);
 	};
 
 module.exports = {

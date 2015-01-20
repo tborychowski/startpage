@@ -64,16 +64,26 @@ var $ = require('util').sizzle,
 		_el.innerHTML = items.join('');
 	},
 
+	_enableEvents = function (enable) {
+		if (enable) {
+			document.addEventListener('contextmenu', _show);
+			document.addEventListener('mousedown', _mousedown);
+			$.qs('.main').addEventListener('scroll', _hide);
+		}
+		else {
+			document.removeEventListener('contextmenu', _show);
+			document.removeEventListener('mousedown', _mousedown);
+			$.qs('.main').removeEventListener('scroll', _hide);
+		}
+	},
+
 	_init = function () {
 		_body = document.body;
 		_el = document.createElement('ul');
 		_el.className = 'context-menu';
 		_body.appendChild(_el);
 		_populate();
-
-		document.addEventListener('contextmenu', _show);
-		document.addEventListener('mousedown', _mousedown);
-		$.qs('.main').addEventListener('scroll', _hide);
+		$.on('toggleLock', _enableEvents);
 		_isReady = true;
 	};
 
