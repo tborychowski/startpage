@@ -1,5 +1,5 @@
 'use strict';
-var $ = require('util').sizzle,
+var $ = require('util'),
 	Data = require('data'),
 	Padlock = require('padlock'),
 
@@ -42,7 +42,11 @@ var $ = require('util').sizzle,
 	_enableEvents = function (enable) {
 		_populate();
 		if (enable) {
-			_sortables = _initSortable($.qs('.container', _el));
+			var containers = $.qsa('.container', _el);
+			$.forEach(containers, function () {
+
+			});
+			_sortables = _initSortable();
 		}
 		else {
 			if (_sortables) _sortables.destroy();
@@ -51,7 +55,7 @@ var $ = require('util').sizzle,
 
 	_init = function () {
 		_el = $.qs('.wrapper');
-		Data.get().then(_populate);
+		Data.get().then(Data.group).then(_populate);
 		$.on('toggleLock', _enableEvents);
 	};
 

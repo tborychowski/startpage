@@ -1,12 +1,7 @@
 'use strict';
 
-var util = require('util'),
-	$ = util.sizzle;
-
-// $.on = util.pubsub.on;
-$.trigger = util.pubsub.trigger;
-
-var _el = null,
+var $ = require('util'),
+	_el = null,
 	_isReady = false,
 	_unlocked = false,
 	_title = ['Unlock', 'Lock'],

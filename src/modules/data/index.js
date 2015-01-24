@@ -4,19 +4,28 @@ var ajax = require('util').ajax,
 	_data,
 	_dataPromise,
 	load = function () {
-		_dataPromise = ajax('data/index.php').then(function (data) { _data = data; return _data; });
+		_dataPromise = ajax('data/index.php')
+			.then(function (data) {
+				_data = data;
+				return _data;
+			});
 		return _dataPromise;
+	},
+	groupData = function (data) {
+		console.log(data);
+		return data;
+
 	};
 
 module.exports = {
+	group: groupData,
 	get: function (forceReload) {
 		if (!forceReload && _dataPromise) return _dataPromise;
 		return load();
 	},
 	getById: function (id) {
 		if (!_data) return null;
-		var i = 0, item;
-		for (; item = _data[i++] ;) {
+		for (var i = 0, item; item = _data[i++] ;) {
 			if (id === item.id) return item;
 		}
 		return {};

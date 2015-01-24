@@ -1,6 +1,6 @@
 'use strict';
 
-var $ = require('util').sizzle,
+var $ = require('util'),
 	_menus = require('./config'),
 
 	_el = null,

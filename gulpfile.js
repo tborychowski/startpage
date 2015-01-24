@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 
 	wpCfg = {
 		// devtool: '#inline-source-map',
-		minimize: true,
+		// minimize: true,
 		output: { filename: 'app.js' },
 		resolve: { root: path.join(__dirname, '/src/modules') },
 		module: {
@@ -42,15 +42,23 @@ gulp.task('phpunit', function() {
 });
 
 gulp.task('lib-css', function () {
-	return gulp.src([ 'src/lib/*.css' ]).pipe(concat('lib.css')).pipe(gulp.dest('assets'));
+	return gulp.src([ 'src/lib/*.css' ])
+		.pipe(concat('lib.css'))
+		.pipe(gulp.dest('assets'));
 });
 
 gulp.task('lib-js', function () {
-	return gulp.src([ 'src/lib/*.js', 'src/jswrap/*.js' ]).pipe(concat('lib.js')).pipe(gulp.dest('assets')).pipe(live());
+	return gulp.src([ 'src/lib/*.js', 'src/jswrap/*.js' ])
+		.pipe(concat('lib.js'))
+		.pipe(gulp.dest('assets'))
+		.pipe(live());
 });
 
 gulp.task('js', function () {
-	return gulp.src(['src/app.js']).pipe(webpack(wpCfg, null, wpErr)).pipe(gulp.dest('assets/')).pipe(live());
+	return gulp.src(['src/app.js'])
+		.pipe(webpack(wpCfg, null, wpErr))
+		.pipe(gulp.dest('assets/'))
+		.pipe(live());
 });
 
 gulp.task('jshint', function () {
@@ -78,4 +86,4 @@ gulp.task('watch', function () {
 });
 
 gulp.task('test', [ 'phpunit' ]);
-gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'js', 'styl', 'phpunit', 'watch' ]);
+gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'js', 'styl', 'watch' ]);

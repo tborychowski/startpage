@@ -42,11 +42,34 @@ function each (arr, cb) {
 	// return Array.prototype.forEach.call(collection, cb);
 }
 
+function merge (target/*, firstSource*/) {
+	if (!target) throw new TypeError('Cannot convert first argument to object');
+	var to = Object(target), i, j, source, keys, key, desc;
+	for (i = 1; source = arguments[i]; i++) {
+		keys = Object.keys(Object(source));
+		for (j = 0; key = keys[j]; j++) {
+			desc = Object.getOwnPropertyDescriptor(source, key);
+			if (desc !== undefined && desc.enumerable) to[key] = source[key];
+		}
+	}
+	return to;
+}
+
+if (!Object.assign) {
+	Object.defineProperty(Object, 'assign', {
+		enumerable: false,
+		configurable: true,
+		writable: true,
+		value: merge
+	});
+}
+
 module.exports = {
 	type          : type,
 	rand          : rand,
 	each          : each,
 	isNumber      : isNumber,
 	varToRealType : varToRealType,
-	isObjectEmpty : isObjectEmpty
+	isObjectEmpty : isObjectEmpty,
+	merge         : merge
 };

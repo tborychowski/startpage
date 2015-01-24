@@ -1,6 +1,6 @@
 'use strict';
 
-var $ = require('util').pubsub,
+var $ = require('util'),
 	_run = function (type, action, target) {
 		$.trigger(type + '-action', action, target);
 	};

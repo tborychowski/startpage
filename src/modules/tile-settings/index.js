@@ -1,15 +1,11 @@
 'use strict';
 
-var Data = require('data'),
-	util = require('util'),
+var $ = require('util'),
+	Data = require('data'),
 	tileTpl = require('tile/template.html'),
-	$ = util.sizzle,
-	Form = util.form;
+	Form = $.form,
 
-$.on = util.pubsub.on;
-// $.trigger = util.pubsub.trigger;
-
-var _el = null,
+	_el = null,
 	_firstInput	 = null,
 	_form = null,
 	_target = { el: null, item: null },
