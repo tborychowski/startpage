@@ -2,75 +2,85 @@
     {
         "name": "InoRead",
         "url": "http:\/\/www.inoreader.com\/",
+        "icon": "fa-rss",
         "id": "489d819e2c8dcd166026f7c1534ac02d",
-        "icon": "fa-rss"
+        "group": ""
     },
     {
         "name": "Gmail",
         "url": "http:\/\/gmail.com",
-        "id": "ac4d554751948ec16d105b1b93c209c8",
-        "icon": "fa-envelope-o"
-    },
-    {
-        "name": "Calendar",
-        "url": "http:\/\/calendar.google.com",
-        "id": "cc0ae3248453ed1f1cb0b43c7170bf3e",
-        "icon": "fa-calendar"
+        "icon": "fa-envelope",
+        "id": "5871f68c10ebc31437cf4e0e432e4df2",
+        "group": ""
     },
     {
         "name": "Outlook",
         "url": "http:\/\/outlook.com",
-        "id": "9439704eb1189c7439c898f07934a63a",
-        "icon": "fa-envelope"
+        "icon": "fa-envelope-o",
+        "id": "74e86b75d71bca689564fe38715a5b66",
+        "group": 0
     },
     {
-        "name": "YouTube",
-        "url": "http:\/\/youtube.com",
-        "id": "9bb5eefed1f511cda4060ef48a2d8d7f",
-        "icon": "fa-youtube"
-    },
-    {
-        "name": "SO",
-        "url": "http:\/\/StackOverflow.com",
-        "id": "ac45f6e08f5ad9ad8c21f26d79db0ede",
-        "icon": "fa-stack-overflow"
-    },
-    {
-        "name": "Github",
-        "url": "http:\/\/github.com",
-        "id": "b56d6d75f9f4e9a4fdf2e85d0dc8ca61",
-        "icon": "fa-github"
-    },
-    {
-        "name": "Facebook",
-        "url": "http:\/\/facebook.com",
-        "id": "e4e0cfba7602e20980b8f416e55cd7b6",
-        "group": "social",
-        "icon": "fa-facebook"
-    },
-    {
-        "name": "Dropbox",
-        "url": "http:\/\/dropbox.com",
-        "id": "2ed794131fde538b4ff40b51dd78e48a",
-        "icon": "fa-dropbox"
+        "name": "Calendar",
+        "url": "http:\/\/calendar.google.com",
+        "icon": "fa-calendar",
+        "group": "",
+        "id": "cc0ae3248453ed1f1cb0b43c7170bf3e"
     },
     {
         "name": "Bitbucket",
         "url": "http:\/\/bitbucket.com",
-        "id": "fbe6d605cac1b7ed5b4041e628cae254",
-        "icon": "fa-bitbucket"
+        "icon": "fa-bitbucket",
+        "id": "33529331056b1031925f49da9a4516e4",
+        "group": 1
     },
     {
+        "name": "Github",
+        "url": "http:\/\/github.com",
+        "icon": "fa-github",
+        "id": "001a8c122ebdd7c33c7904ba111246b4",
+        "group": 1
+    },
+    {
+        "id": "71494418672b16f1bd067141dc8b1156",
+        "name": "SO",
+        "url": "http:\/\/StackOverflow.com",
+        "icon": "fa-stack-overflow",
+        "group": 1
+    },
+    {
+        "id": "e4e0cfba7602e20980b8f416e55cd7b6",
+        "name": "Facebook",
+        "url": "http:\/\/facebook.com",
+        "icon": "fa-facebook",
+        "group": 2
+    },
+    {
+        "id": "0ecd257b48a296b21c09fe9e58ad0740",
         "name": "Twitter",
         "url": "http:\/\/twitter.com",
-        "id": "0ecd257b48a296b21c09fe9e58ad0740",
-        "group": "links",
-        "icon": "fa-twitter"
+        "icon": "fa-twitter",
+        "group": 2
     },
     {
-        "name": "dsaf",
-        "url": "sdf",
-        "icon": "",
-        "id": "5a639eedbb18d32f991995f4249af0a6"
+        "name": "YouTube",
+        "url": "http:\/\/youtube.com",
+        "icon": "fa-youtube",
+        "id": "9bb5eefed1f511cda4060ef48a2d8d7f",
+        "group": 2
+    },
+    {
+        "name": "Dropbox",
+        "url": "http:\/\/dropbox.com",
+        "icon": "fa-dropbox",
+        "id": "0c730d51f44a0117b07996829e0b3478",
+        "group": 3
+    },
+    {
+        "name": "OneDrive",
+        "url": "http:\/\/onedrive.live.com",
+        "icon": "fa fa-archive",
+        "group": 3,
+        "id": "c966f6b90a58a97a7f16f329b289c1b8"
     }
 ]

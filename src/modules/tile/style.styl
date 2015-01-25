@@ -6,9 +6,6 @@
 	border 1px solid rgba(#fff, 0.2); // bg #2E8DEF;
 	lgradient #4689F0 #4D90FD; color #fff; shadow 1 1 1 #000 0.1;
 
-	.fa
-		width 100%; display block;
-
 	&:hover
 		shadow 0 0 0 4 #fff 0.2;
 
@@ -36,9 +33,13 @@ div.tile
 	cursor move;
 
 
-.container.layout-apps
+// .container.layout-apps
+.container:first-child
+	.fa
+		width 100%; display block;
 	.tile
 		size 120; padding 46 10 10; text-align center; font 22; font-weight 100;
+
 
 		&.has-icon
 			font 14;
@@ -46,9 +47,12 @@ div.tile
 				margin -22 0 10; font 64;
 
 
-.container.layout-list
+// .container.layout-list
+.container:not(:first-child)
+	.fa
+		padding-right 5px;
 	.tile
-		float none; display block; size auto 30; padding 8 10 0;
+		float none; display block; size auto 34; padding 8 10 0;
 
 	&.pressed
 		transform scale(0.99);

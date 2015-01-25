@@ -25,14 +25,14 @@ module.exports = {
 	group: {
 		handler: function (action, target) {
 			if (action === 'addTile') _run('tile', action, target);
-			else if (action === 'addGroup') _run('group', action, target);
+			else if (action === 'addGroup') _run('group', action, target.parentNode);
 			else _run('group', action, target);
 		},
 		items: [
 			{ name: 'Add new tile', action: 'addTile' },
-			'-',
-			{ name: 'Group settings', action: 'edit' },
-			{ name: 'Delete group', action: 'del' },
+			// '-',
+			// { name: 'Group settings', action: 'edit' },
+			// { name: 'Delete group', action: 'del' },
 			'-',
 			{ name: 'Add new group', action: 'addGroup' }
 

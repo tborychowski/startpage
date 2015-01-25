@@ -38,7 +38,10 @@ function rand (max, min) {
 }
 
 function each (arr, cb) {
-	for (var i = 0, item; item = arr[i]; i++) cb.call(cb, item, i);
+	if (type(arr) === 'object') {
+		for (var key in arr) if (arr.hasOwnProperty(key)) cb.call(cb, arr[key], key);
+	}
+	else for (var i = 0, item; item = arr[i]; i++) cb.call(cb, item, i);
 	// return Array.prototype.forEach.call(collection, cb);
 }
 

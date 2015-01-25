@@ -94,7 +94,7 @@ Class DB {
 	 */
 	public function update_item ($newItem) {
         $this->result = false;
-        if (!isset($newItem['id'])) {
+        if (empty($newItem['id'])) {
             $this->result = true;
             $newItem['id'] = $this->generate_id($newItem);
             $this->last_id = $newItem['id'];

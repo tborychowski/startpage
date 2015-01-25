@@ -2,6 +2,7 @@
 
 var $ = require('util'),
 	_menus = require('./config'),
+	Padlock = require('padlock'),
 
 	_el = null,
 	_body = null,
@@ -13,7 +14,7 @@ var $ = require('util'),
 	_mousedown = function (ev) {
 		if ($.isIn(ev.target, 'menu-item')) return _action(ev.target);
 		if ($.isIn(ev.target, 'context-menu')) return;
-		ev.stopPropagation();
+		// ev.stopPropagation();
 		_toggle(false);
 	},
 
@@ -25,7 +26,6 @@ var $ = require('util'),
 
 	_toggle = function (show) {
 		if (!_isReady) _init();
-
 		var vis = (typeof show === 'undefined' ? !_visible : show);
 		if (vis === _visible) return;
 		_visible = vis;
@@ -84,6 +84,7 @@ var $ = require('util'),
 		_body.appendChild(_el);
 		_populate();
 		$.on('toggleLock', _enableEvents);
+		if (!Padlock.isLocked()) _enableEvents(true);
 		_isReady = true;
 	};
 

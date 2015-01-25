@@ -1,7 +1,7 @@
 @import "_lib";
 
 .main
-	pos 0 0 0 0; overflow hidden; overflow-y auto; padding 60 60 0 40; transition all .3s ease-out;
+	pos 0 0 0 0; overflow hidden; overflow-y auto; padding 50 40 0 40; transition all .3s ease-out;
 
 .wrapper
 	width 100%; padding 0 0 60;
@@ -11,7 +11,16 @@
 .container
 	position relative; margin 0 0 0 0; flex: 1 100%; align-self flex-start;
 
+	// &.layout-list
+	&:not(:first-child)
+		flex 1 30%; min-width 200px; max-width 50%; margin-top 10px;
 
-	&.layout-list
-		flex 1 30%; min-width 300px; max-width 60%;
+	.group-name
+		show 0;
 
+
+.unlocked .container
+	bg rgba(#000, 0.3); padding 5 10 10 5; margin 0 5 5 0;
+
+	.group-name
+		color #aaa; font 23; font-weight 100; padding 10 5; margin 0; show 2;

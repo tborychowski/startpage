@@ -7,11 +7,11 @@ var $ = require('util'),
 	_title = ['Unlock', 'Lock'],
 	_cls = ['fa fa-lock', 'fa fa-unlock-alt'],
 
-	_toggle = function (unlock) {
+	_toggle = function (unlock, force) {
 		if (!_isReady) _init();
 
 		var unl = (typeof unlock === 'boolean' ? unlock : !_unlocked);
-		if (unl === _unlocked) return;
+		if (unl === _unlocked && !force) return;
 		_unlocked = unl;
 
 		_el.className = _cls[+_unlocked];
@@ -21,11 +21,12 @@ var $ = require('util'),
 	},
 
 	_init = function () {
-		_el = $.el('<a id="padlock" href="#" class="fa fa-lock" title="Unlock"><a>');
-		document.body.appendChild(_el);
+		_el = $.el('<a id="padlock" href="#"><a>');
+		$.qs('.main', document.body).appendChild(_el);
 		_el.addEventListener('click', _toggle);
 
 		_isReady = true;
+		_toggle(_unlocked, true);
 	};
 
 

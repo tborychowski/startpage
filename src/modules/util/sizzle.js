@@ -5,9 +5,10 @@ function closest (el, cls) {
 	var has = false;
 	while (!has && el) {
 		has = el && el.classList && el.classList.contains(cls);
+		if (has) break;
 		el = el.parentNode;
 	}
-	return has;
+	return has ? el : null;
 }
 
 /**
