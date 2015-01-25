@@ -2,7 +2,9 @@
 var $ = require('util'),
 	Data = require('data'),
 	Padlock = require('padlock'),
+	Sortable = require('sortable'),
 
+	_isReady = false,
 	_data = null,
 	_tpl = require('container/template.html'),
 	_tileTpl = {
@@ -15,7 +17,7 @@ var $ = require('util'),
 
 	/*** HELPERS **********************************************************************************/
 	_initSortable = function (el) {
-		return new window.Sortable(el, {
+		return new Sortable(el, {
 			draggable: '.tile',
 			group: 'default',
 			scroll: false,
@@ -82,12 +84,14 @@ var $ = require('util'),
 
 
 	_init = function () {
+		if (_isReady) return;
 		_el = $.qs('.wrapper');
 		Data.get().then(Data.group).then(_populate).then(function () {
 			if (!Padlock.isLocked()) _initSortables();
 		});
 		$.on('toggleLock', _enableEvents);
 		$.on('group-action', _groupActionHandler);
+		_isReady = true;
 	};
 
 module.exports = {

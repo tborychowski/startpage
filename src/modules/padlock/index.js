@@ -21,6 +21,7 @@ var $ = require('util'),
 	},
 
 	_init = function () {
+		if (_isReady) return;
 		_el = $.el('<a id="padlock" href="#"><a>');
 		$.qs('.main', document.body).appendChild(_el);
 		_el.addEventListener('click', _toggle);

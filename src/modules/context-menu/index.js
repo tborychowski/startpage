@@ -3,9 +3,9 @@
 var $ = require('util'),
 	_menus = require('./config'),
 	Padlock = require('padlock'),
+	tpl = require('./template.html'),
 
 	_el = null,
-	_body = null,
 	_visible = false,
 	_target = null,
 	_type = null,
@@ -14,14 +14,12 @@ var $ = require('util'),
 	_mousedown = function (ev) {
 		if ($.isIn(ev.target, 'menu-item')) return _action(ev.target);
 		if ($.isIn(ev.target, 'context-menu')) return;
-		// ev.stopPropagation();
 		_toggle(false);
 	},
 
 	_action = function (el) {
 		if (!el) return;
-		var action = el.dataset.action;
-		if (_menus[_type].handler(action, _target) !== false) _toggle(false);
+		if (_menus[_type].handler(el.dataset.action, _target) !== false) _toggle(false);
 	},
 
 	_toggle = function (show) {
@@ -40,7 +38,7 @@ var $ = require('util'),
 		if (!_target.dataset.menu) return;
 		if (_type !== _target.dataset.menu) {
 			_type = _target.dataset.menu;
-			_populate();
+			if (_menus[_type]) _el.innerHTML = tpl(_menus[_type]);
 		}
 		ev.preventDefault();
 		_position(ev);
@@ -51,17 +49,6 @@ var $ = require('util'),
 		if (!ev) ev = { clientX: -1000, clientY: -1000 };
 		_el.style.left = ev.clientX + 'px';
 		_el.style.top = ev.clientY + 'px';
-	},
-
-	_populate = function () {
-		if (!_menus[_type]) return;
-		var items = [];
-		_menus[_type].items.forEach(function (item) {
-			if (item === '-') items.push('<li class="menu-item separator"></li>');
-			else items.push('<li class="menu-item" data-action="' + item.action + '">' +
-				item.name + '</li>');
-		});
-		_el.innerHTML = items.join('');
 	},
 
 	_enableEvents = function (enable) {
@@ -78,11 +65,9 @@ var $ = require('util'),
 	},
 
 	_init = function () {
-		_body = document.body;
-		_el = document.createElement('ul');
-		_el.className = 'context-menu';
-		_body.appendChild(_el);
-		_populate();
+		if (_isReady) return;
+		_el = $.el('<ul class="context-menu"></ul>');
+		document.body.appendChild(_el);
 		$.on('toggleLock', _enableEvents);
 		if (!Padlock.isLocked()) _enableEvents(true);
 		_isReady = true;

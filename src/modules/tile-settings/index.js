@@ -72,12 +72,13 @@ var $ = require('util'),
 
 	_deleteTile = function (target) {
 		if (!_target.el) _getTarget(target);
-		//TODO: add confirm
-		Data.del(_target.item).then(function () {
-			_target.el.remove();
-			_target = {};
-		});
-		_toggle(false);
+		if (window.confirm('Are you sure you wish to delete "' + _target.item.name + '"?')) {
+			Data.del(_target.item).then(function () {
+				_target.el.remove();
+				_target = {};
+			});
+		}
+		_toggle(false, true);
 	},
 
 	_show = function (target) {
@@ -87,11 +88,11 @@ var $ = require('util'),
 		_toggle(true);
 	},
 
-	_toggle = function (show) {
+	_toggle = function (show, force) {
 		if (!_isReady) _init();
 
 		var vis = (typeof show === 'undefined' ? !_visible : show);
-		if (vis === _visible) return;
+		if (vis === _visible && !force) return;
 		_visible = vis;
 
 		_el.classList.toggle('expanded', _visible);
@@ -107,17 +108,18 @@ var $ = require('util'),
 
 
 	_init = function () {
+		if (_isReady) return;
+
 		_el = $.el(tpl());
 		document.body.appendChild(_el);
-		// _el = $.qs('.tile-settings', document.body);
-		var formElem = $.qs('form', _el),
-			btnDel = $.qs('.btn-delete', formElem);
+		_firstInput = $.qs('input', _el);
+		_form = new $.form(_el);
 
-		_firstInput = $.qs('input', formElem);
-		_form = new $.form(formElem);
-
-		formElem.addEventListener('submit', function (ev) { ev.preventDefault(); _formSubmit(); });
-		btnDel.addEventListener('click', _deleteTile);
+		$.qs('.btn-delete', _el).addEventListener('click', _deleteTile);
+		$.qs('form', _el).addEventListener('submit', function (ev) {
+			ev.preventDefault();
+			_formSubmit();
+		});
 
 		$.on('toggleLock', _enableEvents);
 		if (!Padlock.isLocked()) _enableEvents(true);

@@ -1,8 +1,8 @@
 'use strict';
 
 var gulp = require('gulp'),
-	// uglify = require('gulp-uglify'),
-	// cssmin = require('gulp-minify-css'),
+	uglify = require('gulp-uglify'),
+	cssmin = require('gulp-minify-css'),
 	path = require('path'),
 	webpack = require('gulp-webpack'),
     concat = require('gulp-concat'),
@@ -16,7 +16,6 @@ var gulp = require('gulp'),
 
 	wpCfg = {
 		// devtool: '#inline-source-map',
-		// minimize: true,
 		output: { filename: 'app.js' },
 		resolve: { root: path.join(__dirname, '/src/modules') },
 		module: {
@@ -41,28 +40,20 @@ gulp.task('phpunit', function() {
 		.on('error', notify.onError('PHPUnit failed!'));
 });
 
-gulp.task('lib-css', function () {
-	return gulp.src([ 'src/lib/*.css' ])
-		.pipe(concat('lib.css'))
-		.pipe(gulp.dest('assets'));
-});
-
-gulp.task('lib-js', function () {
-	return gulp.src([ 'src/lib/*.js', 'src/jswrap/*.js' ])
-		.pipe(concat('lib.js'))
-		.pipe(gulp.dest('assets'))
-		.pipe(live());
-});
-
 gulp.task('js', function () {
 	return gulp.src(['src/app.js'])
 		.pipe(webpack(wpCfg, null, wpErr))
+		.pipe(uglify())
 		.pipe(gulp.dest('assets/'))
 		.pipe(live());
 });
 
 gulp.task('jshint', function () {
-	return gulp.src([ 'src/modules/**/*.js', 'src/app.js' ])
+	return gulp.src([
+			'src/app.js',
+			'src/modules/**/*.js',
+			'!src/modules/sortable/*.js'
+		])
 		.pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
 		.pipe(jshint('src/.jshintrc'))
 		.pipe(jshint.reporter('jshint-stylish'));
@@ -71,7 +62,8 @@ gulp.task('jshint', function () {
 gulp.task('styl', function () {
 	return gulp.src([ 'src/app.styl', 'src/modules/**/*.styl' ])
 		.pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-		.pipe(stylus({ paths: [ 'src' ]}))   //.pipe(cssmin({ keepSpecialComments: 0 }))
+		.pipe(stylus({ paths: [ 'src' ]}))
+		.pipe(cssmin({ keepSpecialComments: 0 }))
 		.pipe(concat('app.css'))
 		.pipe(gulp.dest('assets'))
 		.pipe(live());
@@ -82,8 +74,7 @@ gulp.task('watch', function () {
 	gulp.watch('src/**/*.styl', [ 'styl' ]);
 	gulp.watch(['**/*.php', '*.html'], [ 'php', 'phpunit' ]);
 	gulp.watch(['src/*.js', 'src/modules/**/*.js'], [ 'js', 'jshint' ]);
-	gulp.watch(['src/lib/*.js', 'src/jswrap/*.js'], [ 'lib-js' ]);
 });
 
 gulp.task('test', [ 'phpunit' ]);
-gulp.task('default', [ 'clean', 'lib-js', 'lib-css', 'js', 'styl', 'watch' ]);
+gulp.task('default', [ 'clean', 'js', 'styl', 'watch' ]);
