@@ -43,7 +43,7 @@ gulp.task('phpunit', function() {
 gulp.task('js', function () {
 	return gulp.src(['src/app.js'])
 		.pipe(webpack(wpCfg, null, wpErr))
-		.pipe(uglify())
+		// .pipe(uglify())
 		.pipe(gulp.dest('assets/'))
 		.pipe(live());
 });

@@ -3,14 +3,11 @@ var $ = require('util'),
 	Data = require('data'),
 	Padlock = require('padlock'),
 	Sortable = require('sortable'),
+	Tile = require('tile'),
 
 	_isReady = false,
 	_data = null,
 	_tpl = require('container/template.html'),
-	_tileTpl = {
-		locked: require('tile/template.html'),
-		unlocked: require('tile/template-unlocked.html')
-	},
 	_el = null,
 	_sortables = [],
 	_saveOrderTimeout = null,
@@ -74,7 +71,7 @@ var $ = require('util'),
 	_populate = function (data) {
 		if (data) _data = data;
 		if (!_data) return;
-		var tileTpl = _tileTpl[Padlock.isLocked() ? 'locked' : 'unlocked'];
+		var tileTpl = Tile.getTemplate();
 
 		_el.innerHTML = _data.map(function (group) {
 			group.tiles = group.items.map(function (tile) { return tileTpl(tile); });

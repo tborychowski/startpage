@@ -2,37 +2,51 @@
     {
         "name": "InoRead",
         "url": "http:\/\/www.inoreader.com\/",
-        "icon": "fa-rss",
-        "id": "489d819e2c8dcd166026f7c1534ac02d",
-        "group": ""
+        "icon": "metro\/rss",
+        "group": "",
+        "id": "489d819e2c8dcd166026f7c1534ac02d"
     },
     {
         "name": "Gmail",
         "url": "http:\/\/gmail.com",
-        "icon": "fa-envelope",
-        "id": "5871f68c10ebc31437cf4e0e432e4df2",
-        "group": ""
-    },
-    {
-        "name": "Outlook",
-        "url": "http:\/\/outlook.com",
-        "icon": "fa-envelope-o",
-        "id": "74e86b75d71bca689564fe38715a5b66",
-        "group": 0
+        "icon": "metro\/gmail",
+        "group": "",
+        "id": "5871f68c10ebc31437cf4e0e432e4df2"
     },
     {
         "name": "Calendar",
         "url": "http:\/\/calendar.google.com",
-        "icon": "fa-calendar",
+        "icon": "metro\/calendar",
         "group": "",
         "id": "cc0ae3248453ed1f1cb0b43c7170bf3e"
     },
     {
-        "name": "Bitbucket",
-        "url": "http:\/\/bitbucket.com",
-        "icon": "fa-bitbucket",
-        "id": "33529331056b1031925f49da9a4516e4",
-        "group": 1
+        "name": "YouTube",
+        "url": "http:\/\/youtube.com",
+        "icon": "metro\/youtube",
+        "group": "",
+        "id": "9bb5eefed1f511cda4060ef48a2d8d7f"
+    },
+    {
+        "name": "Facebook",
+        "url": "http:\/\/facebook.com",
+        "icon": "metro\/facebook",
+        "group": "",
+        "id": "e4e0cfba7602e20980b8f416e55cd7b6"
+    },
+    {
+        "name": "SO",
+        "url": "http:\/\/StackOverflow.com",
+        "icon": "various\/stackoverflow",
+        "group": "",
+        "id": "71494418672b16f1bd067141dc8b1156"
+    },
+    {
+        "name": "KickAss",
+        "url": "http:\/\/katproxy.com\/",
+        "icon": "various\/kat",
+        "group": "",
+        "id": "3dd8aa3da43ed30171d7589bfa9cb3cc"
     },
     {
         "name": "Github",
@@ -42,45 +56,59 @@
         "group": 1
     },
     {
-        "id": "71494418672b16f1bd067141dc8b1156",
-        "name": "SO",
-        "url": "http:\/\/StackOverflow.com",
-        "icon": "fa-stack-overflow",
+        "name": "Bitbucket",
+        "url": "http:\/\/bitbucket.com",
+        "icon": "fa-bitbucket",
+        "id": "33529331056b1031925f49da9a4516e4",
         "group": 1
     },
     {
-        "id": "e4e0cfba7602e20980b8f416e55cd7b6",
-        "name": "Facebook",
-        "url": "http:\/\/facebook.com",
-        "icon": "fa-facebook",
+        "name": "Github Trending",
+        "url": "https:\/\/github.com\/trending?l=javascript&since=weekly",
+        "icon": "fa-github-alt",
+        "group": 1,
+        "id": "8a7f8552baac18b60ed273d473f2d59f"
+    },
+    {
+        "name": "Outlook",
+        "url": "http:\/\/outlook.com",
+        "icon": "fa-envelope-o",
+        "id": "74e86b75d71bca689564fe38715a5b66",
         "group": 2
     },
     {
-        "id": "0ecd257b48a296b21c09fe9e58ad0740",
-        "name": "Twitter",
-        "url": "http:\/\/twitter.com",
-        "icon": "fa-twitter",
-        "group": 2
+        "name": "Google Keep",
+        "url": "https:\/\/keep.google.com\/",
+        "icon": "fa-list",
+        "group": 2,
+        "id": "a37b5725e9f5faebd29653f599d73572"
     },
     {
-        "name": "YouTube",
-        "url": "http:\/\/youtube.com",
-        "icon": "fa-youtube",
-        "id": "9bb5eefed1f511cda4060ef48a2d8d7f",
-        "group": 2
-    },
-    {
-        "name": "Dropbox",
-        "url": "http:\/\/dropbox.com",
-        "icon": "fa-dropbox",
-        "id": "0c730d51f44a0117b07996829e0b3478",
-        "group": 3
+        "name": "Linuxpl",
+        "url": "https:\/\/herhor.org:2223\/",
+        "icon": "fa-dashboard",
+        "group": 2,
+        "id": "debcbd863b7e92d0c12e439cd4661928"
     },
     {
         "name": "OneDrive",
         "url": "http:\/\/onedrive.live.com",
-        "icon": "fa fa-archive",
+        "icon": "fa-archive",
         "group": 3,
         "id": "c966f6b90a58a97a7f16f329b289c1b8"
+    },
+    {
+        "name": "HerhorTV",
+        "url": "http:\/\/herhor.org\/tv\/",
+        "icon": "fa-film",
+        "group": 3,
+        "id": "5bf40cc17dcc56ac09aec36bf4331f3b"
+    },
+    {
+        "name": "FollowShows",
+        "url": "http:\/\/followshows.com\/",
+        "icon": "fa-film",
+        "group": 3,
+        "id": "78eafb28f66219601cf6be27d147ff94"
     }
 ]

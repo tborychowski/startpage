@@ -4,10 +4,7 @@ var $ = require('util'),
 	tpl = require('./template.html'),
 	Data = require('data'),
 	Padlock = require('padlock'),
-	_tileTpl = {
-		locked: require('tile/template.html'),
-		unlocked: require('tile/template-unlocked.html')
-	},
+	Tile = require('tile'),
 
 	_el = null,
 	_firstInput	 = null,
@@ -30,7 +27,7 @@ var $ = require('util'),
 		if (!newItem.name || !newItem.url) return;
 		Data.save(newItem).then(function (item) {
 			if (!newItem.id) Data.appendItem(item);
-			if (_target.el) _target.el.parentNode.replaceChild(_getTile(item), _target.el);
+			if (_target.el) _target.el.parentNode.replaceChild(Tile.getTile(item), _target.el);
 			_toggle(false);
 		});
 	},
@@ -39,11 +36,6 @@ var $ = require('util'),
 
 
 	/*** HELPERS **********************************************************************************/
-	_getTile = function (tile) {
-		var tpl = _tileTpl[Padlock.isLocked() ? 'locked' : 'unlocked'];
-		return $.el(tpl(tile));
-	},
-
 	_getTarget = function (target) {
 		_target.el = target;
 		_target.item = Data.getById(_target.el.dataset.id);
@@ -65,7 +57,7 @@ var $ = require('util'),
 
 	/*** API **************************************************************************************/
 	_addTile = function (target) {
-		_target.el = _getTile({ name: 'new tile', id: 0 });
+		_target.el = Tile.getTile({ name: 'new tile', id: 0 });
 		target.appendChild(_target.el);
 		_show(_target.el);
 	},
