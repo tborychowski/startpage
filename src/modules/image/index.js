@@ -8,7 +8,7 @@ var
 	_blockSize = 100 * 4,	// x * 4
 	_exclude = [ '0,0,0', '255,255,255' ],
 
-	_makeRgb = function (c) { return 'rgb(' + c + ')'; },
+	_makeRgb = function (c) { return 'rgba(' + c + ', 0.6)'; },
 
 	_process = function (data) {
 		var colors = {}, cArr = [], c, i, rgb = '';
