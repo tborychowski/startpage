@@ -8,6 +8,7 @@ var $ = require('util'),
 		unlocked: require('tile/template-unlocked.html')
 	},
 
+
 	_updateIcon = function (tile) {
 		if (!tile.icon) return tile;
 		tile.style = '';
@@ -30,11 +31,7 @@ var $ = require('util'),
 		};
 	},
 
-	_getTile = function (tile) {
-		var tpl = _getTemplate();
-		tile = _updateIcon(tile);
-		return $.el(tpl(tile));
-	},
+	_getTile = function (tile) { return $.el(_getTemplate()(tile)); },
 
 	_actionHandler = function (action, target) {
 		if (action === 'edit') Settings.show(target);

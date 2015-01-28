@@ -4,6 +4,7 @@ var $ = require('util'),
 	Padlock = require('padlock'),
 	Sortable = require('sortable'),
 	Tile = require('tile'),
+	IMG = require('image'),
 
 	_isReady = false,
 	_data = null,
@@ -77,6 +78,13 @@ var $ = require('util'),
 			group.tiles = group.items.map(function (tile) { return tileTpl(tile); });
 			return _tpl(group);
 		}).join('');
+
+		// update backgrounds
+		var tiles = $.qsa('.tile', _el), img;
+		$.each(tiles, function (tile) {
+			img = tile.style.backgroundImage.slice(5, -2);
+			if (img) IMG(img).then(function (c) { tile.style.backgroundColor = c; });
+		});
 	},
 
 
