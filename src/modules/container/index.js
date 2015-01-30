@@ -32,9 +32,14 @@ var $ = require('util'),
 		_sortables = [];
 	},
 	_enableEvents = function (enable) {
-		if (!enable) _destroySortables();
-		_populate();
-		if (enable) _initSortables();
+		if (!enable) {
+			_destroySortables();
+			Data.get().then(Data.group).then(_populate);
+		}
+		else {
+			_populate();
+			_initSortables();
+		}
 	},
 	_saveOrder = function () {
 		if (_saveOrderTimeout) window.clearTimeout(_saveOrderTimeout);
@@ -82,7 +87,7 @@ var $ = require('util'),
 		// update backgrounds
 		var tiles = $.qsa('.tile', _el), img;
 		$.each(tiles, function (tile) {
-			img = tile.style.backgroundImage.slice(5, -2);
+			img = tile.style.backgroundImage.replace(/^url\("?/, '').replace(/"?\)$/, '');
 			if (img) IMG(img).then(function (c) { tile.style.backgroundColor = c; });
 		});
 	},

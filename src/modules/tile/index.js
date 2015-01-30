@@ -17,8 +17,9 @@ var $ = require('util'),
 			tile.iconEl = '<i class="fa ' + tile.icon + '"></i>';
 		}
 		else {
-			tile.style = 'background: #888 url(img/' + tile.icon + '.png) 0 0 no-repeat; ' +
-				'background-size: 128px; color: transparent;';
+			tile.style = 'background: #888 url(img/' + tile.icon + '.png) ';
+			if (tile.group) tile.style += 'right center no-repeat;';
+			else tile.style += 'center no-repeat; color: transparent;';
 		}
 		return tile;
 	},

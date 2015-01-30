@@ -44,7 +44,11 @@ module.exports = {
 		return {};
 	},
 	save: function (params) {
-		return $.ajax('data/index.php', params);
+		return $.ajax('data/index.php', params)
+			.then(function (data) {
+				load();	// update cached data on  save
+				return data;
+			});
 	},
 	del: function (params) {
 		return $.ajax({ url: 'data/index.php', data: params, type: 'json', method: 'DELETE' });

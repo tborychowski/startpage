@@ -64,10 +64,10 @@ var $ = require('util'),
 
 	_deleteTile = function (target) {
 		if (!_target.el) _getTarget(target);
+		var el = _target.el;
 		if (window.confirm('Are you sure you wish to delete "' + _target.item.name + '"?')) {
 			Data.del(_target.item).then(function () {
-				_target.el.remove();
-				_target = {};
+				el.remove();
 			});
 		}
 		_toggle(false, true);
