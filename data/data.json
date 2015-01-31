@@ -37,6 +37,24 @@
         "id": "e4e0cfba7602e20980b8f416e55cd7b6"
     },
     {
+        "name": "KickAss",
+        "url": "http:\/\/katproxy.com\/",
+        "icon": "various\/kat",
+        "group": 0,
+        "id": "3dd8aa3da43ed30171d7589bfa9cb3cc",
+        "style": "background: #888 url(img\/various\/kat.png) right center no-repeat;",
+        "iconEl": ""
+    },
+    {
+        "name": "SO",
+        "url": "http:\/\/StackOverflow.com",
+        "icon": "various\/stackoverflow",
+        "group": 0,
+        "id": "71494418672b16f1bd067141dc8b1156",
+        "style": "background: #888 url(img\/various\/stackoverflow.png) center no-repeat; color: transparent;",
+        "iconEl": ""
+    },
+    {
         "name": "Github",
         "url": "http:\/\/github.com",
         "icon": "various\/github",
@@ -51,15 +69,6 @@
         "id": "33529331056b1031925f49da9a4516e4"
     },
     {
-        "name": "KickAss",
-        "url": "http:\/\/katproxy.com\/",
-        "icon": "various\/kat",
-        "group": 1,
-        "id": "3dd8aa3da43ed30171d7589bfa9cb3cc",
-        "style": "background: #888 url(img\/various\/kat.png) center no-repeat; color: transparent;",
-        "iconEl": ""
-    },
-    {
         "name": "Github Trending",
         "url": "https:\/\/github.com\/trending?l=javascript&since=weekly",
         "icon": "fa-github-alt",
@@ -67,20 +76,11 @@
         "id": "8a7f8552baac18b60ed273d473f2d59f"
     },
     {
-        "name": "SO",
-        "url": "http:\/\/StackOverflow.com",
-        "icon": "various\/stackoverflow",
-        "group": 1,
-        "id": "71494418672b16f1bd067141dc8b1156",
-        "style": "background: #888 url(img\/various\/stackoverflow.png) center no-repeat; color: transparent;",
-        "iconEl": ""
-    },
-    {
         "name": "Outlook",
         "url": "http:\/\/outlook.com",
-        "icon": "fa-envelope-o",
-        "id": "74e86b75d71bca689564fe38715a5b66",
-        "group": 2
+        "icon": "metro\/outlook",
+        "group": 2,
+        "id": "74e86b75d71bca689564fe38715a5b66"
     },
     {
         "name": "Google Keep",
@@ -99,7 +99,7 @@
     {
         "name": "OneDrive",
         "url": "http:\/\/onedrive.live.com",
-        "icon": "fa-archive",
+        "icon": "metro\/onedrive",
         "group": 3,
         "id": "c966f6b90a58a97a7f16f329b289c1b8"
     },
