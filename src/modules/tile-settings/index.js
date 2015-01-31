@@ -5,6 +5,8 @@ var $ = require('util'),
 	Data = require('data'),
 	Padlock = require('padlock'),
 	Tile = require('tile'),
+	IconSelector = require('icon-selector'),
+	IMG = require('image'),
 
 	_el = null,
 	_firstInput	 = null,
@@ -16,18 +18,28 @@ var $ = require('util'),
 
 
 	/*** EVENT HANDLERS ***************************************************************************/
-	_mousedown = function (ev) { if (!$.isIn(ev.target, 'tile-settings')) _toggle(false); },
+	_mousedown = function (ev) {
+		if (!$.isIn(ev.target, 'tile-settings', 'icon-selector')) _toggle(false);
+	},
 	_keyDown = function (ev) {
 		if (!_visible) return;
 		if (ev.keyCode === 13) _formSubmit();
 		else if (ev.keyCode === 27) _toggle(false);
 	},
 	_formSubmit = function () {
-		var newItem = _form.get();
+		var newItem = _form.get(), tile, img;
 		if (!newItem.name || !newItem.url) return;
+		newItem = _sanitizeItem(newItem, ['name', 'url', 'icon']);
 		Data.save(newItem).then(function (item) {
 			if (!newItem.id) Data.appendItem(item);
-			if (_target.el) _target.el.parentNode.replaceChild(Tile.getTile(item), _target.el);
+			if (_target.el) {
+				tile = Tile.getTile(item);
+				_target.el.parentNode.replaceChild(tile, _target.el);
+			}
+			// color bg
+			if (tile) img = tile.style.backgroundImage.replace(/^url\("?/, '').replace(/"?\)$/, '');
+			if (img) IMG(img).then(function (c) { tile.style.backgroundColor = c; });
+
 			_toggle(false);
 		});
 	},
@@ -36,6 +48,12 @@ var $ = require('util'),
 
 
 	/*** HELPERS **********************************************************************************/
+	_sanitizeItem = function (item, fields) {
+		$.each(fields, function (f) {
+			item[f] = $.sanitize(item[f]);
+		});
+		return item;
+	},
 	_getTarget = function (target) {
 		_target.el = target;
 		_target.item = Data.getById(_target.el.dataset.id);
@@ -57,9 +75,10 @@ var $ = require('util'),
 
 	/*** API **************************************************************************************/
 	_addTile = function (target) {
-		_target.el = Tile.getTile({ name: 'new tile', id: 0 });
+		var item = { name: 'new tile', id: 0, group: target.dataset.group };
+		_target.el = Tile.getTile(item);
 		target.appendChild(_target.el);
-		_show(_target.el);
+		_show(_target.el, item);
 	},
 
 	_deleteTile = function (target) {
@@ -73,10 +92,10 @@ var $ = require('util'),
 		_toggle(false, true);
 	},
 
-	_show = function (target) {
+	_show = function (target, item) {
 		if (!target || !target.dataset.id) return;
 		_getTarget(target);
-		_form.set(_target.item, true);
+		_form.set(item || _target.item, true);
 		_toggle(true);
 	},
 
@@ -95,6 +114,7 @@ var $ = require('util'),
 			if (!_target.item.id) _target.el.remove();
 			_target = {};
 		}
+		$.trigger('tile-settings/' + (_visible ? 'show' : 'hide'));
 	},
 	/*** API **************************************************************************************/
 
@@ -115,6 +135,8 @@ var $ = require('util'),
 
 		$.on('toggleLock', _enableEvents);
 		if (!Padlock.isLocked()) _enableEvents(true);
+
+		IconSelector.init($.qs('.icon-selector-target', _el));
 
 		_isReady = true;
 	};

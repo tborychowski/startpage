@@ -34,7 +34,7 @@ var $ = require('util'),
 	_enableEvents = function (enable) {
 		if (!enable) {
 			_destroySortables();
-			Data.get().then(Data.group).then(_populate);
+			Data.get(true).then(Data.group).then(_populate);
 		}
 		else {
 			_populate();

@@ -45,6 +45,12 @@ function each (arr, cb) {
 	// return Array.prototype.forEach.call(collection, cb);
 }
 
+function sanitize (v) {
+	var div = document.createElement('DIV');
+	div.innerHTML = v || '';
+	return div.textContent || div.innerText || '';
+}
+
 function merge (target/*, firstSource*/) {
 	if (!target) throw new TypeError('Cannot convert first argument to object');
 	var to = Object(target), i, j, source, keys, key, desc;
@@ -74,5 +80,6 @@ module.exports = {
 	isNumber      : isNumber,
 	varToRealType : varToRealType,
 	isObjectEmpty : isObjectEmpty,
-	merge         : merge
+	merge         : merge,
+	sanitize      : sanitize
 };

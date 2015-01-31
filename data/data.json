@@ -64,16 +64,25 @@
     {
         "name": "Bitbucket",
         "url": "http:\/\/bitbucket.com",
-        "icon": "fa-bitbucket",
+        "icon": "metro\/bitbucket",
         "group": 1,
         "id": "33529331056b1031925f49da9a4516e4"
     },
     {
         "name": "Github Trending",
         "url": "https:\/\/github.com\/trending?l=javascript&since=weekly",
-        "icon": "fa-github-alt",
+        "icon": "metro\/github",
         "group": 1,
         "id": "8a7f8552baac18b60ed273d473f2d59f"
+    },
+    {
+        "name": "Spotify",
+        "url": "http:\/\/spotify.com",
+        "icon": "metro\/spotify",
+        "group": 1,
+        "id": "d711d703f5ef0613d314484134a02ce6",
+        "style": "background: #888 url(img\/metro\/spotify.png) center no-repeat; color: transparent;",
+        "iconEl": ""
     },
     {
         "name": "Outlook",
@@ -85,14 +94,14 @@
     {
         "name": "Google Keep",
         "url": "https:\/\/keep.google.com\/",
-        "icon": "fa-list",
+        "icon": "metro\/remote-desktop",
         "group": 2,
         "id": "a37b5725e9f5faebd29653f599d73572"
     },
     {
         "name": "Linuxpl",
         "url": "https:\/\/herhor.org:2223\/",
-        "icon": "fa-dashboard",
+        "icon": "metro\/linux",
         "group": 2,
         "id": "debcbd863b7e92d0c12e439cd4661928"
     },
@@ -106,14 +115,14 @@
     {
         "name": "HerhorTV",
         "url": "http:\/\/herhor.org\/tv\/",
-        "icon": "fa-film",
+        "icon": "metro\/movie",
         "group": 3,
         "id": "5bf40cc17dcc56ac09aec36bf4331f3b"
     },
     {
         "name": "FollowShows",
         "url": "http:\/\/followshows.com\/",
-        "icon": "fa-film",
+        "icon": "metro\/movie2",
         "group": 3,
         "id": "78eafb28f66219601cf6be27d147ff94"
     }

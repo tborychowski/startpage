@@ -18,9 +18,13 @@ input
 	font inherit; height 27; vertical-align top;
 	&::-moz-focus-inner
 		padding 0; border 0;
+	&:focus
+		outline 2px dotted #888;
 
 input
-	border #d9d9d9; padding 0 5;
+	border #d9d9d9; padding 0 5; bg #ccc; transition all .3s ease-out;
+	&:focus
+		bg #fff;
 
 button
 	cursor default; padding 0 15; bg #d9d9d9; color #222; outline none; font 14/1;
