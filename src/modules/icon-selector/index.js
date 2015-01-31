@@ -1,7 +1,7 @@
 'use strict';
 
 var $ = require('util'),
-	IconData = require('icon-data'),
+	IconData = require('data-icons'),
 	tpl = require('./template.html'),
 	_el = null,
 	_target = null,

@@ -1,6 +1,6 @@
 <?php
 
-require('data/DB.php');
+require('data/lib/db.php');
 
 class DBTest extends PHPUnit_Framework_TestCase {
 
@@ -61,14 +61,14 @@ class DBTest extends PHPUnit_Framework_TestCase {
 		$db = new DB('tests/data_temp.json');
 		$items = $db->get()->to_array();
 
-        $res = $db->del($items[0])->save()->result()->to_array();;
-        $this->assertEquals($res['result'], 'success');
+		$res = $db->del($items[0])->save()->result()->to_array();;
+		$this->assertEquals($res['result'], 'success');
 
-        $items = $db->get()->to_array();
-        $this->assertEquals(count($this->file), count($items) + 1);
+		$items = $db->get()->to_array();
+		$this->assertEquals(count($this->file), count($items) + 1);
 
-        $this->assertNotEquals($this->file[0]['name'], $items[0]['name']);
-    }
+		$this->assertNotEquals($this->file[0]['name'], $items[0]['name']);
+	}
 
 
 	public function testReorder () {
@@ -76,10 +76,10 @@ class DBTest extends PHPUnit_Framework_TestCase {
 		$i1 = $db->get()->to_array();
 		$l = count($i1);
 		$i2 = $db->reorder(array('4', '3', '2', '1'))->get()->to_array();
-        $this->assertEquals($i1[0]['id'], $i2[$l - 1]['id']);
-        $this->assertEquals($i1[1]['id'], $i2[$l - 2]['id']);
-        $this->assertEquals($i1[2]['id'], $i2[$l - 3]['id']);
-        $this->assertEquals($i1[3]['id'], $i2[$l - 4]['id']);
+		$this->assertEquals($i1[0]['id'], $i2[$l - 1]['id']);
+		$this->assertEquals($i1[1]['id'], $i2[$l - 2]['id']);
+		$this->assertEquals($i1[2]['id'], $i2[$l - 3]['id']);
+		$this->assertEquals($i1[3]['id'], $i2[$l - 4]['id']);
 	}
 
 }

@@ -3,12 +3,12 @@
 var $ = require('util'),
 	_data,
 	_dataPromise,
+	_url = 'data/index.php',
 	load = function () {
-		_dataPromise = $.ajax('data/index.php')
-			.then(function (data) {
-				_data = data;
-				return _data;
-			});
+		_dataPromise = $.ajax(_url).then(function (data) {
+			_data = data;
+			return _data;
+		});
 		return _dataPromise;
 	},
 	/**
@@ -44,14 +44,13 @@ module.exports = {
 		return {};
 	},
 	save: function (params) {
-		return $.ajax('data/index.php', params)
-			.then(function (data) {
-				load();	// update cached data on  save
-				return data;
-			});
+		return $.ajax(_url, params).then(function (data) {
+			load();	// update cached data on  save
+			return data;
+		});
 	},
 	del: function (params) {
-		return $.ajax({ url: 'data/index.php', data: params, type: 'json', method: 'DELETE' });
+		return $.ajax({ url: _url, data: params, type: 'json', method: 'DELETE' });
 	},
 	appendItem: function (item) {
 		_data.push(item);

@@ -1,10 +1,8 @@
 <?php
-header('content-type: application/json; charset=utf8');
+require('lib/_lib.php');
 
- // require('Icons.php');
-require('DB.php');
-require('Request.php');
-
+use \DB;
+use \Request;
 
 $db = new DB('data.json');
 $req = new Request();

@@ -18,7 +18,7 @@
     {
         "name": "Calendar",
         "url": "http:\/\/calendar.google.com",
-        "icon": "metro\/calendar",
+        "icon": "metro\/google-cal",
         "group": "",
         "id": "cc0ae3248453ed1f1cb0b43c7170bf3e"
     },
@@ -46,6 +46,15 @@
         "iconEl": ""
     },
     {
+        "name": "Github",
+        "url": "http:\/\/github.com",
+        "icon": "various\/github",
+        "group": 0,
+        "id": "001a8c122ebdd7c33c7904ba111246b4",
+        "style": "background: #888 url(img\/various\/github.png) right center no-repeat;",
+        "iconEl": ""
+    },
+    {
         "name": "SO",
         "url": "http:\/\/StackOverflow.com",
         "icon": "various\/stackoverflow",
@@ -53,13 +62,6 @@
         "id": "71494418672b16f1bd067141dc8b1156",
         "style": "background: #888 url(img\/various\/stackoverflow.png) center no-repeat; color: transparent;",
         "iconEl": ""
-    },
-    {
-        "name": "Github",
-        "url": "http:\/\/github.com",
-        "icon": "various\/github",
-        "group": 1,
-        "id": "001a8c122ebdd7c33c7904ba111246b4"
     },
     {
         "name": "Bitbucket",
@@ -80,9 +82,7 @@
         "url": "http:\/\/spotify.com",
         "icon": "metro\/spotify",
         "group": 1,
-        "id": "d711d703f5ef0613d314484134a02ce6",
-        "style": "background: #888 url(img\/metro\/spotify.png) center no-repeat; color: transparent;",
-        "iconEl": ""
+        "id": "d711d703f5ef0613d314484134a02ce6"
     },
     {
         "name": "Outlook",

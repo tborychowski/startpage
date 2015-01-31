@@ -1,22 +1,33 @@
 <?php
-Class Icons {
+require('lib/_lib.php');
 
+use \Request;
+$req = new Request();
 
-	//http://www.google.com/s2/favicons?domain=nettuts.com
-	//https://plus.google.com/_/favicon?domain=http://feeds.feedburner.com/CssTricks
-	public static function getIconForUrl ($item) {
-		$iconUrl = 'https://plus.google.com/_/favicon?domain=' . $item['url'];
-		$file = '../img/' . $item['name'] . '.png';
-		$tooOld = isset($item['icon']) && ($item['icon'] + 604800 < time());
-		$noImg = !file_exists($file);
-
-		if (empty($item['icon']) || $tooOld || $noImg) {  // if no icon or icon older than a week - fetch new one
-			copy($iconUrl, $file);
-			$item['icon'] = time();
+$req->respond(function ($method, $data) {
+	if ($method == 'get') {
+		$iconTree = getIcons('../img');
+		$themes = array();
+		foreach ($iconTree as $name => $theme) {
+			$themes[] = array('name' => $name, 'icons' => $theme);
 		}
-		return $item;
 	}
+	// print_r($themes);
+	echo json_encode($themes);
+});
 
 
+function getIcons ($dir, $name = '') {
+	if (!$name) $name = $dir;
+	global $result;
+	$tree = array_slice(scandir($dir), 2);
+	foreach($tree as $item) {
+		$path = $dir . '/' . $item;
+		$ext = pathinfo($path, PATHINFO_EXTENSION);
+		$itemName = $name . '/' . basename($path, '.'.$ext);
 
+		if (is_dir($path)) getIcons($dir. '/' .$item, $item);
+		else $result[$name][] = array('name' => $itemName, 'path' => ltrim($path, '\.\.\/'));
+	}
+	return $result;
 }

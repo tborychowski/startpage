@@ -36,7 +36,7 @@ gulp.task('php', function () { return gulp.src([ '**/*.php', './*.*' ]).pipe(liv
 
 gulp.task('phpunit', function() {
 	return gulp.src('./phpunit.xml')
-		.pipe(phpunit('c:/bin/phpunit.cmd', { notify: true }))
+		.pipe(phpunit('phpunit', { notify: true }))
 		.on('error', notify.onError('PHPUnit failed!'));
 });
 
