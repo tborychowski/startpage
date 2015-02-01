@@ -73,6 +73,12 @@ if (!Object.assign) {
 	});
 }
 
+function isNodeList(nodes) {
+	return (typeof nodes === 'object') &&
+		/^(htmlcollection|nodelist|object)$/.test(type(nodes)) &&
+		(nodes.length === 0 || (typeof nodes[0] === 'object' && nodes[0].nodeType > 0));
+}
+
 module.exports = {
 	type          : type,
 	rand          : rand,
@@ -81,5 +87,6 @@ module.exports = {
 	varToRealType : varToRealType,
 	isObjectEmpty : isObjectEmpty,
 	merge         : merge,
-	sanitize      : sanitize
+	sanitize      : sanitize,
+	isNodeList    : isNodeList
 };

@@ -6,7 +6,7 @@ $req = new Request();
 
 $req->respond(function ($method, $data) {
 	if ($method == 'get') {
-		$iconTree = getIcons('../img');
+		$iconTree = getIcons('../img/icons');
 		$themes = array();
 		foreach ($iconTree as $name => $theme) {
 			$themes[] = array('name' => $name, 'icons' => $theme);

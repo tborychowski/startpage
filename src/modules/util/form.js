@@ -1,19 +1,23 @@
 'use strict';
 
-var $ = require('./sizzle');
-$.each = require('./util').each;
-
 var keyBreaker = /[^\[\]]+/g,
 	numberMatcher = /^[\-+]?[0-9]*\.?[0-9]+([eE][\-+]?[0-9]+)?$/,
-	isNumber = function (value) {
+	_isNumber = function (value) {
 		if (typeof value === 'number') return true;
 		if (typeof value !== 'string') return false;
 		return value.match(numberMatcher);
 	},
-	decodeEntities = function (str) {
+	_decodeEntities = function (str) {
 		var d = document.createElement('div');
 		d.innerHTML = str;
 		return d.innerText || d.textContent;
+	},
+	_getInputs = function (form) {
+		var inputs = form.querySelectorAll('[name]');
+		return Array.prototype.slice.call(inputs) || [];
+	},
+	_type = function (obj) {
+		return obj ? Object.prototype.toString.call(obj).slice(8, -1).toLowerCase() : 'undefined';
 	},
 
 	/**
@@ -28,9 +32,7 @@ var keyBreaker = /[^\[\]]+/g,
 	Form.prototype.set = function (params, clear) {
 		/*jshint eqeqeq: false*/
 
-		// Find all the inputs
-		var inputs = $.qsa('[name]', this.form);
-		$.each(inputs, function (input) {
+		_getInputs(this.form).forEach(function (input) {
 			var name = input.name,
 				value = params[name] || '',
 				names, i, n, v;
@@ -54,7 +56,7 @@ var keyBreaker = /[^\[\]]+/g,
 			if (value === null || value === undefined) value = '';
 
 			// decode html special chars (entities)
-			if (typeof value === 'string' && value.indexOf('&') > -1) value = decodeEntities(value);
+			if (typeof value === 'string' && value.indexOf('&') > -1) value = _decodeEntities(value);
 
 			if (input.type === 'radio') input.checked = (input.value == value);
 			else if (input.type === 'checkbox') input.checked = value;
@@ -68,9 +70,7 @@ var keyBreaker = /[^\[\]]+/g,
 		var data = {}, current, i;
 		convert = (convert === undefined ? false : convert);
 
-		var inputs = $.qsa('[name]', this.form);
-
-		$.each(inputs, function (el) {
+		_getInputs(this.form).forEach(function (el) {
 			var type = el.type && el.type.toLowerCase(),
 				key, value, parts, lastPart, tv, cmp, last;
 
@@ -88,7 +88,7 @@ var keyBreaker = /[^\[\]]+/g,
 			if (type === 'checkbox') value = el.checked;
 
 			if (convert) {
-				if (isNumber(value)) {
+				if (_isNumber(value)) {
 					tv = parseFloat(value);
 					cmp = tv + '';
 					// convert (string)100.00 to (int)100
@@ -111,15 +111,17 @@ var keyBreaker = /[^\[\]]+/g,
 			// now we are on the last part, set the value
 			last = current[lastPart];
 			if (last) {
-				if ($.type(last) !== 'array') {
-					current[lastPart] = (last === undefined ? [] : [last]);
-				}
+				if (_type(last) !== 'array') current[lastPart] = (last === undefined ? [] : [last]);
 				last.push(value);
 			}
 			else if (!last) current[lastPart] = value;
 		});
 		return data;
 	};
+
+	Form.prototype.reset = function () { this.set({}); };
+
+	Form.prototype.clear = function () { this.set({}, true); };
 
 
 module.exports = Form;

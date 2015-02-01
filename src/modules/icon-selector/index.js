@@ -9,21 +9,22 @@ var $ = require('util'),
 	_data = [],
 	_isReady = false,
 
-	_animCb = function () { if (!_visible) _el.style.display = 'none'; },
+	_animCb = function () { if (!_visible) _el[0].style.display = 'none'; },
 
 	_onClick = function (e) {
 		if (!e || !e.target) return;
-		if ($.isIn(e.target, 'icon') && e.target.dataset) {
-			_target.value = e.target.dataset.name;
+		if ($(e.target).isIn('icon') && e.target.dataset) {
+			_target[0].value = e.target.dataset.name;
+			_toggle(false);
 		}
 		e.preventDefault();
-		_target.focus();
+		_target[0].focus();
 	},
 
 	_position = function () {
-		var els = _el.getBoundingClientRect(), ts = _target.getBoundingClientRect();
-		_el.style.top = (ts.top - els.height - 7) + 'px';
-		_el.style.left = (ts.left + (ts.width - els.width) / 2) + 'px';
+		var els = _el[0].getBoundingClientRect(), ts = _target[0].getBoundingClientRect();
+		_el[0].style.top = (ts.top - els.height - 7) + 'px';
+		_el[0].style.left = (ts.left + (ts.width - els.width) / 2) + 'px';
 	},
 
 	_toggle = function (show, force) {
@@ -31,9 +32,9 @@ var $ = require('util'),
 		var vis = (typeof show === 'boolean' ? show : !_visible);
 		if (vis === _visible && !force) return;
 		_visible = vis;
-		_el.style.opacity = +_visible;
+		_el[0].style.opacity = +_visible;
 		if (_visible) {
-			_el.style.display = 'block';
+			_el[0].style.display = 'block';
 			_position();
 		}
 	},
@@ -50,20 +51,23 @@ var $ = require('util'),
 			});
 		});
 		html.push('<div class="footer"></div>');
-		$.qs('.icon-selector-wrapper', _el).innerHTML = html.join('');
+		_el.find('.icon-selector-wrapper')[0].innerHTML = html.join('');
 	},
 
 	_init = function (target) {
 		if (_isReady || !target) return;
 		_target = target;
-		_el = $.el('<div class="icon-selector"><div class="icon-selector-wrapper"></div></div>');
-		document.body.appendChild(_el);
+		_el = $('<div class="icon-selector"><div class="icon-selector-wrapper"></div></div>')
+			.appendTo(document.body);
+
 		IconData.get().then(_populate);
 
-		_target.addEventListener('focus', _show);
-		_target.addEventListener('blur', _hide);
-		_el.addEventListener('mousedown', _onClick);
-		_el.addEventListener('transitionend', _animCb);
+		_target
+			.on('focus', _show)
+			.on('click', _show)
+			.on('blur', _hide);
+		_el.on('mousedown', _onClick);
+		_el.on('transitionend', _animCb);
 
 		$.on('tile-settings/hide', _hide);
 

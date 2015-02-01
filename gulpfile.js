@@ -72,8 +72,8 @@ gulp.task('styl', function () {
 gulp.task('watch', function () {
 	live.listen();
 	gulp.watch('src/**/*.styl', [ 'styl' ]);
-	gulp.watch(['**/*.php', '*.html'], [ 'php', 'phpunit' ]);
 	gulp.watch(['src/*.js', 'src/modules/**/*.js'], [ 'js', 'jshint' ]);
+	gulp.watch(['**/*.php', '*.html', '!**/__*.*'], [ 'php', 'phpunit' ]);
 });
 
 gulp.task('test', [ 'phpunit' ]);

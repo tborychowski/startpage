@@ -49,18 +49,9 @@
         "name": "Github",
         "url": "http:\/\/github.com",
         "icon": "various\/github",
-        "group": 0,
+        "group": 1,
         "id": "001a8c122ebdd7c33c7904ba111246b4",
         "style": "background: #888 url(img\/various\/github.png) right center no-repeat;",
-        "iconEl": ""
-    },
-    {
-        "name": "SO",
-        "url": "http:\/\/StackOverflow.com",
-        "icon": "various\/stackoverflow",
-        "group": 0,
-        "id": "71494418672b16f1bd067141dc8b1156",
-        "style": "background: #888 url(img\/various\/stackoverflow.png) center no-repeat; color: transparent;",
         "iconEl": ""
     },
     {
@@ -90,6 +81,13 @@
         "icon": "metro\/outlook",
         "group": 2,
         "id": "74e86b75d71bca689564fe38715a5b66"
+    },
+    {
+        "name": "SO",
+        "url": "http:\/\/StackOverflow.com",
+        "icon": "various\/stackoverflow",
+        "group": 2,
+        "id": "71494418672b16f1bd067141dc8b1156"
     },
     {
         "name": "Google Keep",
@@ -122,7 +120,7 @@
     {
         "name": "FollowShows",
         "url": "http:\/\/followshows.com\/",
-        "icon": "metro\/movie2",
+        "icon": "metro\/moviemaker",
         "group": 3,
         "id": "78eafb28f66219601cf6be27d147ff94"
     }

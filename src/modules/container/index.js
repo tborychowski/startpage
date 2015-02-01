@@ -2,7 +2,7 @@
 var $ = require('util'),
 	Data = require('data'),
 	Padlock = require('padlock'),
-	Sortable = require('sortable'),
+	Sortable = require('sortablejs'),
 	Tile = require('tile'),
 	IMG = require('image'),
 
@@ -25,7 +25,9 @@ var $ = require('util'),
 		});
 	},
 	_initSortables = function () {
-		$.each($.qsa('.container', _el), function (c) { _sortables.push(_initSortable(c)); });
+		_el.find('.container').forEach(function(c) {
+			_sortables.push(_initSortable(c));
+		});
 	},
 	_destroySortables = function () {
 		_sortables.forEach(function (s) { s.destroy(); });
@@ -51,7 +53,7 @@ var $ = require('util'),
 	},
 	_tileGroupChanged = function (ev) {
 		var el = ev.item,
-			group = $.closest(el, 'container'),
+			group = $(el).closest('.container'),
 			item = Data.getById(el.dataset.id);
 		if (!item) return;
 		item.group = group.dataset.group;
@@ -61,12 +63,11 @@ var $ = require('util'),
 	_groupActionHandler = function (action) {
 		if (action === 'refresh') _populate();
 		if (action === 'addGroup') {
-			var container = $.el(_tpl({
-					name: $.qsa('.container', _el).length,
+			var container = $(_tpl({
+					name: _el.find('.container').length,
 					layout: 'list',
 					tiles: ''
-				}));
-			_el.appendChild(container);
+				})).appendTo(_el);
 			_sortables.push(_initSortable(container));
 		}
 	},
@@ -79,14 +80,14 @@ var $ = require('util'),
 		if (!_data) return;
 		var tileTpl = Tile.getTemplate();
 
-		_el.innerHTML = _data.map(function (group) {
+		_el[0].innerHTML = _data.map(function (group) {
 			group.tiles = group.items.map(function (tile) { return tileTpl(tile); });
 			return _tpl(group);
 		}).join('');
 
 		// update backgrounds
-		var tiles = $.qsa('.tile', _el), img;
-		$.each(tiles, function (tile) {
+		var tiles = _el.find('.tile'), img;
+		tiles.forEach(function (tile) {
 			img = tile.style.backgroundImage.replace(/^url\("?/, '').replace(/"?\)$/, '');
 			if (img) IMG(img).then(function (c) { tile.style.backgroundColor = c; });
 		});
@@ -95,7 +96,7 @@ var $ = require('util'),
 
 	_init = function () {
 		if (_isReady) return;
-		_el = $.qs('.wrapper');
+		_el = $('.wrapper');
 		Data.get().then(Data.group).then(_populate).then(function () {
 			if (!Padlock.isLocked()) _initSortables();
 		});

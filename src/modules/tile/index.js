@@ -17,7 +17,7 @@ var $ = require('util'),
 			tile.iconEl = '<i class="fa ' + tile.icon + '"></i>';
 		}
 		else {
-			tile.style = 'background: #888 url(img/' + tile.icon + '.png) ';
+			tile.style = 'background: #888 url(img/icons/' + tile.icon + '.png) ';
 			if (tile.group) tile.style += 'right center no-repeat;';
 			else tile.style += 'center no-repeat; color: transparent;';
 		}
@@ -32,7 +32,7 @@ var $ = require('util'),
 		};
 	},
 
-	_getTile = function (tile) { return $.el(_getTemplate()(tile)); },
+	_getTile = function (tile) { return $(_getTemplate()(tile))[0]; },
 
 	_actionHandler = function (action, target) {
 		if (action === 'edit') Settings.show(target);

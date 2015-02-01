@@ -12,8 +12,9 @@ var $ = require('util'),
 	_isReady = false,
 
 	_mousedown = function (ev) {
-		if ($.isIn(ev.target, 'menu-item')) return _action(ev.target);
-		if ($.isIn(ev.target, 'context-menu')) return;
+		var target = $(ev.target);
+		if (target.isIn('menu-item')) return _action(ev.target);
+		if (target.isIn('context-menu')) return;
 		_toggle(false);
 	},
 
@@ -27,7 +28,7 @@ var $ = require('util'),
 		var vis = (typeof show === 'undefined' ? !_visible : show);
 		if (vis === _visible) return;
 		_visible = vis;
-		_el.classList.toggle('open', _visible);
+		_el[0].classList.toggle('open', _visible);
 		if (!_visible) _position();
 	},
 
@@ -38,7 +39,7 @@ var $ = require('util'),
 		if (!_target.dataset.menu) return;
 		if (_type !== _target.dataset.menu) {
 			_type = _target.dataset.menu;
-			if (_menus[_type]) _el.innerHTML = tpl(_menus[_type]);
+			if (_menus[_type]) _el[0].innerHTML = tpl(_menus[_type]);
 		}
 		ev.preventDefault();
 		_position(ev);
@@ -47,27 +48,28 @@ var $ = require('util'),
 
 	_position = function (ev) {
 		if (!ev) ev = { clientX: -1000, clientY: -1000 };
-		_el.style.left = ev.clientX + 'px';
-		_el.style.top = ev.clientY + 'px';
+		_el[0].style.left = ev.clientX + 'px';
+		_el[0].style.top = ev.clientY + 'px';
 	},
 
 	_enableEvents = function (enable) {
 		if (enable) {
-			document.addEventListener('contextmenu', _show);
-			document.addEventListener('mousedown', _mousedown);
-			$.qs('.main').addEventListener('scroll', _hide);
+			$(document)
+				.on('contextmenu', _show)
+				.on('mousedown', _mousedown);
+			$('.main').on('scroll', _hide);
 		}
 		else {
-			document.removeEventListener('contextmenu', _show);
-			document.removeEventListener('mousedown', _mousedown);
-			$.qs('.main').removeEventListener('scroll', _hide);
+			$(document)
+				.off('contextmenu', _show)
+				.off('mousedown', _mousedown);
+			$('.main').off('scroll', _hide);
 		}
 	},
 
 	_init = function () {
 		if (_isReady) return;
-		_el = $.el('<ul class="context-menu"></ul>');
-		document.body.appendChild(_el);
+		_el = $('<ul class="context-menu"></ul>').appendTo(document.body);
 		$.on('toggleLock', _enableEvents);
 		if (!Padlock.isLocked()) _enableEvents(true);
 		_isReady = true;

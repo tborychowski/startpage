@@ -19,7 +19,7 @@ var $ = require('util'),
 
 	/*** EVENT HANDLERS ***************************************************************************/
 	_mousedown = function (ev) {
-		if (!$.isIn(ev.target, 'tile-settings', 'icon-selector')) _toggle(false);
+		if (!$(ev.target).isIn('tile-settings', 'icon-selector')) _toggle(false);
 	},
 	_keyDown = function (ev) {
 		if (!_visible) return;
@@ -49,7 +49,7 @@ var $ = require('util'),
 
 	/*** HELPERS **********************************************************************************/
 	_sanitizeItem = function (item, fields) {
-		$.each(fields, function (f) {
+		fields.forEach(function (f) {
 			item[f] = $.sanitize(item[f]);
 		});
 		return item;
@@ -61,12 +61,14 @@ var $ = require('util'),
 	},
 	_enableEvents = function (enable) {
 		if (enable) {
-			document.addEventListener('keydown', _keyDown);
-			document.addEventListener('mousedown', _mousedown);
+			$(document)
+				.on('keydown', _keyDown)
+				.on('mousedown', _mousedown);
 		}
 		else {
-			document.removeEventListener('keydown', _keyDown);
-			document.removeEventListener('mousedown', _mousedown);
+			$(document)
+				.on('keydown', _keyDown)
+				.on('mousedown', _mousedown);
 		}
 	},
 	/*** HELPERS **********************************************************************************/
@@ -77,7 +79,7 @@ var $ = require('util'),
 	_addTile = function (target) {
 		var item = { name: 'new tile', id: 0, group: target.dataset.group };
 		_target.el = Tile.getTile(item);
-		target.appendChild(_target.el);
+		$(target).append(_target.el);
 		_show(_target.el, item);
 	},
 
@@ -106,7 +108,7 @@ var $ = require('util'),
 		if (vis === _visible && !force) return;
 		_visible = vis;
 
-		_el.classList.toggle('expanded', _visible);
+		_el[0].classList.toggle('expanded', _visible);
 		document.body.classList.toggle('tile-settings-expanded', _visible);
 		_target.el.classList.toggle('selected', _visible);
 		if (_visible) setTimeout(function () { _firstInput.select(); }, 0);
@@ -122,13 +124,12 @@ var $ = require('util'),
 	_init = function () {
 		if (_isReady) return;
 
-		_el = $.el(tpl());
-		document.body.appendChild(_el);
-		_firstInput = $.qs('input', _el);
-		_form = new $.form(_el);
+		_el = $(tpl()).appendTo(document.body);
+		_firstInput = _el.find('input')[0];
+		_form = new $.form(_el[0]);
 
-		$.qs('.btn-delete', _el).addEventListener('click', _deleteTile);
-		$.qs('form', _el).addEventListener('submit', function (ev) {
+		_el.find('.btn-delete').on('click', _deleteTile);
+		_el.find('form').on('submit', function (ev) {
 			ev.preventDefault();
 			_formSubmit();
 		});
@@ -136,7 +137,7 @@ var $ = require('util'),
 		$.on('toggleLock', _enableEvents);
 		if (!Padlock.isLocked()) _enableEvents(true);
 
-		IconSelector.init($.qs('.icon-selector-target', _el));
+		IconSelector.init(_el.find('.icon-selector-target'));
 
 		_isReady = true;
 	};

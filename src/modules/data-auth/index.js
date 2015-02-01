@@ -1,15 +1,20 @@
 'use strict';
 
-var $ = require('util');
+var $ = require('util'),
+	_url = 'data/auth.php';
 
 module.exports = {
 
 	auth: function () {
-		return $.ajax('data/auth.php');
+		return $.ajax(_url);
 	},
 
 	verify: function (params) {
-		return $.ajax('data/auth.php', params);
+		return $.ajax(_url, params);
+	},
+
+	logout: function () {
+		return $.ajax({ url: _url, type: 'json', method: 'DELETE' });
 	}
 
 };

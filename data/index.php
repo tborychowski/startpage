@@ -4,10 +4,11 @@ require('lib/_lib.php');
 use \DB;
 use \Request;
 
-$db = new DB('data.json');
 $req = new Request();
 
-$req->respond(function ($method, $data) use($db) {
+$req->respond(function ($method, $data) {
+	$db = new DB('data.json');
+
 	if ($method === 'delete') {
 		$res = $db->del($data)->save()->result();					// delete item
 	}

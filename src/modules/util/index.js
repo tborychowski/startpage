@@ -10,10 +10,10 @@ var
 		ajax: _ajax,
 		form: _form,
 		pubsub: _pubsub,
-		sizzle: _sizzle,
 		util: _util
 	};
 
-Object.assign(_all, _ajax, _form, _pubsub, _sizzle, _util);
+Object.assign(_all, _ajax, _pubsub, _util);
+for (var prop in _all) _sizzle[prop] = _all[prop];
 
-module.exports = _all;
+module.exports = _sizzle;
