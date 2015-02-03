@@ -9,7 +9,6 @@
     "url": "https://github.com/tborychowski/startpage.git"
   },
   "devDependencies": {
-    "cash-dom": "0.0.3",
     "del": "^1.1.1",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
