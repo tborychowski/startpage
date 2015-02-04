@@ -37,15 +37,6 @@
         "id": "e4e0cfba7602e20980b8f416e55cd7b6"
     },
     {
-        "name": "KickAss",
-        "url": "http:\/\/katproxy.com\/",
-        "icon": "various\/kat",
-        "group": 0,
-        "id": "3dd8aa3da43ed30171d7589bfa9cb3cc",
-        "style": "background: #888 url(img\/various\/kat.png) right center no-repeat;",
-        "iconEl": ""
-    },
-    {
         "name": "Bitbucket",
         "url": "http:\/\/bitbucket.com",
         "icon": "metro\/bitbucket",
@@ -104,6 +95,15 @@
         "icon": "metro\/spotify",
         "group": 2,
         "id": "d711d703f5ef0613d314484134a02ce6"
+    },
+    {
+        "name": "KickAss",
+        "url": "http:\/\/katproxy.com\/",
+        "icon": "various\/kat",
+        "group": 3,
+        "id": "3dd8aa3da43ed30171d7589bfa9cb3cc",
+        "style": "background-image: url(img\/icons\/various\/kat.png); padding-left:80px;",
+        "iconEl": ""
     },
     {
         "name": "HerhorTV",

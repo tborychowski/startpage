@@ -9,12 +9,13 @@
 
 
 .container
-	position relative; margin 0; padding 1 0 0;
+	position relative; margin 0; padding 0 14;
 	display flex; flex 1 100%; align-self flex-start; flex-flow row wrap;
 
 	// &.layout-list
 	&:not(:first-child)
 		flex-flow column; flex 1 30%; min-width 160px; max-width 50%; margin-top 20px;
+		padding 1 0 0;
 
 	.group-name
 		show 0;

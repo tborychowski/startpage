@@ -15,9 +15,12 @@ var $ = require('util'),
 		tile.iconEl = '';
 		if (tile.icon.indexOf('fa-') === 0) {
 			tile.iconEl = '<i class="fa ' + tile.icon + '"></i>';
+			if (tile.group) tile.style = 'padding: 2px 10px 0 7px;';
+			else tile.style = '';
 		}
 		else {
-			tile.style = 'background-image: url(img/icons/' + tile.icon + '.png);';
+			tile.style = 'background-image: url(img/icons/' + tile.icon + '.png); ' +
+				'padding-left:80px;';
 			// if (tile.group) tile.style += ''; else tile.style += '';
 		}
 		return tile;

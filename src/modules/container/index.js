@@ -24,15 +24,18 @@ var $ = require('util'),
 			store: { set: _saveOrder, get: function () { return []; } }
 		});
 	},
+
 	_initSortables = function () {
 		_el.find('.container').forEach(function(c) {
 			_sortables.push(_initSortable(c));
 		});
 	},
+
 	_destroySortables = function () {
 		_sortables.forEach(function (s) { s.destroy(); });
 		_sortables = [];
 	},
+
 	_enableEvents = function (enable) {
 		if (!enable) {
 			_destroySortables();
@@ -43,6 +46,7 @@ var $ = require('util'),
 			_initSortables();
 		}
 	},
+
 	_saveOrder = function () {
 		if (_saveOrderTimeout) window.clearTimeout(_saveOrderTimeout);
 		_saveOrderTimeout = window.setTimeout(function () {
@@ -51,6 +55,7 @@ var $ = require('util'),
 			Data.save(order);
 		}, 300);
 	},
+
 	_tileGroupChanged = function (ev) {
 		var el = ev.item,
 			group = $(el).closest('.container'),
@@ -60,6 +65,7 @@ var $ = require('util'),
 		if (item.group === 'default') item.group = '';
 		Data.save(item).then(_saveOrder);
 	},
+
 	_groupActionHandler = function (action) {
 		if (action === 'refresh') _populate();
 		if (action === 'addGroup') {
@@ -68,7 +74,7 @@ var $ = require('util'),
 					layout: 'list',
 					tiles: ''
 				})).appendTo(_el);
-			_sortables.push(_initSortable(container));
+			_sortables.push(_initSortable(container[0]));
 		}
 	},
 	/*** HELPERS **********************************************************************************/
