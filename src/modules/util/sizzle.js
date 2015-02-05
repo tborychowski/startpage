@@ -1,6 +1,6 @@
 'use strict';
 
-var util = require('./util.js');
+import util from './util';
 
 
 function sizzle (mixed, context) {
@@ -69,22 +69,14 @@ sizzle.fn.closest = function (cls) {
  *    Helper.isTargetIn(el, 'cls1', 'cls2')
  * @return {Boolean}
  */
-sizzle.fn.isIn = function (/*cls1, cls2, ...*/) {
-	var target = (this && this.length ? this : null),
-		classes = Array.prototype.slice.call(arguments),
-		i, cls;
-
-	if (!target) return false;
-
-	for (i = 0; cls = classes[i++] ;) if (target.closest(cls)) return true;
+sizzle.fn.isIn = function (...classes) {
+	let target = (this && this.length ? this : null);
+	if (target) {
+		for (let cls of classes) if (target.closest(cls)) return true;
+	}
 	return false;
 };
 
-// sizzle.qsa = function (sel, node) { return (node || document).querySelectorAll(sel); };
-// sizzle.qs = function (sel, node) { return (node || document).querySelector(sel); };
 
-// sizzle.createElFromString = function (html) {
-// 	return (new DOMParser()).parseFromString(html, 'text/html').body.firstChild;
-// };
 
-module.exports = sizzle;
+export default sizzle;

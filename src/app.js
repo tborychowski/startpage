@@ -1,9 +1,14 @@
-'use strict';
+// import appcache from 'appcache';
+// appcache.init();
 
-// require('appcache').init();
+import container from 'container';
+container.init();
 
-require('tile').init();
-require('container').init();
-require('tile-settings').init();
-require('context-menu').init();
-require('padlock').init();
+import tileSettings from 'tile-settings';
+tileSettings.init();
+
+import contextMenu from 'context-menu';
+contextMenu.init();
+
+import padlock from 'padlock';
+padlock.init();

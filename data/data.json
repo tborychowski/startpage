@@ -51,20 +51,18 @@
         "id": "71494418672b16f1bd067141dc8b1156"
     },
     {
+        "name": "Github Trending",
+        "url": "https:\/\/github.com\/trending?l=javascript&since=weekly",
+        "icon": "fa-github",
+        "group": 1,
+        "id": "8a7f8552baac18b60ed273d473f2d59f"
+    },
+    {
         "name": "Github",
         "url": "http:\/\/github.com",
         "icon": "various\/github",
         "group": 1,
-        "id": "001a8c122ebdd7c33c7904ba111246b4",
-        "style": "background: #888 url(img\/various\/github.png) right center no-repeat;",
-        "iconEl": ""
-    },
-    {
-        "name": "Github Trending",
-        "url": "https:\/\/github.com\/trending?l=javascript&since=weekly",
-        "icon": "metro\/github",
-        "group": 1,
-        "id": "8a7f8552baac18b60ed273d473f2d59f"
+        "id": "001a8c122ebdd7c33c7904ba111246b4"
     },
     {
         "name": "OneDrive",

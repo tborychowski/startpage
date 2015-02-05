@@ -1,29 +1,23 @@
-'use strict';
+var _cache = {};
 
-var _cache = {},
+function trigger (topic, ...args) {
+	if (!_cache[topic]) return;
+	_cache[topic].forEach((cb) => cb.apply(cb, args));
+}
 
-	_trigger = function (topic, args) {
-		if (!_cache[topic]) return;
-		args = args ? [].splice.call(arguments, 1) : [];
-		_cache[topic].forEach(function (cb) { cb.apply(cb, args); });
-	},
+function on (topic, callback) {
+	if (!_cache[topic]) _cache[topic] = [];
+	_cache[topic].push(callback);
+	return [topic, callback];       // handle for off
+}
 
-	_on = function (topic, callback) {
-		if (!_cache[topic]) _cache[topic] = [];
-		_cache[topic].push(callback);
-		return [topic, callback];       // handle for off
-	},
+function off (handle) {
+	let [topic, cb] = handle, ca = _cache[topic];
+	cb = cb.toString();
+	if (ca) ca.forEach((fn, i) => {
+		if (fn.toString() === cb) ca.splice(i, 1);
+	});
+}
 
-	_off = function (handle) {
-		var topic = handle[0], cb = handle[1].toString(), ca = _cache[topic];
-		if (ca) ca.forEach(function (fn, i) {
-			if (fn.toString() === cb) ca.splice(i, 1);
-		});
-	};
 
-module.exports = {
-	on: _on,
-	off: _off,
-	trigger: _trigger
-};
-
+export default { on, off, trigger };

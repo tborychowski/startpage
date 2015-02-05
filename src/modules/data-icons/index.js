@@ -1,19 +1,13 @@
-'use strict';
+import $ from 'util';
 
-var $ = require('util'),
-	_data,
-	_dataPromise,
-	load = function () {
-		_dataPromise = $.ajax('data/icons.php')
-			.then(function (data) {
-				_data = data;
-				return _data;
-			});
-		return _dataPromise;
-	};
+var _data, _dataPromise;
 
-module.exports = {
-	get: function (forceReload) {
+function load () {
+	return _dataPromise = $.ajax('data/icons.php').then((data) => _data = data);
+}
+
+export default {
+	get: (forceReload) => {
 		if (!forceReload && _dataPromise) return _dataPromise;
 		return load();
 	}

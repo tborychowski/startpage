@@ -16,11 +16,16 @@ var gulp = require('gulp'),
 
 	wpCfg = {
 		// devtool: '#inline-source-map',
+		debug: true,
 		output: { filename: 'app.js' },
-		resolve: { root: path.join(__dirname, '/src/modules') },
+		resolve: {
+			root: path.join(__dirname, '/src/modules'),
+			extensions: ['', '.js', '.json']
+		},
 		module: {
 			loaders: [
-				{ test: /\.html$/, loader: 'mustache' }
+				{ test: /\.html$/, loader: 'mustache' },
+				{ test: /\.js$/, loader: '6to5-loader', exclude: /node_modules/ }
 			]
 		}
 	},

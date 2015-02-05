@@ -1,7 +1,6 @@
 /* Appplication Cache - update when change detected */
-'use strict';
 
-function _init () {
+function init () {
 	var appCache = window.applicationCache,
 		onUpdateReady = function () {
 			window.alert('Cache updated, please reload');
@@ -11,6 +10,4 @@ function _init () {
 	if (appCache.status === appCache.UPDATEREADY) onUpdateReady();
 }
 
-module.exports = {
-	init: _init
-};
+export default { init };

@@ -1,20 +1,14 @@
-'use strict';
+import $ from 'util';
 
-var $ = require('util'),
-	_url = 'data/auth.php';
+const _url = 'data/auth.php';
 
-module.exports = {
 
-	auth: function () {
-		return $.ajax(_url);
-	},
+export default {
 
-	verify: function (params) {
-		return $.ajax(_url, params);
-	},
+	auth: () => $.ajax(_url),
 
-	logout: function () {
-		return $.ajax({ url: _url, type: 'json', method: 'DELETE' });
-	}
+	verify: (params) => $.ajax(_url, params),
+
+	logout: () => $.ajax({ url: _url, type: 'json', method: 'DELETE' })
 
 };

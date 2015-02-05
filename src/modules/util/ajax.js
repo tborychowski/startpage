@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function (options, data) {      /*global Promise */
+export default function (options, data) {
 	var req = new XMLHttpRequest(), resp;
 
 	if (typeof options === 'string') options = { url: options };
@@ -14,7 +12,7 @@ module.exports = function (options, data) {      /*global Promise */
 	options.type = options.type || 'x-www-form-urlencoded';
 	if (data && options.type === 'json') data = JSON.stringify(data);
 
-	return new Promise(function (resolve, reject) {
+	return new Promise((resolve, reject) => {
 		req.open(options.method || 'GET', options.url, true);
 		req.onload = function () {
 			if (req.status >= 200 && req.status < 400) {
@@ -28,4 +26,4 @@ module.exports = function (options, data) {      /*global Promise */
 		req.setRequestHeader('Content-Type', 'application/' + options.type + '; charset=UTF-8');
 		req.send(data);
 	});
-};
+}
