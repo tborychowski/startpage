@@ -25,7 +25,7 @@ var gulp = require('gulp'),
 		module: {
 			loaders: [
 				{ test: /\.html$/, loader: 'mustache' },
-				{ test: /\.js$/, loader: '6to5-loader', exclude: /node_modules/ }
+				{ test: /\.js$/, loader: '6to5-loader?experimental', exclude: /node_modules/ }
 			]
 		}
 	},
