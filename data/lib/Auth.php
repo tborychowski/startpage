@@ -87,7 +87,7 @@ Class Auth {
 
 	private function get_stored_email () {
 		if (file_exists($this->email_file_name)) {
-			$this->stored_email = trim(file_get_contents($this->email_file_name));
+			$this->email_stored = trim(file_get_contents($this->email_file_name));
 		}
 	}
 
