@@ -6,6 +6,7 @@ var _tpl = {
 	unlocked: require('tile/template-unlocked.html')
 };
 
+
 function updateIcon (tile) {
 	if (!tile.icon) return tile;
 	tile.style = '';

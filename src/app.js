@@ -1,5 +1,5 @@
-// import appcache from 'appcache';
-// appcache.init();
+import appcache from 'appcache';
+appcache();
 
 import container from 'container';
 container.init();

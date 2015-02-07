@@ -99,9 +99,7 @@
         "url": "http:\/\/katproxy.com\/",
         "icon": "various\/kat",
         "group": 3,
-        "id": "3dd8aa3da43ed30171d7589bfa9cb3cc",
-        "style": "background-image: url(img\/icons\/various\/kat.png); padding-left:80px;",
-        "iconEl": ""
+        "id": "3dd8aa3da43ed30171d7589bfa9cb3cc"
     },
     {
         "name": "HerhorTV",

@@ -16,7 +16,7 @@ var gulp = require('gulp'),
 
 	wpCfg = {
 		// devtool: '#inline-source-map',
-		debug: true,
+		debug: false,
 		output: { filename: 'app.js' },
 		resolve: {
 			root: path.join(__dirname, '/src/modules'),
@@ -25,9 +25,7 @@ var gulp = require('gulp'),
 		module: {
 			loaders: [
 				{ test: /\.html$/, loader: 'mustache' },
-				{ 
-					test: /\.js$/, 
-					exclude: /node_modules/,
+				{ test: /\.js$/, exclude: /node_modules/,
 					loader: '6to5-loader?experimental&comments=false'
 				}
 			]
@@ -52,7 +50,7 @@ gulp.task('phpunit', function() {
 gulp.task('js', function () {
 	return gulp.src(['src/app.js'])
 		.pipe(webpack(wpCfg, null, wpErr))
-		// .pipe(uglify())
+		.pipe(uglify())
 		.pipe(gulp.dest('assets/'))
 		.pipe(live());
 });

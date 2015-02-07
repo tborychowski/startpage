@@ -13,18 +13,31 @@ $req->respond(function ($method, $data) {
 	$msg = '';
 
 	if ($method == 'post') {
-		$res = ($auth->verify($data['login']) ? 'success' : 'error');	// verify token
+		$res = $auth->verify($data['login']);
+		if ($res === true) $res = 'success';
+		else $res = 'error';
 	}
 
 	elseif ($method == 'get') {
 		if ($auth->is_authenticated()) $res = 'success';
+		elseif ($auth->is_token_sent()) {
+			$res = 'success';
+			$msg = 'verify';
+		}
 		else {
-			$authres = $auth->new_token();								// send new token
-			$res = ($authres == true ? 'success' : 'error');
-			$msg = ($authres == true ? 'verify' : 'Ooo, dupa!');
+			$authres = $auth->new_token();						// send new token
+			if ($authres == true) {
+				$res = 'success';
+				$msg = 'verify';
+			}
+			else {
+				$res = 'error';
+				$msg = 'Ooo, dupa!';
+			}
 		}
 	}
 	elseif ($method == 'delete') {
+		unset($_SESSION['token_sent']);
 		$auth->logout();
 	}
 

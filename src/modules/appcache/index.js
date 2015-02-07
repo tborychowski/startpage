@@ -1,13 +1,13 @@
 /* Appplication Cache - update when change detected */
 
-function init () {
-	var appCache = window.applicationCache,
-		onUpdateReady = function () {
-			window.alert('Cache updated, please reload');
-		};
-
-	appCache.addEventListener('updateready', onUpdateReady);
-	if (appCache.status === appCache.UPDATEREADY) onUpdateReady();
+function onUpdateReady () {
+	if (window.confirm('Cache updated. Click OK to reload.')) window.location.reload();
 }
 
-export default { init };
+function init () {
+	var cache = window.applicationCache;
+	cache.addEventListener('updateready', onUpdateReady);
+	if (cache.status === cache.UPDATEREADY) onUpdateReady();
+}
+
+export default init;
