@@ -18,7 +18,7 @@ function varToRealType (v) {
 	else if (v === 'true') v = true;
 	else if (v === 'false') v = false;
 	if (v === '') v = undefined;
-	if (type(v) === 'array') v = v.map((val) => varToRealType(val));
+	if (type(v) === 'array') v = v.map(val => varToRealType(val));
 	return v;
 }
 

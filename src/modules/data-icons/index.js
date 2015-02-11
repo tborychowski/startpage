@@ -3,7 +3,7 @@ import $ from 'util';
 var _data, _dataPromise;
 
 function load () {
-	return _dataPromise = $.ajax('data/icons.php').then((data) => _data = data);
+	return _dataPromise = $.ajax('data/icons.php').then(data => _data = data);
 }
 
 export default {

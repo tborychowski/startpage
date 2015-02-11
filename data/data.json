@@ -81,6 +81,15 @@
         "id": "74e86b75d71bca689564fe38715a5b66"
     },
     {
+        "name": "Google Keep",
+        "url": "https:\/\/keep.google.com\/",
+        "icon": "metro\/remote-desktop",
+        "group": 2,
+        "id": "a37b5725e9f5faebd29653f599d73572",
+        "style": "background-image: url(img\/icons\/metro\/remote-desktop.png); padding-left:80px;",
+        "iconEl": ""
+    },
+    {
         "name": "Linuxpl",
         "url": "https:\/\/herhor.org:2223\/",
         "icon": "metro\/linux",
@@ -114,12 +123,5 @@
         "icon": "metro\/moviemaker",
         "group": 3,
         "id": "78eafb28f66219601cf6be27d147ff94"
-    },
-    {
-        "name": "Google Keep",
-        "url": "https:\/\/keep.google.com\/",
-        "icon": "metro\/remote-desktop",
-        "group": 3,
-        "id": "a37b5725e9f5faebd29653f599d73572"
     }
 ]

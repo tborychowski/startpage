@@ -11,11 +11,6 @@
   "devDependencies": {
     "6to5-core": "^3.3.12",
     "6to5-loader": "^3.0.0",
-    "hogan.js": "^3.0.2",
-    "loader-utils": "^0.2.6",
-    "mustache-loader": "^0.2.0",
-    "webpack": "^1.5.1",
-
     "del": "^1.1.1",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
@@ -30,8 +25,13 @@
     "gulp-util": "^3.0.1",
     "gulp-watch": "^3.0.0",
     "gulp-webpack": "^1.1.2",
+    "hellojs": "^1.4.1",
+    "hogan.js": "^3.0.2",
     "jshint-stylish": "^1.0.0",
-    "sortablejs": "^1.0.1"
+    "loader-utils": "^0.2.6",
+    "mustache-loader": "^0.2.0",
+    "sortablejs": "^1.0.1",
+    "webpack": "^1.5.1"
   },
   "dependencies": {}
 }

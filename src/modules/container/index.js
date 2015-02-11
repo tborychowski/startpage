@@ -26,11 +26,11 @@ function _initSortable (el) {
 }
 
 function _initSortables () {
-	_el.find('.container').forEach((c) => _sortables.push(_initSortable(c)));
+	_el.find('.container').forEach(c => _sortables.push(_initSortable(c)));
 }
 
 function _destroySortables () {
-	_sortables.forEach((s) => s.destroy());
+	_sortables.forEach(s => s.destroy());
 	_sortables = [];
 }
 
@@ -83,16 +83,16 @@ function _populate (data) {
 	if (!_data) return;
 	var tileTpl = Tile.getTemplate();
 
-	_el[0].innerHTML = _data.map((group) => {
-		group.tiles = group.items.map((tile) => tileTpl(tile));
+	_el[0].innerHTML = _data.map(group => {
+		group.tiles = group.items.map(tile => tileTpl(tile));
 		return _tpl(group);
 	}).join('');
 
 	// update backgrounds
 	var tiles = _el.find('.tile'), img;
-	tiles.forEach((tile) => {
+	tiles.forEach(tile => {
 		img = tile.style.backgroundImage.replace(/^url\("?/, '').replace(/"?\)$/, '');
-		if (img) IMG(img).then((c) => tile.style.backgroundColor = c);
+		if (img) IMG(img).then(c => tile.style.backgroundColor = c);
 	});
 }
 

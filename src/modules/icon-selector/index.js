@@ -41,9 +41,9 @@ function hide () { toggle(false); }
 function populate (data) {
 	if (data) _data = data;
 	var html = [];
-	_data.forEach((theme) => {
+	_data.forEach(theme => {
 		html.push('<h1 class="header">' + theme.name + '</h1>');
-		if (theme.icons) theme.icons.forEach((icon) => html.push(tpl(icon)));
+		if (theme.icons) theme.icons.forEach(icon => html.push(tpl(icon)));
 	});
 	html.push('<div class="footer"></div>');
 	_el.find('.icon-selector-wrapper')[0].innerHTML = html.join('');

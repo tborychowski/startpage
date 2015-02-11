@@ -32,7 +32,7 @@ function Form (el) {
 }
 
 Form.prototype.set = function (params, clear) {
-	_getInputs(this.form).forEach((input) => {
+	_getInputs(this.form).forEach(input => {
 		var name = input.name,
 			value = params[name] || '',
 			names, i, n, v;
@@ -69,7 +69,7 @@ Form.prototype.set = function (params, clear) {
 Form.prototype.get = function (convert = false) {
 	var data = {}, current, i;
 
-	_getInputs(this.form).forEach((el) => {
+	_getInputs(this.form).forEach(el => {
 		var type = el.type && el.type.toLowerCase(),
 			key, value, parts, lastPart, tv, cmp, last;
 

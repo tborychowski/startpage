@@ -28,7 +28,7 @@ function process (data) {
 
 export default function (imgSrc) {
 	let imgObj = new Image();
-	return new Promise((resolve) => {
+	return new Promise(resolve => {
 		imgObj.onload = () => {
 			let context = document.createElement('canvas').getContext('2d');
 			context.drawImage(imgObj, 0, 0);

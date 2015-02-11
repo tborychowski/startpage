@@ -4,7 +4,7 @@ const _url = 'data/index.php';
 var _data, _dataPromise;
 
 function load () {
-	return _dataPromise = $.ajax(_url).then((data) => _data = data);
+	return _dataPromise = $.ajax(_url).then(data => _data = data);
 }
 /**
  * Convert format
@@ -15,13 +15,13 @@ function load () {
  */
 function group (data) {
 	var groups = {}, g;
-	data.forEach((item) => {
+	data.forEach(item => {
 		g = item.group || '0';
 		groups[g] = groups[g] || { name: g, items: [] };
 		groups[g].items.push(item);
 	});
 	data = [];
-	$.each(groups, (g) => data.push(g));
+	$.each(groups, g => data.push(g));
 	return data;
 }
 
@@ -37,7 +37,7 @@ function getById (id) {
 }
 
 function save (params) {
-	return $.ajax(_url, params).then((data) => {
+	return $.ajax(_url, params).then(data => {
 		load();			// update cached data on  save
 		return data;	// return saved object
 	});

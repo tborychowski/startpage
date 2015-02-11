@@ -2,7 +2,7 @@ var _cache = {};
 
 function trigger (topic, ...args) {
 	if (!_cache[topic]) return;
-	_cache[topic].forEach((cb) => cb.apply(cb, args));
+	_cache[topic].forEach(cb => cb.apply(cb, args));
 }
 
 function on (topic, callback) {

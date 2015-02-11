@@ -58,15 +58,20 @@ function submit () {
 }
 
 function onClick (e) {
-	if (_unlocked) return toggleLock(false);
-	if (_opened) return toggleBox(false);
-
-	if ($(e.target).closest('.authbox')) return;
-	Data.auth().then(resp => {
-		if (resp.msg === 'verify') toggleBox(true);
-		else if (resp.result === 'success') toggleLock(true);
-		else toggleBox(true);
+	require.ensure([], function () {
+		require('auth').login().then(function () {
+			window.alert('turuuuu!');
+		});
 	});
+	// if (_unlocked) return toggleLock(false);
+	// if (_opened) return toggleBox(false);
+
+	// if ($(e.target).closest('.authbox')) return;
+	// Data.auth().then(resp => {
+	// 	if (resp.msg === 'verify') toggleBox(true);
+	// 	else if (resp.result === 'success') toggleLock(true);
+	// 	else toggleBox(true);
+	// });
 }
 /*** EVENT HANDLERS *******************************************************************************/
 

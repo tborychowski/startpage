@@ -31,7 +31,7 @@ function _formSubmit () {
 	var newItem = _form.get(), tile, img;
 	if (!newItem.name || !newItem.url) return;
 	newItem = _sanitizeItem(newItem, ['name', 'url', 'icon']);
-	Data.save(newItem).then((item) => {
+	Data.save(newItem).then(item => {
 		if (!newItem.id) Data.appendItem(item);
 		if (_target.el) {
 			tile = Tile.getTile(item);
@@ -39,7 +39,7 @@ function _formSubmit () {
 		}
 		// color bg
 		if (tile) img = tile.style.backgroundImage.replace(/^url\("?/, '').replace(/"?\)$/, '');
-		if (img) IMG(img).then((c) => tile.style.backgroundColor = c);
+		if (img) IMG(img).then(c => tile.style.backgroundColor = c);
 
 		_toggle(false);
 	});
@@ -57,7 +57,7 @@ function _actionHandler (action, target) {
 
 /*** HELPERS **********************************************************************************/
 function _sanitizeItem (item, fields) {
-	fields.forEach((f) => item[f] = $.sanitize(item[f]));
+	fields.forEach(f => item[f] = $.sanitize(item[f]));
 	return item;
 }
 function _getTarget (target) {
@@ -133,7 +133,7 @@ function _init () {
 	_form = new $.form(_el[0]);
 
 	_el.find('.btn-delete').on('click', _deleteTile);
-	_el.find('form').on('submit', (ev) => {
+	_el.find('form').on('submit', ev => {
 		ev.preventDefault();
 		_formSubmit();
 	});

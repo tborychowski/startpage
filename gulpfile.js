@@ -17,7 +17,10 @@ var gulp = require('gulp'),
 	wpCfg = {
 		// devtool: '#inline-source-map',
 		debug: false,
-		output: { filename: 'app.js' },
+		output: {
+			filename: 'app.js',
+			publicPath: './assets/'
+		},
 		resolve: {
 			root: path.join(__dirname, '/src/modules'),
 			extensions: ['', '.js', '.json']
