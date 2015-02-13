@@ -1,7 +1,6 @@
 <?php
 require('lib/_lib.php');
 
-use \Request;
 $req = new Request();
 
 $req->respond(function ($method, $data) {

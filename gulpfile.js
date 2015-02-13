@@ -3,7 +3,6 @@
 var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	cssmin = require('gulp-minify-css'),
-	path = require('path'),
 	webpack = require('gulp-webpack'),
     concat = require('gulp-concat'),
     stylus = require('gulp-stylus'),
@@ -13,27 +12,7 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
 	phpunit = require('gulp-phpunit'),
 	del = require('del'),
-
-	wpCfg = {
-		// devtool: '#inline-source-map',
-		debug: false,
-		output: {
-			filename: 'app.js',
-			publicPath: './assets/'
-		},
-		resolve: {
-			root: path.join(__dirname, '/src/modules'),
-			extensions: ['', '.js', '.json']
-		},
-		module: {
-			loaders: [
-				{ test: /\.html$/, loader: 'mustache' },
-				{ test: /\.js$/, exclude: /node_modules/,
-					loader: '6to5-loader?experimental&comments=false'
-				}
-			]
-		}
-	},
+	wpCfg = require('./gulpfile-webpack.conf.js'),
 	wpErr = function (err, stats) {
 		if (err) notify.onError('Error: ' + err);
 		err = stats.compilation.errors;
@@ -41,8 +20,15 @@ var gulp = require('gulp'),
 	};
 
 
-gulp.task('clean', function (cb) { del([ 'assets/**/*.{css,js,map,html}' ], cb); });
-gulp.task('php', function () { return gulp.src([ '**/*.php', './*.*' ]).pipe(live()); });
+gulp.task('php', function () { return gulp.src(['**/*.php', './*.*']).pipe(live()); });
+gulp.task('clean', function (cb) { del(['assets/**/*.{css,js,map,html}', 'redirect/**/*'], cb); });
+
+gulp.task('hellojs', ['clean'], function () {
+	var _s = './node_modules/hellojs/', _b = { base: _s }, _t = './redirect/';
+	gulp.src(_s + 'redirect.html', _b).pipe(gulp.dest(_t));
+	gulp.src(_s + 'assets/redirect.css', _b).pipe(gulp.dest(_t));
+	gulp.src(_s + 'src/hello.js', _b).pipe(uglify()).pipe(gulp.dest(_t));
+});
 
 gulp.task('phpunit', function() {
 	return gulp.src('./phpunit.xml')
@@ -70,9 +56,9 @@ gulp.task('jshint', function () {
 });
 
 gulp.task('styl', function () {
-	return gulp.src([ 'src/app.styl', 'src/modules/**/*.styl' ])
+	return gulp.src(['src/app.styl', 'src/modules/**/*.styl'])
 		.pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
-		.pipe(stylus({ paths: [ 'src' ]}))
+		.pipe(stylus({ paths: ['src']}))
 		.pipe(cssmin({ keepSpecialComments: 0 }))
 		.pipe(concat('app.css'))
 		.pipe(gulp.dest('assets'))
@@ -81,10 +67,10 @@ gulp.task('styl', function () {
 
 gulp.task('watch', function () {
 	live.listen();
-	gulp.watch('src/**/*.styl', [ 'styl' ]);
-	gulp.watch(['src/*.js', 'src/modules/**/*.js'], [ 'js', 'jshint' ]);
-	gulp.watch(['**/*.php', '*.html', '!**/__*.*'], [ 'php', 'phpunit' ]);
+	gulp.watch('src/**/*.styl', ['styl']);
+	gulp.watch(['src/*.js', 'src/modules/**/*.js'], ['js', 'jshint']);
+	gulp.watch(['**/*.php', '*.html', '!**/__*.*'], ['php', 'phpunit']);
 });
 
-gulp.task('test', [ 'phpunit' ]);
-gulp.task('default', [ 'clean', 'js', 'styl', 'watch' ]);
+gulp.task('test', ['phpunit']);
+gulp.task('default', ['clean', 'hellojs', 'js', 'styl', 'watch']);

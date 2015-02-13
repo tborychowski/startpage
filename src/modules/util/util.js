@@ -66,6 +66,7 @@ function isNodeList(nodes) {
 		(nodes.length === 0 || (typeof nodes[0] === 'object' && nodes[0].nodeType > 0));
 }
 
+
 export default {
 	type,
 	rand,

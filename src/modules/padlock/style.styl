@@ -15,28 +15,12 @@
 	.fa-sign-out
 		show 0;
 
-	.authbox
-		position absolute; left 0; bottom 0; size 20; padding 10; z -1;
-		font 200 16px/1 'Open Sans', sans-serif; transition all .3s ease-out;
-		border 2 #222; bg #fff; opacity 0; overflow hidden;
-
-		h1
-			font 24px; font-weight 200; color #333; margin 0; padding 0 0 15;
-		input
-			font 14; bg #fff; border 2 #333; margin 0; width 99%; padding 3 5;
-		button
-			float right; margin 9 2 0 0;
-
 	.loading
 		bg 'loading27.gif'; show 2; size 27; margin 7 10;
-
-	&.open
-		.authbox
-			opacity 1; size 260 120;
 
 	&.unlocked
 		.fa-sign-out
 			show 1;
 
-		.authbox
-			opacity 0; size 20;
+	&.online .fa-lock
+		color #3E933E;
