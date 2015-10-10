@@ -1,37 +1,35 @@
 [
     {
         "name": "InoRead",
-        "url": "http:\/\/www.inoreader.com\/",
+        "url": "https:\/\/www.inoreader.com\/",
         "icon": "metro\/rss",
         "group": "",
         "id": "489d819e2c8dcd166026f7c1534ac02d"
     },
     {
         "name": "Gmail",
-        "url": "http:\/\/gmail.com",
+        "url": "https:\/\/gmail.com",
         "icon": "metro\/gmail",
-        "group": 0,
-        "id": "5871f68c10ebc31437cf4e0e432e4df2",
-        "style": "background: #888 url(img\/metro\/gmail.png) center no-repeat; color: transparent;",
-        "iconEl": ""
+        "group": "",
+        "id": "5871f68c10ebc31437cf4e0e432e4df2"
     },
     {
         "name": "Calendar",
-        "url": "http:\/\/calendar.google.com",
+        "url": "https:\/\/calendar.google.com",
         "icon": "metro\/google-cal",
         "group": "",
         "id": "cc0ae3248453ed1f1cb0b43c7170bf3e"
     },
     {
         "name": "YouTube",
-        "url": "http:\/\/youtube.com",
+        "url": "https:\/\/youtube.com",
         "icon": "metro\/youtube2",
         "group": "",
         "id": "9bb5eefed1f511cda4060ef48a2d8d7f"
     },
     {
         "name": "Facebook",
-        "url": "http:\/\/facebook.com",
+        "url": "https:\/\/facebook.com",
         "icon": "metro\/facebook",
         "group": "",
         "id": "e4e0cfba7602e20980b8f416e55cd7b6"
@@ -44,8 +42,15 @@
         "id": "58155c194dc099dcbdbe2aaec56a9ea1"
     },
     {
+        "name": "Dom",
+        "url": "http:\/\/dom.herhor.org\/",
+        "icon": "metro\/home",
+        "group": "",
+        "id": "6e8b72128f986426ae175d996dd018eb"
+    },
+    {
         "name": "KickAss",
-        "url": "http:\/\/katproxy.com\/",
+        "url": "https:\/\/kickass.unblocked.la\/",
         "icon": "various\/kat",
         "group": 0,
         "id": "3dd8aa3da43ed30171d7589bfa9cb3cc",
@@ -54,14 +59,14 @@
     },
     {
         "name": "SO",
-        "url": "http:\/\/StackOverflow.com",
+        "url": "https:\/\/StackOverflow.com",
         "icon": "various\/stackoverflow",
         "group": 1,
         "id": "71494418672b16f1bd067141dc8b1156"
     },
     {
         "name": "Github",
-        "url": "http:\/\/github.com",
+        "url": "https:\/\/github.com",
         "icon": "various\/github",
         "group": 1,
         "id": "001a8c122ebdd7c33c7904ba111246b4"
@@ -74,55 +79,55 @@
         "id": "8a7f8552baac18b60ed273d473f2d59f"
     },
     {
-        "name": "Bitbucket",
-        "url": "http:\/\/bitbucket.com",
-        "icon": "metro\/bitbucket",
-        "group": 1,
-        "id": "33529331056b1031925f49da9a4516e4"
-    },
-    {
-        "name": "Funiaste",
-        "url": "http:\/\/funiaste.net",
-        "icon": "various\/funiaste",
-        "group": 2,
-        "id": "561fa00e978eafd14bac254ebc2d5433"
-    },
-    {
-        "name": "Outlook",
-        "url": "http:\/\/outlook.com",
-        "icon": "metro\/outlook",
-        "group": 2,
-        "id": "74e86b75d71bca689564fe38715a5b66"
-    },
-    {
-        "name": "Spotify",
-        "url": "http:\/\/spotify.com",
-        "icon": "metro\/spotify",
-        "group": 2,
-        "id": "d711d703f5ef0613d314484134a02ce6"
-    },
-    {
-        "name": "Google Keep",
-        "url": "https:\/\/keep.google.com\/",
-        "icon": "metro\/notification",
-        "group": 2,
-        "id": "a37b5725e9f5faebd29653f599d73572"
-    },
-    {
         "name": "Linuxpl",
         "url": "https:\/\/herhor.org:2223\/",
         "icon": "metro\/ubuntu",
-        "group": 2,
-        "id": "debcbd863b7e92d0c12e439cd4661928"
+        "group": 1,
+        "id": "debcbd863b7e92d0c12e439cd4661928",
+        "style": "background-image: url(img\/icons\/metro\/ubuntu.png); padding-left:80px;",
+        "iconEl": ""
     },
     {
-        "name": "OneDrive",
-        "url": "http:\/\/onedrive.live.com",
-        "icon": "metro\/onedrive",
+        "name": "Spotify",
+        "url": "https:\/\/play.spotify.com\/collection\/artists",
+        "icon": "metro\/spotify",
+        "group": 2,
+        "id": "92e5212d27db2c5d308f3dd65c4c74d5"
+    },
+    {
+        "name": "Hangouts",
+        "url": "https:\/\/hangouts.google.com\/",
+        "icon": "metro\/messages2",
+        "group": 2,
+        "id": "24aeebc58a9a63af4c2d04730dd9a5d6"
+    },
+    {
+        "name": "Wunderlist",
+        "url": "https:\/\/www.wunderlist.com\/webapp#\/lists\/inbox",
+        "icon": "metro\/notification",
+        "group": 2,
+        "id": "95f98c12bb9286e7c77d3dffcf7ae393"
+    },
+    {
+        "name": "Pocket",
+        "url": "https:\/\/getpocket.com\/a\/queue\/list\/",
+        "icon": "metro\/bookmark",
+        "group": 2,
+        "id": "4d0910b54aff1243298a4634fb452996"
+    },
+    {
+        "name": "KAT backup",
+        "url": "http:\/\/sitenable.info\/o.php?u=ODQuMjAzLjYwLjEyOHxzOi8va2F0LmNyfE1vemlsbGEvNS4wIChYMTE7IFVidW50dTsgTGludXggeDg2XzY0OyBydjo0MS4wKSBHZWNrby8yMDEwMDEwMSBGaXJlZm94LzQxLjB8ODAxNzgw",
+        "icon": "various\/kat",
         "group": 3,
-        "id": "c966f6b90a58a97a7f16f329b289c1b8",
-        "style": "background-image: url(img\/icons\/metro\/onedrive.png);",
-        "iconEl": ""
+        "id": "f22393ad0cd6dae397002c68a4ebe736"
+    },
+    {
+        "name": "Piratebay",
+        "url": "https:\/\/thepirateboat.eu\/",
+        "icon": "various\/piratebay",
+        "group": 3,
+        "id": "03d82198bc99995e4dcef9298d3745b9"
     },
     {
         "name": "HerhorTV",
@@ -133,30 +138,9 @@
     },
     {
         "name": "FollowShows",
-        "url": "http:\/\/followshows.com\/",
+        "url": "https:\/\/followshows.com\/",
         "icon": "metro\/moviemaker",
         "group": 3,
         "id": "78eafb28f66219601cf6be27d147ff94"
-    },
-    {
-        "name": "EKino",
-        "url": "http:\/\/www.ekino.tv\/",
-        "icon": "metro\/moviemaker",
-        "group": 3,
-        "id": "5511eb9584ed3f528f83d015408338ef"
-    },
-    {
-        "name": "Piratebay",
-        "url": "https:\/\/thepirateboat.eu\/",
-        "icon": "various\/piratebay",
-        "group": 3,
-        "id": "03d82198bc99995e4dcef9298d3745b9"
-    },
-    {
-        "name": "Moqups",
-        "url": "https:\/\/moqups.com\/",
-        "icon": "metro\/desktop2",
-        "group": 1,
-        "id": "8517b23fd2748a73c706c4f8303ed7cf"
     }
 ]

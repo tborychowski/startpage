@@ -67,7 +67,14 @@ Class DB {
 	 * Save all items to file
 	 */
 	public function save () {
-		$res = file_put_contents($this->file_name, $this->get()->get_json(true));
+		$content = $this->get()->get_json(true);
+		if (!empty($content)) {
+			// make backup
+			$oldContent = file_get_contents($this->file_name);
+			file_put_contents($this->file_name . '.bak', $oldContent);
+
+			$res = file_put_contents($this->file_name, $content);
+		}
         $this->result = ($res !== false);
 		return $this;
 	}
