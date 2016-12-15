@@ -24,3 +24,6 @@ body { margin: 0; background: #4a5e71; font: 100 20px/1 Helvetica, Arial, sans-s
 	background: rgba(255,255,255,.2) none 0 0 no-repeat;
 	background-size: 64px;
 }
+
+.gh-link { position: absolute; bottom: 15px; right: 15px; color: #888; text-decoration: none; font-size: 14px; }
+.gh-link:hover { color: #ccc; text-decoration: underline; }
