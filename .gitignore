@@ -3,3 +3,4 @@ assets
 *.sublime-*
 *.bak
 __*
+.DS_Store
