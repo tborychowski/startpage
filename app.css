@@ -1,0 +1,26 @@
+body, html { width: 100%; height: 100%; overflow: hidden; position: fixed; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: #4a5e71; font: 100 20px/1 Helvetica, Arial, sans-serif; }
+* { box-sizing: border-box; }
+.main { position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; overflow-y: auto; padding: 0; z-index: 0; transition: all .3s ease-out; }
+.wrapper { width: 100%; padding: 20px 30px 60px 20px; display: flex; flex-flow: row wrap; align-items: flex-start; }
+.section { position: relative; margin: 0; padding: 0 14px; display: flex; flex: 1 100%; align-self: flex-start; flex-flow: row wrap; }
+.tile { text-decoration: none; -webkit-touch-callout: none; user-select: none; position: relative;
+	border: 1px solid rgba(255,255,255,.2); box-shadow: 0 1px 2px rgba(0,0,0,.4); background-repeat: no-repeat;
+}
+.tile:hover { box-shadow:0 0 0 4px rgba(255,255,255,.2); }
+
+.section-row .tile { width: 128px; height: 128px; margin: 7px 0 0 7px; background-position: center; }
+
+.section-column { flex-flow: column; flex: 1 30%; min-width: 160px; max-width: 50%; margin-top: 20px; padding: 1px 0 0; }
+.section-column .tile {
+	width: auto;
+	height: 64px;
+	padding: 20px 10px 0 80px;
+	margin: 7px 10px 0 20px;
+	color: #eee;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background: rgba(255,255,255,.2) none 0 0 no-repeat;
+	background-size: 64px;
+}
