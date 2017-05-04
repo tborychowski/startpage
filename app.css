@@ -10,10 +10,11 @@ body { margin: 0; background: #4a5e71; font: 100 20px/1 Helvetica, Arial, sans-s
 }
 .tile:hover { box-shadow:0 0 0 4px rgba(255,255,255,.2); }
 
+.section-row { justify-content: center; }
 .section-row .tile { 
 	width: 128px; 
 	height: 128px; 
-	margin: 7px 0 0 7px; 
+	margin: 10px 0 0 30px; 
 	background-position: center; 
 	font-size: 0;
 }
@@ -21,15 +22,16 @@ body { margin: 0; background: #4a5e71; font: 100 20px/1 Helvetica, Arial, sans-s
 .section-column { flex-flow: column; flex: 1 30%; min-width: 160px; max-width: 50%; margin-top: 20px; padding: 1px 0 0; }
 .section-column .tile {
 	width: auto;
-	height: 64px;
-	padding: 20px 10px 0 80px;
-	margin: 7px 10px 0 20px;
+	height: 96px;
+	font-size: 24px;
+	padding: 35px 10px 0 124px;
+	margin: 30px 10px 0 20px;
 	color: #eee;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	background: rgba(255,255,255,.2) none 0 0 no-repeat;
-	background-size: 64px;
+	background: rgba(255,255,255,.2) none 0 center no-repeat;
+	background-size: 94px;
 }
 
 .gh-link { position: absolute; bottom: 15px; right: 15px; color: #888; text-decoration: none; font-size: 14px; }
