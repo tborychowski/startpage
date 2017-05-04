@@ -19,20 +19,21 @@ body { margin: 0; background: #4a5e71; font: 100 20px/1 Helvetica, Arial, sans-s
 	font-size: 0;
 }
 
-.section-column { flex-flow: column; flex: 1 30%; min-width: 160px; max-width: 50%; margin-top: 20px; padding: 1px 0 0; }
+.section-column { flex-flow: column; flex: 1 30%; min-width: 160px; max-width: 50%; margin-top: 10px; padding: 1px 0 0; }
 .section-column .tile {
-	width: auto;
-	height: 96px;
-	font-size: 24px;
-	padding: 35px 10px 0 124px;
-	margin: 30px 10px 0 20px;
-	color: #eee;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	background: rgba(255,255,255,.2) none 0 center no-repeat;
-	background-size: 94px;
+    width: auto;
+    height: 80px;
+    font-size: 22px;
+    padding: 29px 10px 0 100px;
+    margin: 20px 5px 0 15px;
+    color: #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(255,255,255,.2) none 0 center no-repeat;
+    background-size: 78px;
 }
+
 
 .gh-link { position: absolute; bottom: 15px; right: 15px; color: #888; text-decoration: none; font-size: 14px; }
 .gh-link:hover { color: #ccc; text-decoration: underline; }
