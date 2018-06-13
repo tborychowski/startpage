@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Start page",
   "author": "Tom",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "https://github.com/tborychowski/startpage.git"
@@ -32,6 +32,5 @@
     "mustache-loader": "^0.3.0",
     "sortablejs": "^1.0.1",
     "webpack": "^1.5.1"
-  },
-  "dependencies": {}
+  }
 }
